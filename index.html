@@ -16,7 +16,7 @@
         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
         .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
 
-        /* GRID - Exactly like your screenshots */
+        /* GRID LAYOUT */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; }
         .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
@@ -33,17 +33,17 @@
         .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
         .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
         .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: transform 0.6s ease-in, opacity 0.4s; }
-        
-        /* The Collapse Animation Logic */
         .implode .f3 { transform: translateY(130px); opacity: 0; transition-delay: 0.1s; }
         .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.5s; }
         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
 
-        /* LARGE DETAIL VIEW (MODAL) */
+        /* LARGE DETAIL VIEW */
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 850px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 85vh; overflow-y: auto; }
-        .close-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; }
-        .modal-body h3 { color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-top: 20px; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 85vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: #f1f5f9; border: none; font-size: 24px; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; }
+        .modal-body h3 { color: var(--blue); border-left: 5px solid var(--blue); padding-left: 15px; margin-top: 30px; font-size: 22px; }
+        .modal-body ul { line-height: 1.8; margin-bottom: 20px; }
+        .modal-body b { color: #1e293b; }
         
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
@@ -59,19 +59,19 @@
 
     <main class="grid">
         <button class="tile blue-tile" onclick="startDemolition('summary')">
-            <p>Tier-1 Project Engineer delivering large-scale industrial demolition and major infrastructure projects.</p>
+            <p>Tier-1 Project Engineer delivering large-scale industrial demolition and major infrastructure projects. Progressing toward NER/RPEV.</p>
         </button>
         <button class="tile yellow-tile" onclick="startDemolition('tech')">
-            <h3>💻 Tech Stack</h3>
-            <p>P6, AutoCAD, SpaceGass</p>
+            <h3>💻 Technical Skills</h3>
+            <p>P6, AutoCAD, Procore, SpaceGass</p>
         </button>
         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
             <h3>📄 Full Resume</h3>
-            <p>Download PDF</p>
+            <p>Download Original CV</p>
         </button>
         <button class="tile green-tile wide" onclick="startDemolition('projects')">
-            <h3>🚀 Key Projects</h3>
-            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+)</p>
+            <h3>🚀 Tier-1 Project Highlights</h3>
+            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • West Gate Upgrade</p>
         </button>
         <button class="tile purple-tile" onclick="startDemolition('career')">
             <h3>⏳ Career History</h3>
@@ -79,21 +79,20 @@
         </button>
         <button class="tile red-tile" onclick="startDemolition('edu')">
             <h3>📜 Education & Licenses</h3>
-            <p>Master of Engineering Science</p>
+            <p>Master of Engineering Science (Structural)</p>
         </button>
     </main>
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="blast-text" style="font-weight: 900; color: #ef4444;">INITIATING BLAST...</h2>
+    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">INITIATING CONTROLLED COLLAPSE...</h2>
     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
 <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
 <div id="modal" class="modal">
     <button class="close-btn" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle" style="font-size: 32px; margin: 0;"></h2>
-    <hr class="divider">
+    <h2 id="modalTitle" style="font-size: 36px; margin: 0; color: #0f172a;"></h2>
     <div id="modalBody" class="modal-body"></div>
 </div>
 
@@ -101,31 +100,57 @@
     const cvData = {
         summary: {
             title: "Professional Summary",
-            body: `<p>Project Engineer with expertise in demolition sequencing, cost control, and QA compliance[cite: 7]. Experienced in high-risk mechanical and explosive demolition within live operational facilities[cite: 8]. Progressing toward NER and RPEV registration[cite: 9].</p>`
+            body: `<p>Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments. Experienced in demolition sequencing, subcontractor coordination, procurement, cost control, and QA compliance.</p>
+                   <h3>Core Competencies</h3>
+                   <ul>
+                    <li><b>Demolition Planning:</b> Sequencing & Methodology Development, Mechanical & Induced Collapse.</li>
+                    <li><b>Structural Design:</b> Partial Structural Demolition Design (Wall & Slab Removal).</li>
+                    <li><b>Hazardous Waste:</b> Management of Asbestos, NORM, and Contaminated Waste (EPA/Local Authority Compliance).</li>
+                    <li><b>Project Controls:</b> Contract Administration, Procurement (NetSuite), and Scheduling (P6).</li>
+                   </ul>`
         },
         tech: {
-            title: "Technical Skills",
-            body: `<h3>Project Management</h3><p>MS Project, Primavera P6, Procore, InEight, Oracle NetSuite[cite: 66].</p>
-                   <h3>Design & Analysis</h3><p>AutoCAD, Civil 3D, SpaceGass, Microstran, RAPT[cite: 67, 68].</p>`
+            title: "Technical Stack",
+            body: `<h3>Project Management & Reporting</h3>
+                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight, MS Office Suite.</p>
+                   <h3>Design & Drafting</h3>
+                   <p>AutoCAD 2D, Civil 3D/MAP 3D, 12d, Bluebeam, Sketch Up.</p>
+                   <h3>Structural Analysis</h3>
+                   <p>SpaceGass, Structural Toolkit, Microstran, MS Tower, RAPT, Inducta.</p>`
         },
         projects: {
-            title: "Key Project Highlights",
+            title: "Key Tier-1 Projects",
             body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
-                   <p>Managing staged demolition of tanks, process units, and structural steel while maintaining live fuel import operations[cite: 11, 12, 13].</p>
+                   <p><b>2025 – Present:</b> Project Engineer on major refinery closure. Managing staged demolition of tanks, process units, and pipe racks while maintaining live fuel import operations supplying ~40% of Victoria's fuel demand.</p>
                    <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
-                   <p>Delivered decontamination, heavy structural dismantling, and precision explosive works for Australia's largest industrial demolition[cite: 16, 17].</p>
+                   <p><b>2024 – 2025:</b> Project Engineer on Australia’s largest industrial demolition project. Delivered heavy structural dismantling, precision explosive works, and stakeholder engagement including Traditional Owner consultation.</p>
                    <h3>West Gate Freeway Upgrade</h3>
-                   <p>QA verification of reinforced concrete crash barriers and precast noise walls[cite: 20, 21].</p>`
+                   <p><b>2022 – 2023:</b> Supporting installation and QA verification of reinforced concrete crash barriers and precast noise walls in live traffic conditions.</p>`
         },
         career: {
             title: "Professional Experience",
-            body: `<h3>Liberty Industrial — Project Engineer</h3><p>2024 - Present. Developed demolition methodologies, SWMS, and risk assessments[cite: 37, 40]. Managed subcontractor procurement and tracked \$8M+ in variations[cite: 42, 43].</p>
-                   <h3>Indara Digital — Structural Engineer</h3><p>2023 - 2024. Delivered structural design for telecom tower upgrades to AS 3600[cite: 48, 49].</p>`
+            body: `<h3>Liberty Industrial — Project Engineer</h3>
+                   <p><b>02/2024 – Present:</b> Developed demolition methodologies, SWMS, and risk assessments. Tracked costs and \$8M+ in variations. Managed subcontractor procurement and updated Primavera P6 schedules.</p>
+                   <h3>Indara Digital — Structural Engineer</h3>
+                   <p><b>04/2023 – 03/2024:</b> Structural design for telecom tower upgrades. Designed steel members and foundations to AS 3600 and AS/NZS 1170.</p>
+                   <h3>Clive Steele Partners — Graduate Structural Engineer</h3>
+                   <p><b>11/2021 – 03/2023:</b> Civil and structural design for commercial builds. Designed steel framing and concrete elements to AS 4100 and AS 3600.</p>`
         },
         edu: {
-            title: "Education & Certifications",
-            body: `<h3>Education</h3><p>Master of Engineering Science (Structural), Swinburne University [cite: 31].<br>Bachelor of Civil Engineering, University of Pune[cite: 32].</p>
-                   <h3>Licenses</h3><p>White Card, P6 Professional, Asbestos Safety Training, Working at Heights[cite: 60, 61, 62, 63].</p>`
+            title: "Education & Credentials",
+            body: `<h3>Education</h3>
+                   <ul>
+                    <li><b>Master of Engineering Science (Structural Engineering):</b> Swinburne University of Technology, VIC.</li>
+                    <li><b>Bachelor of Civil Engineering:</b> University of Pune, India.</li>
+                   </ul>
+                   <h3>Certifications & Licenses</h3>
+                   <ul>
+                    <li>Member of Engineers Australia (MIEAust)</li>
+                    <li>Construction Induction Card (White Card)</li>
+                    <li>Oracle Primavera P6 Professional Certification</li>
+                    <li>Asbestos Safety Training (Removal and Disposal)</li>
+                    <li>Working at Heights Training & Chain of Responsibility</li>
+                   </ul>`
         }
     };
 
@@ -135,7 +160,7 @@
         const text = document.getElementById('blast-text');
 
         overlay.style.display = 'flex';
-        text.innerText = "CHARGES SET...";
+        text.innerText = "INITIATING BLAST...";
 
         setTimeout(() => {
             text.innerText = "DETONATING...";
@@ -149,12 +174,14 @@
             bldg.classList.remove('implode');
             document.getElementById('modal').style.display = 'block';
             document.getElementById('backdrop').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }, 2200);
     }
 
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
         document.getElementById('backdrop').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 </script>
 </body>
