@@ -6,7 +6,7 @@
     <title>Ganesh Kalal | Project Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .bento-card { perspective: 1000px; cursor: pointer; min-height: 240px; }
+        .bento-card { perspective: 1000px; cursor: pointer; min-height: 250px; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
         .bento-card:hover .card-inner { transform: rotateY(180deg); }
         .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
@@ -15,44 +15,44 @@
         .animate-page { animation: fadeIn 0.8s ease-out; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 p-4 md:p-12 font-sans animate-page">
+<body class="bg-slate-50 text-slate-900 p-4 md:p-8 font-sans animate-page">
 
-    <div class="max-w-6xl mx-auto">
-        <header class="mb-12 text-center md:text-left border-b pb-8">
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-10 text-center md:text-left border-b border-slate-200 pb-6">
             <h1 class="text-5xl md:text-7xl font-black tracking-tight text-slate-800">
                 Ganesh <span class="text-blue-700">Kalal</span>
             </h1>
-            <div class="flex flex-wrap gap-4 mt-4 justify-center md:justify-start items-center">
-                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">MIEAust [cite: 2, 9]</span>
-                <span class="text-xl text-slate-500 font-medium italic">Project Engineer - Demolition & Infrastructure [cite: 3, 6]</span>
+            <div class="flex flex-wrap gap-3 mt-4 justify-center md:justify-start items-center">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">MIEAust</span>
+                <span class="text-xl text-slate-500 font-medium italic">Project Engineer - Demolition</span>
             </div>
-            <p class="text-slate-400 mt-2">Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com [cite: 1, 4]</p>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             
-            <div class="bento-card md:col-span-2">
+            <div class="bento-card">
                 <div class="card-inner">
-                    <div class="card-front bg-white border-2 border-slate-100">
-                        <span class="text-5xl mb-4">🏗️</span>
-                        <h2 class="text-2xl font-bold text-slate-800">Professional Profile</h2>
+                    <div class="card-front bg-slate-800 text-white">
+                        <span class="text-4xl mb-3">📞</span>
+                        <h2 class="text-xl font-bold">Contact</h2>
                     </div>
-                    <div class="card-back bg-blue-700 text-white p-6">
-                        <p class="text-sm leading-relaxed">Tier-1 Project Engineer with expertise in demolition sequencing, cost control, and QA[cite: 6, 7]. Experienced in high-risk mechanical and explosive demolition within live operational facilities[cite: 8].</p>
+                    <div class="card-back bg-slate-900 text-white text-[11px] p-5">
+                        <p class="mb-2">📍 Melbourne, VIC</p>
+                        <p class="mb-2">📱 0424 121 941</p>
+                        <p class="mb-2">📧 ganesh.r.kalal24@gmail.com</p>
+                        <p>🔗 LinkedIn: Ganesh Kalal</p>
                     </div>
                 </div>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card md:col-span-2">
                 <div class="card-inner">
-                    <div class="card-front bg-amber-400 text-slate-900">
-                        <span class="text-5xl mb-4">💻</span>
-                        <h2 class="text-xl font-bold">Tech Stack</h2>
+                    <div class="card-front bg-white border-2 border-slate-100">
+                        <span class="text-4xl mb-3">📝</span>
+                        <h2 class="text-2xl font-bold text-slate-800">Professional Summary</h2>
                     </div>
-                    <div class="card-back bg-amber-500 text-slate-900 text-[10px] p-4">
-                        <p class="mb-2"><strong>PM:</strong> P6, MS Project, Procore, NetSuite, InEight [cite: 61, 66]</p>
-                        <p class="mb-2"><strong>Design:</strong> AutoCAD, Civil 3D, 12d, Bluebeam [cite: 67]</p>
-                        <p><strong>Analysis:</strong> SpaceGass, Microstran, RAPT, Inducta [cite: 68]</p>
+                    <div class="card-back bg-blue-700 text-white p-6">
+                        <p class="text-xs leading-relaxed">Project Engineer delivering large-scale industrial demolition and Tier-1 infrastructure projects. Expert in demolition sequencing, cost control, and high-risk works including heavy mechanical and explosive demolition within live operational facilities.</p>
                     </div>
                 </div>
             </div>
@@ -60,100 +60,27 @@
             <div class="bento-card">
                 <a href="CV_Ganesh.pdf" download class="w-full h-full">
                     <div class="card-inner">
-                        <div class="card-front bg-slate-800 text-white border-2 border-blue-500">
-                            <span class="text-4xl mb-2">📄</span>
-                            <h2 class="text-xl font-bold text-blue-400">Full Resume</h2>
+                        <div class="card-front bg-blue-50 border-2 border-blue-200 text-blue-700">
+                            <span class="text-4xl mb-3">📄</span>
+                            <h2 class="text-xl font-bold">Official CV</h2>
+                            <p class="text-[10px] mt-2 italic">Click to download PDF</p>
                         </div>
                         <div class="card-back bg-blue-600 text-white flex items-center justify-center">
-                            <p class="font-bold uppercase text-center">Download PDF [cite: 4]</p>
+                            <p class="font-bold uppercase tracking-widest">Download Now</p>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="bento-card md:col-span-2 md:row-span-2">
-                <div class="card-inner">
-                    <div class="card-front bg-slate-100 border-2 border-slate-200">
-                        <h2 class="text-2xl font-bold italic">Experience Timeline</h2>
-                    </div>
-                    <div class="card-back bg-slate-800 text-white text-[10px] p-6">
-                        <div class="border-l-2 border-blue-500 pl-4 space-y-4">
-                            <div>
-                                <p class="font-bold text-blue-400">2024 - Present [cite: 38]</p>
-                                <p class="font-bold">Liberty Industrial | Project Engineer [cite: 37]</p>
-                                <p class="opacity-70 italic text-[9px]">Methodologies, procurement, and cost control for $100M+ projects[cite: 39, 40, 42].</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-blue-400">2023 - 2024 [cite: 48]</p>
-                                <p class="font-bold">Indara Digital | Structural Engineer [cite: 48]</p>
-                                <p class="opacity-70 italic text-[9px]">Structural design and support for 5G telecom tower upgrades[cite: 49].</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-blue-400">2021 - 2023 [cite: 51]</p>
-                                <p class="font-bold">Clive Steele Partners | Graduate Structural Engineer [cite: 51]</p>
-                                <p class="opacity-70 italic text-[9px]">Structural design for commercial builds and fit-outs[cite: 52].</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-blue-400">2020 - 2021 [cite: 56]</p>
-                                <p class="font-bold">Structcom | Graduate Civil Engineer [cite: 56]</p>
-                                <p class="opacity-70 italic text-[9px]">Stormwater drainage and site grading layouts[cite: 57].</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="bento-card md:col-span-2">
                 <div class="card-inner">
-                    <div class="card-front bg-emerald-500 text-white">
-                        <h2 class="text-2xl font-bold uppercase">Key Projects</h2>
+                    <div class="card-front bg-slate-50 border-2 border-slate-100">
+                        <span class="text-4xl mb-3">⏳</span>
+                        <h2 class="text-2xl font-bold">Professional Experience</h2>
                     </div>
-                    <div class="card-back bg-emerald-600 text-white text-[10px] p-4">
-                        <p class="mb-2"><strong>ExxonMobil Altona ($65M+):</strong> Managing staged refinery demolition[cite: 11, 13].</p>
-                        <hr class="my-2 opacity-30">
-                        <p class="mb-2"><strong>Rio Tinto Bauxite ($250M+):</strong> Coordinated remote logistics and explosive works[cite: 16, 17, 18].</p>
-                        <hr class="my-2 opacity-30">
-                        <p><strong>West Gate Freeway:</strong> QA verification of concrete barriers and noise walls[cite: 20, 21].</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-purple-600 text-white">
-                        <h2 class="text-lg font-bold">Education</h2>
-                    </div>
-                    <div class="card-back bg-purple-700 text-white text-[9px] p-4">
-                        <p class="font-bold">Master of Engineering Science (Structural) [cite: 31]</p>
-                        <p class="mb-2">Swinburne University of Technology, VIC [cite: 31]</p>
-                        <p class="font-bold">Bachelor of Civil Engineering [cite: 32]</p>
-                        <p>University of Pune, India [cite: 32]</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-rose-500 text-white">
-                        <h2 class="text-lg font-bold">Certifications</h2>
-                    </div>
-                    <div class="card-back bg-rose-600 text-white text-[9px] p-4">
-                        <ul class="list-disc ml-4 space-y-1">
-                            <li>White Card [cite: 60]</li>
-                            <li>P6 Professional [cite: 61]</li>
-                            <li>Asbestos Safety [cite: 62]</li>
-                            <li>Working at Heights [cite: 63]</li>
-                            <li>Chain of Responsibility [cite: 64]</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        
-        <footer class="mt-20 text-slate-400 text-center pb-10">
-            © 2026 Ganesh Kalal • MIEAust • Project Engineer [cite: 2, 9]
-        </footer>
-    </div>
-</body>
-</html>
+                    <div class="card-back bg-slate-800 text-white text-[10px] p-6">
+                        <div class="space-y-4 border-l-2 border-blue-500 pl-4">
+                            <div>
+                                <p class="font-bold text-blue-400">Feb 2024 - Present</p>
+                                <p class="font-bold">Liberty Industrial | Project Engineer</p>
+                            </div>
