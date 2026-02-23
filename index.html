@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive CV</title>
+    <title>Ganesh Kalal | Project Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* This makes the "Flip" animation work */
-        .bento-card { perspective: 1000px; cursor: pointer; min-height: 200px; }
+        .bento-card { perspective: 1000px; cursor: pointer; min-height: 220px; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
         .bento-card:hover .card-inner { transform: rotateY(180deg); }
-        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        .card-back { transform: rotateY(180deg); }
-        
-        /* Animation for the whole page */
+        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .card-back { transform: rotateY(180deg); overflow-y: auto; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-page { animation: fadeIn 0.8s ease-out; }
     </style>
@@ -23,9 +20,9 @@
     <div class="max-w-6xl mx-auto">
         <header class="mb-12 text-center md:text-left">
             <h1 class="text-5xl md:text-6xl font-black tracking-tight text-slate-800">
-                Hi, I'm <span class="text-blue-600">[Your Name]</span> 👋
+                Ganesh <span class="text-blue-700">Kalal</span>
             </h1>
-            <p class="text-xl text-slate-500 mt-4 italic">Interactive Digital Resume • Hover cards to flip</p>
+            <p class="text-xl text-slate-500 mt-4 font-medium italic">Project Engineer - Demolition & Infrastructure</p>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -33,12 +30,12 @@
             <div class="bento-card md:col-span-2 md:row-span-2">
                 <div class="card-inner">
                     <div class="card-front bg-white border-2 border-slate-100">
-                        <span class="text-5xl mb-4">👤</span>
-                        <h2 class="text-3xl font-bold text-slate-800">About Me</h2>
-                        <p class="text-slate-500 mt-2">The person behind the work.</p>
+                        <span class="text-5xl mb-4">🏗️</span>
+                        <h2 class="text-3xl font-bold text-slate-800">Professional Summary</h2>
+                        <p class="text-slate-500 mt-2">Tier-1 Infrastructure Specialist</p>
                     </div>
-                    <div class="card-back bg-blue-600 text-white">
-                        <p class="text-lg">I am a professional based in [Location] with over [X] years of experience in [Industry]. I specialize in making complex things simple.</p>
+                    <div class="card-back bg-blue-700 text-white">
+                        <p class="text-lg">Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments, including $250M+ projects.</p>
                     </div>
                 </div>
             </div>
@@ -46,16 +43,16 @@
             <div class="bento-card md:row-span-2">
                 <div class="card-inner">
                     <div class="card-front bg-amber-400 text-slate-900">
-                        <span class="text-5xl mb-4">🛠</span>
-                        <h2 class="text-2xl font-bold">My Skills</h2>
+                        <span class="text-5xl mb-4">🛠️</span>
+                        <h2 class="text-2xl font-bold">Core Expertise</h2>
                     </div>
                     <div class="card-back bg-amber-500 text-slate-900 text-sm">
-                        <ul class="space-y-2 font-bold">
-                            <li>✨ Skill One</li>
-                            <li>✨ Skill Two</li>
-                            <li>✨ Skill Three</li>
-                            <li>✨ Skill Four</li>
-                            <li>✨ Skill Five</li>
+                        <ul class="space-y-2 font-bold text-left">
+                            <li>⚡ Demolition Sequencing</li>
+                            <li>⚡ Explosive Works</li>
+                            <li>⚡ Hazardous Waste (Asbestos/NORM)</li>
+                            <li>⚡ Cost Control & Variations</li>
+                            <li>⚡ Primavera P6 Scheduling</li>
                         </ul>
                     </div>
                 </div>
@@ -63,46 +60,51 @@
 
             <div class="bento-card">
                 <div class="card-inner">
-                    <div class="card-front bg-emerald-500 text-white">
-                        <h2 class="text-xl font-bold">Contact 📞</h2>
+                    <div class="card-front bg-slate-800 text-white">
+                        <h2 class="text-xl font-bold">Let's Connect 📞</h2>
                     </div>
-                    <div class="card-back bg-emerald-600 text-white text-xs">
-                        <p>Email: name@example.com</p>
-                        <p class="mt-2 text-emerald-200">Click to copy</p>
+                    <div class="card-back bg-slate-900 text-white text-sm">
+                        <p>ganesh.r.kalal24@gmail.com</p>
+                        <p class="mt-2 text-blue-400">Melbourne, VIC</p>
                     </div>
                 </div>
             </div>
 
             <div class="bento-card md:col-span-2">
                 <div class="card-inner">
-                    <div class="card-front bg-slate-800 text-white">
-                        <h2 class="text-2xl font-bold text-emerald-400">Experience 💼</h2>
+                    <div class="card-front bg-emerald-500 text-white">
+                        <h2 class="text-2xl font-bold">Key Projects 🏆</h2>
                     </div>
-                    <div class="card-back bg-slate-900 text-white text-left text-sm">
-                        <p><strong>[Job Title]</strong> at [Company]<br>2021 - Present</p>
-                        <p class="mt-2 text-slate-400">Lead major initiatives and improved efficiency by 20%.</p>
+                    <div class="card-back bg-emerald-600 text-white text-left text-sm">
+                        <p><strong>ExxonMobil Altona Refinery:</strong> $65M+ Demolition & Conversion</p>
+                        <hr class="my-2 opacity-30">
+                        <p><strong>Rio Tinto Bauxite Refinery:</strong> $250M+ Structural Dismantling</p>
                     </div>
                 </div>
             </div>
 
             <div class="bento-card">
                 <div class="card-inner">
-                    <div class="card-front bg-purple-500 text-white">
-                        <h2 class="text-xl font-bold text-center">Learning 🎓</h2>
+                    <div class="card-front bg-purple-600 text-white">
+                        <h2 class="text-xl font-bold">Education 🎓</h2>
                     </div>
-                    <div class="card-back bg-purple-600 text-white text-xs">
-                        <p><strong>[Degree Name]</strong><br>[University Name]</p>
+                    <div class="card-back bg-purple-700 text-white text-xs">
+                        <p class="font-bold">Master of Engineering Science</p>
+                        <p>Swinburne University of Technology</p>
+                        <p class="mt-2 font-bold">B.E. Civil Engineering</p>
+                        <p>University of Pune</p>
                     </div>
                 </div>
             </div>
 
             <div class="bento-card md:col-span-2">
                 <div class="card-inner">
-                    <div class="card-front bg-rose-400 text-white">
-                        <h2 class="text-2xl font-bold text-center">Personal Touch ✨</h2>
+                    <div class="card-front bg-rose-500 text-white">
+                        <h2 class="text-2xl font-bold">Professional Status 🎖️</h2>
                     </div>
-                    <div class="card-back bg-rose-500 text-white">
-                        <p>I've visited 15 countries and I'm an amateur photographer!</p>
+                    <div class="card-back bg-rose-600 text-white">
+                        <p class="text-lg font-medium">Member of Engineers Australia (MIEAust)</p>
+                        <p class="text-sm mt-2 opacity-80">Progressing toward NER and RPEV registration</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@
         </div>
         
         <footer class="mt-20 text-slate-400 text-center pb-10">
-            &copy; 2026 • [Your Name] • Built with GitHub Pages
+            Built for Ganesh Kalal • 2026
         </footer>
     </div>
 
