@@ -13,7 +13,6 @@
             --border: #e2e8f0;
         }
 
-        /* DARK MODE STYLES */
         body.dark {
             --bg: #0f172a;
             --text: #f1f5f9;
@@ -24,41 +23,33 @@
         body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
         
-        /* THEME TOGGLE */
         .theme-toggle { position: absolute; top: 20px; right: 20px; background: var(--card); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; cursor: pointer; color: var(--text); font-weight: bold; }
 
-        /* HEADER */
         .name { font-size: 48px; margin: 0; font-weight: 800; }
         .blue-text { color: var(--blue); }
         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
         .divider { border: 0; border-top: 1px solid var(--border); margin: 25px 0; }
 
-        /* WELCOME BANNER */
         .welcome-banner { background: linear-gradient(135deg, #dbeafe, #eef2ff); border: 1px solid #bfdbfe; border-radius: 20px; padding: 25px; margin: 20px 0; color: #1e3a8a; }
         body.dark .welcome-banner { background: linear-gradient(135deg, #1e293b, #1e1b4b); border-color: #312e81; color: #e0e7ff; }
         .welcome-banner h2 { margin: 0 0 8px 0; font-size: 24px; }
 
-        /* GRID */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .tile { background: var(--card); padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: 1px solid var(--border); text-align: left; color: var(--text); }
         .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); border-color: var(--blue); }
         .wide { grid-column: span 2; }
         
-        /* TILE COLORS */
         .blue-tile { background: var(--blue); color: white; border: none; }
         .blue-tile h3 { color: white; }
         .yellow-tile { background: #fbbf24; color: #1e293b; border: none; }
-        .dark-tile { background: #1e293b; color: white; border: none; }
         .green-tile { background: #10b981; color: white; border: none; }
         .purple-tile { background: #8b5cf6; color: white; border: none; }
         .red-tile { background: #f43f5e; color: white; border: none; }
 
-        /* CONTACT FOOTER */
         .contact-footer { text-align: center; margin-top: 60px; padding: 40px; background: var(--card); border-radius: 24px; border: 1px solid var(--border); }
         .linkedin-btn { display: inline-flex; align-items: center; background: #0077b5; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; transition: 0.3s; margin-top: 15px; }
         .linkedin-btn:hover { background: #005a87; transform: scale(1.05); }
 
-        /* BLAST ANIMATION */
         .demo-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; }
         .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
         .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in; }
@@ -66,7 +57,6 @@
         .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.2s; }
         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.4s; }
 
-        /* MODAL */
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
         .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: var(--card); border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; color: var(--text); border: 1px solid var(--border); }
         .close-btn { position: absolute; top: 20px; right: 20px; border: none; font-size: 24px; cursor: pointer; background: var(--bg); color: var(--text); width: 40px; height: 40px; border-radius: 50%; }
@@ -86,7 +76,7 @@
         
         <section class="welcome-banner">
             <h2>Welcome 👋</h2>
-            <p>I design complex structural projects, and then I figure out the safest, most efficient way to tear them down. (Yes, sometimes with explosives). Explore the grid below to see how I manage Australia's biggest industrial deconstruction projects without breaking a sweat.</p>
+            <p>I design complex structural projects, and then I figure out the safest, most efficient way to tear them down. Explore the grid below to see how I manage Australia's biggest industrial deconstruction projects.</p>
         </section>
         <hr class="divider">
     </header>
@@ -102,19 +92,14 @@
             <p>Mastery in P6, AutoCAD, SpaceGass, and keeping Gantt charts looking pretty.</p>
         </button>
 
-        <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
-            <h3>Download CV</h3>
-            <p>The formal, HR-friendly PDF version of my career history.</p>
+        <button class="tile" style="border: 2px dashed var(--blue);" onclick="initiateBlast('stats')">
+            <h3>Impact Stats</h3>
+            <p>1,200+ Tons of Steel | 0 LTIs | Countless coffees consumed.</p>
         </button>
 
         <button class="tile green-tile wide" onclick="initiateBlast('projects')">
             <h3>Major Project Delivery</h3>
             <p>ExxonMobil ($65M+), Rio Tinto Gove ($250M+), and the West Gate Tunnel.</p>
-        </button>
-
-        <button class="tile" style="border: 2px dashed var(--blue);" onclick="initiateBlast('stats')">
-            <h3>Impact Stats</h3>
-            <p>1,200+ Tons of Steel | 0 LTIs | Countless coffees consumed.</p>
         </button>
 
         <button class="tile" style="background: #fff7ed; border: 1px solid #ffedd5; color: #9a3412;" onclick="initiateBlast('safety')">
@@ -204,7 +189,7 @@
             body: `<ul>
                     <li><b>Zero-Incident Explosive Event:</b> Successfully coordinated the Rio Tinto Gove precision explosive demolition with zero safety or environmental incidents.</li>
                     <li><b>Schedule Optimization:</b> Accelerated critical path dismantling at ExxonMobil.</li>
-                    <li><b>Commercial Success:</b> Tracked and successfully justified over $8M in project variations. I don't just break things; I protect the budget while doing it.</li>
+                    <li><b>Commercial Success:</b> Tracked and successfully justified over $8M in project variations.</li>
                    </ul>`
         }
     };
@@ -221,11 +206,9 @@
         overlay.style.display = 'flex';
         statusText.innerText = "DOUBLE-CHECKING THE MATH...";
         
-        // Fun quirky text sequence
         setTimeout(() => { statusText.innerText = "COVER YOUR EARS..."; }, 800);
         setTimeout(() => { statusText.innerText = "DETONATING!"; bldg.classList.add('implode'); }, 1400);
         
-        // Open Modal
         setTimeout(() => {
             document.getElementById('modalTitle').innerText = cvData[key].title;
             document.getElementById('modalBody').innerHTML = cvData[key].body;
