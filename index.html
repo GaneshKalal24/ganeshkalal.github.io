@@ -33,7 +33,7 @@
         .purple-tile { background: #8b5cf6; color: white; }
         .red-tile { background: #f43f5e; color: white; }
 
-        /* CONTACT SECTION AT BOTTOM */
+        /* CONTACT FOOTER */
         .contact-footer { text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 24px; border: 1px solid #e2e8f0; }
         .linkedin-btn { display: inline-flex; align-items: center; background: #0077b5; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; transition: 0.3s; }
         .linkedin-btn:hover { background: #005a87; transform: scale(1.05); }
@@ -50,6 +50,8 @@
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
         .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 20px; right: 20px; border: none; font-size: 24px; cursor: pointer; background: #f1f5f9; width: 40px; height: 40px; border-radius: 50%; }
+        .modal h3 { color: var(--blue); margin-top: 20px; }
+        .modal ul { line-height: 1.6; }
 
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
@@ -63,43 +65,43 @@
         
         <section class="welcome-banner">
             <h2>Welcome 👋</h2>
-            <p>I specialize in delivering high-risk industrial demolition and structural engineering projects. This interactive site provides a snapshot of my project delivery and technical expertise.</p>
+            <p>I am a Tier-1 Project Engineer with over 4 years of experience delivering Australia's most complex industrial decommissioning and infrastructure projects. This interactive portfolio provides a detailed snapshot of my project delivery, technical mastery, and structural engineering expertise.</p>
         </section>
         <hr class="divider">
     </header>
 
     <main class="grid">
         <button class="tile blue-tile" onclick="initiateBlast('summary')">
-            <h3>Professional Summary</h3>
-            <p>Delivering large-scale industrial demolition and major infrastructure projects.</p>
+            <h3>Professional Profile</h3>
+            <p>Specializing in industrial demolition, hazardous waste management, and HSEQ compliance for Tier-1 energy and mining assets.</p>
         </button>
         <button class="tile yellow-tile" onclick="initiateBlast('tech')">
-            <h3>Technical Stack</h3>
-            <p>P6, AutoCAD, Procore, and Structural Analysis tools.</p>
+            <h3>Technical Arsenal</h3>
+            <p>Expert proficiency in project management software (P6, Procore) and structural analysis tools (SpaceGass, AutoCAD).</p>
         </button>
         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
-            <h3>Full Resume</h3>
-            <p>Download PDF Portfolio</p>
+            <h3>Download CV</h3>
+            <p>Access my full professional chronology and comprehensive project portfolio in PDF format.</p>
         </button>
         <button class="tile green-tile wide" onclick="initiateBlast('projects')">
-            <h3>Tier-1 Project Highlights</h3>
-            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • West Gate Tunnel</p>
+            <h3>Major Project Delivery</h3>
+            <p>Leading the $65M+ ExxonMobil refinery closure and delivering the $250M+ Rio Tinto Gove refinery decommissioning.</p>
         </button>
         <button class="tile purple-tile" onclick="initiateBlast('career')">
-            <h3>Career History</h3>
-            <p>Liberty Industrial • Indara • Clive Steele</p>
+            <h3>Career Journey</h3>
+            <p>Professional history at Liberty Industrial, Indara Digital, and Clive Steele Partners.</p>
         </button>
         <button class="tile red-tile" onclick="initiateBlast('edu')">
-            <h3>Education & Licenses</h3>
-            <p>Master of Engineering Science (Structural)</p>
+            <h3>Credentials & Education</h3>
+            <p>Master of Engineering Science (Structural) and industry-recognized certifications.</p>
         </button>
     </main>
 
     <footer class="contact-footer">
-        <h3>Contact Me</h3>
-        <p>Interested in collaborating or viewing a detailed project portfolio?</p>
+        <h3>Connect With Me</h3>
+        <p>I am always open to discussing new opportunities in project delivery or structural engineering.</p>
         <a href="https://www.linkedin.com/in/ganesh-kalal/" target="_blank" class="linkedin-btn">
-            Connect on LinkedIn
+            View LinkedIn Profile
         </a>
     </footer>
 </div>
@@ -119,33 +121,54 @@
 <script>
     const cvData = {
         summary: {
-            title: "Professional Summary",
-            body: `<p>Project Engineer with extensive experience in demolition sequencing, subcontractor coordination, and QA compliance.</p>
+            title: "Professional Profile",
+            body: `<p>Dedicated Project Engineer with a focus on high-risk industrial demolition and structural decommissioning. Proven ability to coordinate large-scale works within live operational environments.</p>
+                   <h3>Core Competencies</h3>
                    <ul>
-                    <li>Induced Collapse Methodologies (Mechanical & Explosive).</li>
-                    <li>Hazardous Waste Management (Asbestos & NORM).</li>
+                    <li><b>Demolition Sequencing:</b> Development of induced collapse methodologies and mechanical dismantling plans.</li>
+                    <li><b>Hazardous Materials:</b> Management of NORM, Asbestos, and contaminated waste streams to EPA standards.</li>
+                    <li><b>HSEQ Leadership:</b> Implementation of Tier-1 safety standards and environmental management plans.</li>
+                    <li><b>Financial Control:</b> Tracking variations (up to $8M) and subcontractor work packages.</li>
                    </ul>`
         },
         tech: {
-            title: "Technical Stack",
-            body: `<p><b>Management:</b> Primavera P6, Procore, Oracle NetSuite.</p>
-                   <p><b>Engineering:</b> SpaceGass, AutoCAD, Microstran, RAPT.</p>`
+            title: "Technical Arsenal",
+            body: `<h3>Project Management Tools</h3>
+                   <p>Advanced user of <b>Primavera P6</b> for complex scheduling, <b>Procore</b> for site records, <b>InEight</b> for cost tracking, and <b>Oracle NetSuite</b>.</p>
+                   <h3>Structural & Civil Engineering</h3>
+                   <p>Extensive experience with <b>AutoCAD</b> and <b>Civil 3D</b> for site planning. Proficient in <b>SpaceGass</b>, <b>Microstran</b>, and <b>RAPT</b> for structural analysis of steel and concrete members.</p>`
         },
         projects: {
-            title: "Tier-1 Projects",
-            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3><p>Managing staged demolition while maintaining live operations for 40% of Victoria's fuel supply.</p>
-                   <h3>Rio Tinto Gove Refinery ($250M+)</h3><p>Australia’s largest industrial demolition. Managed precision explosive works.</p>
-                   <h3>West Gate Tunnel Project</h3><p>QA verification of crash barriers and precast noise walls in high-traffic live environments.</p>`
+            title: "Major Project Delivery",
+            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3>
+                   <p>Managing the staged demolition of tanks, process units, and pipe racks. Key focus on maintaining the integrity of live fuel import operations that supply 40% of Victoria’s fuel demand.</p>
+                   <h3>Rio Tinto Gove Refinery ($250M+)</h3>
+                   <p>Australia’s largest industrial demolition. Coordinated explosive demolition events, remote site logistics, and Traditional Owner consultation.</p>
+                   <h3>West Gate Tunnel Project</h3>
+                   <p>Managed QA verification and structural compliance for precast noise walls and crash barrier systems in a live high-speed traffic environment.</p>`
         },
         career: {
-            title: "Career History",
-            body: `<h3>Liberty Industrial — Project Engineer</h3><p>Delivering end-to-end industrial projects and managing complex P6 schedules.</p>
-                   <h3>Indara Digital — Structural Engineer</h3><p>Structural design for 5G telecom upgrades (AS 3600).</p>`
+            title: "Career Journey",
+            body: `<h3>Liberty Industrial — Project Engineer</h3>
+                   <p>Leading on-site delivery, developing safe work methodologies (SWMS), and managing subcontractor performance on major industrial assets.</p>
+                   <h3>Indara Digital — Structural Engineer</h3>
+                   <p>Performed structural design and certification for 5G telecommunications infrastructure, focusing on steel member and foundation upgrades to AS 3600 standards.</p>
+                   <h3>Clive Steele Partners — Graduate Engineer</h3>
+                   <p>Collaborated on civil and structural design for commercial developments and structural fit-outs across Melbourne.</p>`
         },
         edu: {
-            title: "Education",
-            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p>
-                   <p><b>Licenses:</b> White Card, P6 Pro, Asbestos Safety, Working at Heights.</p>`
+            title: "Credentials & Education",
+            body: `<h3>Academic Foundation</h3>
+                   <ul>
+                    <li><b>Master of Engineering Science (Structural Engineering):</b> Swinburne University of Technology.</li>
+                    <li><b>Bachelor of Civil Engineering:</b> University of Pune.</li>
+                   </ul>
+                   <h3>Certifications & Memberships</h3>
+                   <ul>
+                    <li>Member of Engineers Australia (MIEAust).</li>
+                    <li>Oracle Primavera P6 Professional Certification.</li>
+                    <li>Asbestos Safety (Removal and Disposal) & Working at Heights Licenses.</li>
+                   </ul>`
         }
     };
 
