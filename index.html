@@ -1,201 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganesh Kalal | Project Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .bento-card { perspective: 1000px; cursor: pointer; min-height: 250px; }
-        .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
-        .bento-card:hover .card-inner { transform: rotateY(180deg); }
-        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .card-back { transform: rotateY(180deg); overflow-y: auto; text-align: left; align-items: flex-start; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-page { animation: fadeIn 0.8s ease-out; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganesh Kalal | Project Engineer</title>
+  <meta name="description" content="Ganesh Kalal — Project Engineer (Demolition & Infrastructure). Digital CV + cover letter and project highlights." />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .bento-card { perspective: 1000px; min-height: 250px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+    /* Hover flip only on devices that actually support hover */
+    @media (hover: hover) and (pointer: fine) {
+      .bento-card[data-flip="true"]:hover .card-inner { transform: rotateY(180deg); }
+    }
+    .card-front, .card-back {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; border-radius: 1.5rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 1.5rem; text-align: center;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .card-back { transform: rotateY(180deg); overflow-y: auto; text-align: left; align-items: flex-start; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .card-inner { transition: none; }
+      .animate-page { animation: none !important; }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-page { animation: fadeIn 0.6s ease-out; }
+  </style>
 </head>
+
 <body class="bg-slate-50 text-slate-900 p-4 md:p-8 font-sans animate-page">
+  <div class="max-w-7xl mx-auto">
+    <header class="mb-10 text-center md:text-left border-b border-slate-200 pb-6">
+      <h1 class="text-5xl md:text-7xl font-black tracking-tight text-slate-800">
+        Ganesh <span class="text-blue-700">Kalal</span>
+      </h1>
+      <div class="flex flex-wrap gap-3 mt-4 justify-center md:justify-start items-center">
+        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">MIEAust</span>
+        <span class="text-xl text-slate-500 font-medium italic">Project Engineer - Demolition & Infrastructure</span>
+      </div>
+      <p class="text-slate-400 mt-2 text-sm md:text-base">
+        Melbourne, VIC | 0424 121 941 | <a class="underline" href="mailto:ganesh.r.kalal24@gmail.com">ganesh.r.kalal24@gmail.com</a>
+      </p>
+    </header>
 
-    <div class="max-w-7xl mx-auto">
-        <header class="mb-10 text-center md:text-left border-b border-slate-200 pb-6">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tight text-slate-800">
-                Ganesh <span class="text-blue-700">Kalal</span>
-            </h1>
-            <div class="flex flex-wrap gap-3 mt-4 justify-center md:justify-start items-center">
-                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">MIEAust</span>
-                <span class="text-xl text-slate-500 font-medium italic">Project Engineer - Demolition & Infrastructure</span>
-            </div>
-            <p class="text-slate-400 mt-2 text-sm md:text-base">Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com</p>
-        </header>
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            
-            <div class="bento-card md:col-span-2">
-                <div class="card-inner">
-                    <div class="card-front bg-white border-2 border-slate-100">
-                        <span class="text-4xl mb-3">🏗️</span>
-                        <h2 class="text-2xl font-bold text-slate-800">Professional Summary</h2>
-                    </div>
-                    <div class="card-back bg-blue-700 text-white p-6">
-                        <p class="text-xs leading-relaxed">Project Engineer delivering large-scale industrial demolition and Tier-1 infrastructure. Experienced in demolition sequencing, cost control, and high-risk works including explosive demolition within live operational facilities. Member of Engineers Australia, progressing toward NER and RPEV registration.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-amber-400 text-slate-900">
-                        <span class="text-4xl mb-3">🖥️</span>
-                        <h2 class="text-xl font-bold">Software Stack</h2>
-                    </div>
-                    <div class="card-back bg-amber-500 text-slate-900 text-[9px] p-4">
-                        <p class="mb-1"><strong>PM:</strong> Primavera P6, MS Project, Procore, NetSuite, InEight</p>
-                        <p class="mb-1"><strong>Design:</strong> AutoCAD, Civil 3D, 12d, Bluebeam, Sketch Up</p>
-                        <p><strong>Analysis:</strong> SpaceGass, Microstran, RAPT, Inducta, MS Tower</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <a href="CV_Ganesh.pdf" download class="w-full h-full">
-                    <div class="card-inner">
-                        <div class="card-front bg-slate-800 text-white">
-                            <span class="text-4xl mb-3">📄</span>
-                            <h2 class="text-xl font-bold">Full Resume</h2>
-                            <p class="text-[10px] mt-2 italic">Download PDF</p>
-                        </div>
-                        <div class="card-back bg-blue-600 text-white flex items-center justify-center">
-                            <p class="font-bold uppercase tracking-widest">Download Now</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="bento-card md:col-span-2">
-                <div class="card-inner">
-                    <div class="card-front bg-emerald-500 text-white">
-                        <h2 class="text-xl font-bold uppercase">ExxonMobil Altona</h2>
-                        <p class="text-xs mt-1">$65M+ Refinery Demolition</p>
-                    </div>
-                    <div class="card-back bg-emerald-600 text-white text-[10px] p-5">
-                        <p class="font-bold mb-2">Project Engineer (2025 - Present)</p>
-                        <p>Managing staged demolition of tanks, process units, and pipe racks. Coordinating induced collapse, asbestos decontamination, and controlled explosive works while maintaining live operations supplying ~40% of Victoria's fuel demand.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card md:col-span-2">
-                <div class="card-inner">
-                    <div class="card-front bg-emerald-500 text-white border-l-4 border-white">
-                        <h2 class="text-xl font-bold uppercase">Rio Tinto Bauxite</h2>
-                        <p class="text-xs mt-1">$250M+ Gove Project</p>
-                    </div>
-                    <div class="card-back bg-emerald-600 text-white text-[10px] p-5">
-                        <p class="font-bold mb-2">Project Engineer (2024 - 2025)</p>
-                        <p>Australia’s largest industrial demolition. Delivered decontamination, heavy structural dismantling, and precision explosive works. Coordinated remote logistics, civil works, and stakeholder engagement with Traditional Owners.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card md:col-span-2 md:row-span-1">
-                <div class="card-inner">
-                    <div class="card-front bg-slate-100 border-2 border-slate-200">
-                        <span class="text-4xl mb-3">⏳</span>
-                        <h2 class="text-2xl font-bold text-slate-800">Career History</h2>
-                    </div>
-                    <div class="card-back bg-slate-800 text-white text-[10px] p-6">
-                        <div class="space-y-4 border-l-2 border-blue-500 pl-4">
-                            <div>
-                                <p class="font-bold text-blue-400">2024 - Present</p>
-                                <p class="font-bold">Liberty Industrial | Project Engineer</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-blue-400">2023 - 2024</p>
-                                <p class="font-bold">Indara Digital | Structural Engineer</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-blue-400">2021 - 2023</p>
-                                <p class="font-bold">Clive Steele Partners | Graduate Structural Engineer</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-blue-400">2020 - 2021</p>
-                                <p class="font-bold">Structcom | Graduate Civil Engineer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-emerald-700 text-white">
-                        <h2 class="text-lg font-bold uppercase">West Gate Freeway</h2>
-                        <p class="text-[10px] mt-1">Infrastructure Upgrade</p>
-                    </div>
-                    <div class="card-back bg-emerald-800 text-white text-[10px] p-5">
-                        <p class="font-bold mb-2">Graduate Civil Engineer</p>
-                        <p>Supported installation and QA verification of reinforced concrete crash barriers and precast noise walls in live traffic conditions, ensuring compliance with VicRoads requirements.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-purple-600 text-white">
-                        <span class="text-4xl mb-3">🎓</span>
-                        <h2 class="text-xl font-bold">Education</h2>
-                    </div>
-                    <div class="card-back bg-purple-700 text-white text-[10px] p-5">
-                        <p class="font-bold">Master of Engineering Science</p>
-                        <p class="mb-3 italic">Swinburne University (Structural)</p>
-                        <p class="font-bold">Bachelor of Civil Engineering</p>
-                        <p class="italic">University of Pune, India</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-indigo-500 text-white">
-                        <span class="text-4xl mb-3">🛠️</span>
-                        <h2 class="text-xl font-bold">Expertise</h2>
-                    </div>
-                    <div class="card-back bg-indigo-600 text-white text-[9px] p-4">
-                        <ul class="list-disc ml-3 space-y-1">
-                            <li>Demolition Sequencing</li>
-                            <li>Induced Collapse Methods</li>
-                            <li>Hazardous Waste (NORM/Asbestos)</li>
-                            <li>Procurement (NetSuite)</li>
-                            <li>HSEQ & QA Compliance</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <div class="card-inner">
-                    <div class="card-front bg-rose-500 text-white">
-                        <span class="text-4xl mb-3">📜</span>
-                        <h2 class="text-xl font-bold">Licenses</h2>
-                    </div>
-                    <div class="card-back bg-rose-600 text-white text-[9px] p-4">
-                        <ul class="list-disc ml-3 space-y-1">
-                            <li>White Card (Construction Induction)</li>
-                            <li>P6 Professional Certification</li>
-                            <li>Asbestos Safety (Removal & Disposal)</li>
-                            <li>Working at Heights Training</li>
-                            <li>Chain of Responsibility</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+      <!-- Summary (flip on hover desktop, tap opens modal mobile) -->
+      <button
+        type="button"
+        class="bento-card md:col-span-2 text-left"
+        data-title="Professional Summary"
+        data-body="Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments. Experienced in demolition sequencing, subcontractor coordination, procurement, cost control, and QA compliance. Exposure to high-risk works including heavy mechanical and explosive demolition within live operational facilities. Member of Engineers Australia (MIEAust), progressing toward NER and RPEV registration."
+        data-flip="true"
+        aria-label="Open Professional Summary"
+      >
+        <div class="card-inner">
+          <div class="card-front bg-white border-2 border-slate-100">
+            <span class="text-4xl mb-3">🏗️</span>
+            <h2 class="text-2xl font-bold text-slate-800">Professional Summary</h2>
+            <p class="text-xs text-slate-400 mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-blue-700 text-white p-6">
+            <p class="text-xs leading-relaxed">
+              Project Engineer delivering large-scale industrial demolition and Tier-1 infrastructure...
+            </p>
+          </div>
         </div>
-        
-        <footer class="mt-16 text-slate-400 text-center pb-10 text-xs uppercase tracking-widest">
-            © 2026 Ganesh Kalal • MIEAust • Project Engineer
-        </footer>
+      </button>
+
+      <!-- Software -->
+      <button type="button" class="bento-card"
+        data-title="Software Stack"
+        data-body="<strong>PM:</strong> Primavera P6, MS Project, Procore, NetSuite, InEight<br/><strong>Design:</strong> AutoCAD, Civil 3D, 12d, Bluebeam, SketchUp<br/><strong>Analysis:</strong> SpaceGass, Microstran, RAPT, Inducta, MS Tower"
+        aria-label="Open Software Stack"
+      >
+        <div class="card-inner">
+          <div class="card-front bg-amber-400 text-slate-900">
+            <span class="text-4xl mb-3">🖥️</span>
+            <h2 class="text-xl font-bold">Software Stack</h2>
+            <p class="text-xs mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-amber-500 text-slate-900 text-[10px] p-4">
+            <p class="mb-1"><strong>PM:</strong> Primavera P6, MS Project, Procore, NetSuite, InEight</p>
+            <p class="mb-1"><strong>Design:</strong> AutoCAD, Civil 3D, 12d, Bluebeam, SketchUp</p>
+            <p><strong>Analysis:</strong> SpaceGass, Microstran, RAPT, Inducta, MS Tower</p>
+          </div>
+        </div>
+      </button>
+
+      <!-- CV download -->
+      <a class="bento-card block" href="CV_Ganesh.pdf" download aria-label="Download CV PDF">
+        <div class="card-inner">
+          <div class="card-front bg-slate-800 text-white">
+            <span class="text-4xl mb-3">📄</span>
+            <h2 class="text-xl font-bold">CV</h2>
+            <p class="text-[10px] mt-2 italic">Download PDF</p>
+          </div>
+          <div class="card-back bg-blue-600 text-white flex items-center justify-center">
+            <p class="font-bold uppercase tracking-widest">Download Now</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Cover Letter download -->
+      <a class="bento-card block" href="Ganesh%20Kalal_Cover%20Letter.pdf" download aria-label="Download Cover Letter PDF">
+        <div class="card-inner">
+          <div class="card-front bg-slate-800 text-white">
+            <span class="text-4xl mb-3">✉️</span>
+            <h2 class="text-xl font-bold">Cover Letter</h2>
+            <p class="text-[10px] mt-2 italic">Download PDF</p>
+          </div>
+          <div class="card-back bg-blue-600 text-white flex items-center justify-center">
+            <p class="font-bold uppercase tracking-widest">Download Now</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Add your remaining project cards as you already have... -->
     </div>
+
+    <footer class="mt-16 text-slate-400 text-center pb-10 text-xs uppercase tracking-widest">
+      © 2026 Ganesh Kalal • MIEAust • Project Engineer
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4 bg-black/40">
+    <div class="w-full max-w-xl bg-white rounded-2xl shadow-xl border border-slate-200">
+      <div class="flex items-start justify-between p-5 border-b border-slate-100">
+        <h3 id="modalTitle" class="text-xl font-black text-slate-800"></h3>
+        <button id="closeModal" class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200" aria-label="Close">✕</button>
+      </div>
+      <div id="modalBody" class="p-5 text-sm text-slate-700 leading-relaxed"></div>
+      <div class="p-5 pt-0 flex gap-2 justify-end">
+        <button id="copyBtn" class="px-4 py-2 rounded-xl bg-slate-800 text-white hover:bg-slate-900">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const closeModal = document.getElementById('closeModal');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function openModal(title, bodyHtml) {
+      modalTitle.textContent = title;
+      modalBody.innerHTML = bodyHtml;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      closeModal.focus();
+    }
+
+    function hideModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Open modal on click for any card with data-title
+    document.querySelectorAll('.bento-card[data-title]').forEach(card => {
+      card.addEventListener('click', () => {
+        openModal(card.dataset.title, card.dataset.body);
+      });
+
+      // Keyboard support (Space/Enter)
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(card.dataset.title, card.dataset.body);
+        }
+      });
+    });
+
+    closeModal.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideModal(); });
+
+    copyBtn.addEventListener('click', async () => {
+      const text = modalTitle.textContent + "\n\n" + modalBody.textContent.trim();
+      try { await navigator.clipboard.writeText(text); copyBtn.textContent = "Copied!"; }
+      catch { copyBtn.textContent = "Copy failed"; }
+      setTimeout(() => copyBtn.textContent = "Copy", 1200);
+    });
+  </script>
 </body>
 </html>
