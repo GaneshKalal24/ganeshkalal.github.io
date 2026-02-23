@@ -1,9 +1,9 @@
  (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/index.html b/index.html
-index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b536c350abb 100644
+index a9655c1a215e42b62e95f802ab094a1a466737d9..9c2bcb62819e716e39da084f75842c951fd2d42b 100644
 --- a/index.html
 +++ b/index.html
-@@ -1,184 +1,245 @@
+@@ -1,184 +1,246 @@
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -98,8 +98,11 @@ index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b53
  
  <div class="page">
      <header>
-         <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
-         <p class="meta">Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com</p>
+-        <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
+-        <p class="meta">Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com</p>
++        <h1 class="name">Ganesh <span class="blue-text">Kalal</span></h1>
++        <p class="meta">Tier-1 Project Engineer specialized in industrial demolition, hazardous waste management, and structural engineering. Delivering Australia's most complex decommissioning projects.</p>
++        <p class="meta">Melbourne, VIC | MIEAust | NER Progressing</p>
 +        <section class="welcome-banner">
 +            <h2>Welcome 👋</h2>
 +            <p>This is not just a CV. It’s an interactive project snapshot showing how I plan, lead, and deliver complex Tier-1 engineering work.</p>
@@ -187,16 +190,16 @@ index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b53
              title: "Professional Summary",
 -            body: `<p>Project Engineer specializing in large-scale industrial demolition. Member of Engineers Australia (MIEAust), progressing toward NER and RPEV registration.</p>
 -                   <h3>Core Expertise</h3>
-+            body: `<p>Project Engineer with extensive experience in demolition sequencing, subcontractor coordination, and QA compliance[cite: 6, 7]. Progressing toward NER and RPEV registration[cite: 9].</p>
++            body: `<p>Project Engineer with extensive experience in demolition sequencing, subcontractor coordination, and QA compliance. Progressing toward NER and RPEV registration.</p>
 +                   <h3>Core Competencies</h3>
                     <ul>
 -                    <li>Mechanical & Induced Collapse Demolition.</li>
 -                    <li>Hazardous Waste (Asbestos, NORM, Contaminated Waste) management to EPA standards.</li>
 -                    <li>Subcontractor management & \$8M+ variation tracking.</li>
-+                    <li>Demolition Planning & Methodology (Mechanical & Induced Collapse)[cite: 26].</li>
-+                    <li>Hazardous Waste Management (Asbestos, NORM, Contaminated Waste)[cite: 27, 47].</li>
-+                    <li>Subcontractor & Work Package Management[cite: 27, 42].</li>
-+                    <li>Contract Administration & Cost Control ($8M+ Variations)[cite: 27, 43].</li>
++                    <li>Demolition Planning & Methodology (Mechanical & Induced Collapse).</li>
++                    <li>Hazardous Waste Management (Asbestos, NORM, Contaminated Waste).</li>
++                    <li>Subcontractor & Work Package Management.</li>
++                    <li>Contract Administration & Cost Control ($8M+ Variations).</li>
                     </ul>`
          },
          tech: {
@@ -207,11 +210,11 @@ index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b53
 -                   <div class="skill-container"><b>Procore / NetSuite</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>`
 +            title: "Technical Stack",
 +            body: `<h3>Project Management</h3>
-+                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight[cite: 61, 66].</p>
++                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight.</p>
 +                   <h3>Design & Drafting</h3>
-+                   <p>AutoCAD 2D, Civil 3D/MAP 3D, 12d, Bluebeam, Sketch Up[cite: 67].</p>
++                   <p>AutoCAD 2D, Civil 3D/MAP 3D, 12d, Bluebeam, Sketch Up.</p>
 +                   <h3>Structural Analysis</h3>
-+                   <p>SpaceGass, Structural Toolkit, Microstran, MS Tower, RAPT, Inducta[cite: 68].</p>`
++                   <p>SpaceGass, Structural Toolkit, Microstran, MS Tower, RAPT, Inducta.</p>`
          },
          projects: {
 -            title: "Tier-1 Projects",
@@ -221,12 +224,12 @@ index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b53
 -                   <p>Australia’s largest industrial demolition. Managed precision explosive works and Traditional Owner consultation in Gove, NT.</p>
 +            title: "Key Project Details",
 +            body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
-+                   <p>Managing staged demolition of tanks, process units, and pipe racks while maintaining live operations supplying 40% of Victoria's fuel[cite: 11, 12, 13]. Coordinating mechanical demolition and controlled explosive works[cite: 14].</p>
++                   <p>Managing staged demolition of tanks, process units, and pipe racks while maintaining live operations supplying 40% of Victoria's fuel. Coordinating mechanical demolition and controlled explosive works.</p>
 +                   <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
-+                   <p>Delivered decontamination, heavy dismantling, and precision explosive works for Australia’s largest industrial demolition[cite: 16, 17]. Managed Traditional Owner consultation and remote logistics[cite: 18].</p>
++                   <p>Delivered decontamination, heavy dismantling, and precision explosive works for Australia’s largest industrial demolition. Managed Traditional Owner consultation and remote logistics.</p>
                     <h3>West Gate Freeway Upgrade</h3>
 -                   <p>QA verification of crash barriers and precast noise walls under VicRoads standards.</p>`
-+                   <p>QA verification of crash barriers and precast noise walls in live traffic conditions[cite: 20, 21].</p>`
++                   <p>QA verification of crash barriers and precast noise walls in live traffic conditions.</p>`
          },
          career: {
 -            title: "Experience",
@@ -235,13 +238,13 @@ index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b53
 -                   <h3>Clive Steele — Graduate Structural Engineer</h3><p>11/2021 – 03/2023. Structural design for commercial builds (AS 4100).</p>`
 +            title: "Professional Experience",
 +            body: `<h3>Liberty Industrial — Project Engineer</h3>
-+                   <p>Managing end-to-end delivery of 100M+ projects. Developing methodologies, SWMS, and risk assessments[cite: 37, 39, 40].</p>
++                   <p>Managing end-to-end delivery of 100M+ projects. Developing methodologies, SWMS, and risk assessments.</p>
 +                   <h3>Indara Digital — Structural Engineer</h3>
 +                   <p>Structural design for 5G telecom upgrades. Designing steel members and foundations to AS 3600.</p>
 +                   <h3>Clive Steele Partners — Graduate Structural Engineer</h3>
-+                   <p>Civil and structural design for commercial builds and fit-outs[cite: 51, 52].</p>
++                   <p>Civil and structural design for commercial builds and fit-outs.</p>
 +                   <h3>Structcom Consulting Engineers — Graduate Civil Engineer</h3>
-+                   <p>Designed stormwater drainage and OSD systems. Coordinated geotechnical investigations[cite: 56, 57, 58].</p>`
++                   <p>Designed stormwater drainage and OSD systems. Coordinated geotechnical investigations.</p>`
          },
          edu: {
 -            title: "Education & Licenses",
@@ -250,11 +253,11 @@ index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b53
 +            title: "Education & Certifications",
 +            body: `<h3>Academic Background</h3>
 +                   <ul>
-+                    <li>Master of Engineering Science (Structural Engineering): Swinburne University[cite: 31].</li>
-+                    <li>Bachelor of Civil Engineering: University of Pune[cite: 32].</li>
++                    <li>Master of Engineering Science (Structural Engineering): Swinburne University.</li>
++                    <li>Bachelor of Civil Engineering: University of Pune.</li>
 +                   </ul>
 +                   <h3>Licenses</h3>
-+                   <p>White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility[cite: 60, 61, 62, 63, 64].</p>`
++                   <p>White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility.</p>`
          }
      };
  
