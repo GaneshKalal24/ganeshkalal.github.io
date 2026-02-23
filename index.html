@@ -5,41 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ganesh Kalal | Project Engineer</title>
     <style>
-        :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; }
-        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: transform 0.1s; }
+        :root { 
+            --blue: #1d4ed8; 
+            --bg: #f8fafc; 
+            --text: #0f172a; 
+            --card: white;
+            --border: #e2e8f0;
+        }
+
+        /* DARK MODE STYLES */
+        body.dark {
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --card: #1e293b;
+            --border: #334155;
+        }
+
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
         
+        /* THEME TOGGLE */
+        .theme-toggle { position: absolute; top: 20px; right: 20px; background: var(--card); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; cursor: pointer; color: var(--text); font-weight: bold; }
+
         /* HEADER */
         .name { font-size: 48px; margin: 0; font-weight: 800; }
         .blue-text { color: var(--blue); }
         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
-        .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
+        .divider { border: 0; border-top: 1px solid var(--border); margin: 25px 0; }
 
         /* WELCOME BANNER */
-        .welcome-banner { background: linear-gradient(135deg, #dbeafe, #eef2ff); border: 1px solid #bfdbfe; border-radius: 20px; padding: 25px; margin: 20px 0; }
-        .welcome-banner h2 { margin: 0 0 8px 0; font-size: 24px; color: #1e3a8a; }
-        .welcome-banner p { margin: 0; color: #334155; line-height: 1.6; }
+        .welcome-banner { background: linear-gradient(135deg, #dbeafe, #eef2ff); border: 1px solid #bfdbfe; border-radius: 20px; padding: 25px; margin: 20px 0; color: #1e3a8a; }
+        body.dark .welcome-banner { background: linear-gradient(135deg, #1e293b, #1e1b4b); border-color: #312e81; color: #e0e7ff; }
+        .welcome-banner h2 { margin: 0 0 8px 0; font-size: 24px; }
 
         /* GRID */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; }
-        .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+        .tile { background: var(--card); padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: 1px solid var(--border); text-align: left; color: var(--text); }
+        .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); border-color: var(--blue); }
         .wide { grid-column: span 2; }
         
-        .blue-tile { background: var(--blue); color: white; }
-        .yellow-tile { background: #fbbf24; }
-        .dark-tile { background: #1e293b; color: white; }
-        .green-tile { background: #10b981; color: white; }
-        .purple-tile { background: #8b5cf6; color: white; }
-        .red-tile { background: #f43f5e; color: white; }
+        /* TILE COLORS */
+        .blue-tile { background: var(--blue); color: white; border: none; }
+        .blue-tile h3 { color: white; }
+        .yellow-tile { background: #fbbf24; color: #1e293b; border: none; }
+        .dark-tile { background: #1e293b; color: white; border: none; }
+        .green-tile { background: #10b981; color: white; border: none; }
+        .purple-tile { background: #8b5cf6; color: white; border: none; }
+        .red-tile { background: #f43f5e; color: white; border: none; }
 
         /* CONTACT FOOTER */
-        .contact-footer { text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 24px; border: 1px solid #e2e8f0; }
-        .linkedin-btn { display: inline-flex; align-items: center; background: #0077b5; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; transition: 0.3s; }
+        .contact-footer { text-align: center; margin-top: 60px; padding: 40px; background: var(--card); border-radius: 24px; border: 1px solid var(--border); }
+        .linkedin-btn { display: inline-flex; align-items: center; background: #0077b5; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; transition: 0.3s; margin-top: 15px; }
         .linkedin-btn:hover { background: #005a87; transform: scale(1.05); }
 
         /* BLAST ANIMATION */
-        .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+        .demo-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; }
         .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
         .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in; }
         .implode .f3 { transform: translateY(130px); opacity: 0; }
@@ -48,15 +68,16 @@
 
         /* MODAL */
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
-        .close-btn { position: absolute; top: 20px; right: 20px; border: none; font-size: 24px; cursor: pointer; background: #f1f5f9; width: 40px; height: 40px; border-radius: 50%; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: var(--card); border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; color: var(--text); border: 1px solid var(--border); }
+        .close-btn { position: absolute; top: 20px; right: 20px; border: none; font-size: 24px; cursor: pointer; background: var(--bg); color: var(--text); width: 40px; height: 40px; border-radius: 50%; }
         .modal h3 { color: var(--blue); margin-top: 20px; }
-        .modal ul { line-height: 1.6; }
 
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
 </head>
 <body id="site-body">
+
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Mode</button>
 
 <div class="page">
     <header>
@@ -65,7 +86,7 @@
         
         <section class="welcome-banner">
             <h2>Welcome 👋</h2>
-            <p>I am a Tier-1 Project Engineer with over 4 years of experience delivering Australia's most complex industrial decommissioning and infrastructure projects. This interactive portfolio provides a detailed snapshot of my project delivery, technical mastery, and structural engineering expertise.</p>
+            <p>I am a Tier-1 Project Engineer specialized in delivering Australia's most complex industrial decommissioning and infrastructure projects. Explore the bento-grid below to see my impact, technical skills, and professional journey.</p>
         </section>
         <hr class="divider">
     </header>
@@ -73,27 +94,52 @@
     <main class="grid">
         <button class="tile blue-tile" onclick="initiateBlast('summary')">
             <h3>Professional Profile</h3>
-            <p>Specializing in industrial demolition, hazardous waste management, and HSEQ compliance for Tier-1 energy and mining assets.</p>
+            <p>Specializing in industrial demolition, hazardous waste, and HSEQ for Tier-1 assets.</p>
         </button>
+
         <button class="tile yellow-tile" onclick="initiateBlast('tech')">
             <h3>Technical Arsenal</h3>
-            <p>Expert proficiency in project management software (P6, Procore) and structural analysis tools (SpaceGass, AutoCAD).</p>
+            <p>Mastery in P6, Procore, AutoCAD, and SpaceGass analysis tools.</p>
         </button>
+
         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
             <h3>Download CV</h3>
-            <p>Access my full professional chronology and comprehensive project portfolio in PDF format.</p>
+            <p>Get the full chronology of my professional career in PDF.</p>
         </button>
+
         <button class="tile green-tile wide" onclick="initiateBlast('projects')">
             <h3>Major Project Delivery</h3>
-            <p>Leading the $65M+ ExxonMobil refinery closure and delivering the $250M+ Rio Tinto Gove refinery decommissioning.</p>
+            <p>ExxonMobil ($65M+), Rio Tinto Gove ($250M+), and West Gate Tunnel Project.</p>
         </button>
+
+        <button class="tile" style="border: 2px dashed var(--blue);" onclick="initiateBlast('stats')">
+            <h3>Impact Stats</h3>
+            <p>1,200+ Tons of Steel | 0 LTIs | $350M+ Project Portfolio managed.</p>
+        </button>
+
+        <button class="tile" style="background: #fff7ed; border: 1px solid #ffedd5; color: #9a3412;" onclick="initiateBlast('safety')">
+            <h3 style="color: #9a3412;">Safety Culture</h3>
+            <p>Committed to Zero-Harm in high-risk Tier-1 demolition environments.</p>
+        </button>
+
         <button class="tile purple-tile" onclick="initiateBlast('career')">
             <h3>Career Journey</h3>
-            <p>Professional history at Liberty Industrial, Indara Digital, and Clive Steele Partners.</p>
+            <p>Liberty Industrial • Indara Digital • Clive Steele Partners.</p>
         </button>
+
         <button class="tile red-tile" onclick="initiateBlast('edu')">
-            <h3>Credentials & Education</h3>
-            <p>Master of Engineering Science (Structural) and industry-recognized certifications.</p>
+            <h3>Education</h3>
+            <p>Master of Engineering Science (Structural Engineering).</p>
+        </button>
+
+        <button class="tile" style="background: #eef2ff; border: 1px solid #e0e7ff; color: #3730a3;" onclick="initiateBlast('standards')">
+            <h3 style="color: #3730a3;">AU Standards</h3>
+            <p>Expertise in AS 1170, AS 3600, AS 4100, and AS 2601.</p>
+        </button>
+
+        <button class="tile wide" style="background: #fefce8; border: 1px solid #fef08a; color: #854d0e;" onclick="initiateBlast('achievements')">
+            <h3 style="color: #a16207;">Milestones & Achievements</h3>
+            <p>Zero-incident explosive events, schedule optimization, and $8M+ variation management.</p>
         </button>
     </main>
 
@@ -107,14 +153,14 @@
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="blast-status" style="font-weight: 900; color: #ef4444;">SETTING CHARGES...</h2>
+    <h2 id="blast-status" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">SETTING CHARGES...</h2>
     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
 <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
 <div id="modal" class="modal">
     <button class="close-btn" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle" style="font-size: 32px; margin: 0; color: #0f172a;"></h2>
+    <h2 id="modalTitle" style="font-size: 32px; margin: 0;"></h2>
     <div id="modalBody"></div>
 </div>
 
@@ -122,55 +168,50 @@
     const cvData = {
         summary: {
             title: "Professional Profile",
-            body: `<p>Dedicated Project Engineer with a focus on high-risk industrial demolition and structural decommissioning. Proven ability to coordinate large-scale works within live operational environments.</p>
-                   <h3>Core Competencies</h3>
-                   <ul>
-                    <li><b>Demolition Sequencing:</b> Development of induced collapse methodologies and mechanical dismantling plans.</li>
-                    <li><b>Hazardous Materials:</b> Management of NORM, Asbestos, and contaminated waste streams to EPA standards.</li>
-                    <li><b>HSEQ Leadership:</b> Implementation of Tier-1 safety standards and environmental management plans.</li>
-                    <li><b>Financial Control:</b> Tracking variations (up to $8M) and subcontractor work packages.</li>
-                   </ul>`
+            body: `<h3>Core Competencies</h3><ul><li><b>Demolition Sequencing:</b> Induced collapse and mechanical dismantling plans.</li><li><b>Hazardous Materials:</b> NORM, Asbestos, and Contaminated Waste streams.</li><li><b>HSEQ Leadership:</b> Implementation of Tier-1 safety standards.</li></ul>`
         },
         tech: {
             title: "Technical Arsenal",
-            body: `<h3>Project Management Tools</h3>
-                   <p>Advanced user of <b>Primavera P6</b> for complex scheduling, <b>Procore</b> for site records, <b>InEight</b> for cost tracking, and <b>Oracle NetSuite</b>.</p>
-                   <h3>Structural & Civil Engineering</h3>
-                   <p>Extensive experience with <b>AutoCAD</b> and <b>Civil 3D</b> for site planning. Proficient in <b>SpaceGass</b>, <b>Microstran</b>, and <b>RAPT</b> for structural analysis of steel and concrete members.</p>`
+            body: `<h3>Software</h3><p><b>Management:</b> Primavera P6, Procore, InEight, Oracle NetSuite.</p><h3>Analysis</h3><p>SpaceGass, AutoCAD, Civil 3D, Microstran, RAPT, Structural Toolkit.</p>`
         },
         projects: {
             title: "Major Project Delivery",
-            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3>
-                   <p>Managing the staged demolition of tanks, process units, and pipe racks. Key focus on maintaining the integrity of live fuel import operations that supply 40% of Victoria’s fuel demand.</p>
-                   <h3>Rio Tinto Gove Refinery ($250M+)</h3>
-                   <p>Australia’s largest industrial demolition. Coordinated explosive demolition events, remote site logistics, and Traditional Owner consultation.</p>
-                   <h3>West Gate Tunnel Project</h3>
-                   <p>Managed QA verification and structural compliance for precast noise walls and crash barrier systems in a live high-speed traffic environment.</p>`
+            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3><p>Managing staged demolition while maintaining live fuel import operations.</p><h3>Rio Tinto Gove Refinery ($250M+)</h3><p>Australia’s largest industrial demolition. Coordinated explosive events and remote logistics.</p><h3>West Gate Tunnel</h3><p>QA verification of crash barriers and precast noise walls in live traffic conditions.</p>`
+        },
+        stats: {
+            title: "Impact by the Numbers",
+            body: `<ul><li><b>$350M+:</b> Total aggregate value of projects delivered.</li><li><b>0 LTIs:</b> Maintained a perfect safety record on all high-risk sites.</li><li><b>1,200+ Tons:</b> Structural steel dismantling managed in the last year.</li></ul>`
+        },
+        safety: {
+            title: "Safety & HSEQ",
+            body: `<h3>Zero-Harm Philosophy</h3><p>Specialist in exclusion zone management and safe work methodologies (SWMS) for high-risk mechanical and explosive demolition.</p>`
+        },
+        standards: {
+            title: "Australian Standards",
+            body: `<p>Proficient in design and verification per:</p><ul><li><b>AS 1170:</b> Design Actions (Wind/Seismic).</li><li><b>AS 3600:</b> Concrete Structures.</li><li><b>AS 4100:</b> Steel Structures.</li><li><b>AS 2601:</b> Demolition of Structures.</li></ul>`
         },
         career: {
             title: "Career Journey",
-            body: `<h3>Liberty Industrial — Project Engineer</h3>
-                   <p>Leading on-site delivery, developing safe work methodologies (SWMS), and managing subcontractor performance on major industrial assets.</p>
-                   <h3>Indara Digital — Structural Engineer</h3>
-                   <p>Performed structural design and certification for 5G telecommunications infrastructure, focusing on steel member and foundation upgrades to AS 3600 standards.</p>
-                   <h3>Clive Steele Partners — Graduate Engineer</h3>
-                   <p>Collaborated on civil and structural design for commercial developments and structural fit-outs across Melbourne.</p>`
+            body: `<h3>Liberty Industrial</h3><p>Project Engineer - Leading Tier-1 decommissioning delivery.</p><h3>Indara Digital</h3><p>Structural Engineer - 5G Infrastructure design.</p><h3>Clive Steele Partners</h3><p>Graduate Structural Engineer - Commercial design.</p>`
         },
         edu: {
-            title: "Credentials & Education",
-            body: `<h3>Academic Foundation</h3>
-                   <ul>
-                    <li><b>Master of Engineering Science (Structural Engineering):</b> Swinburne University of Technology.</li>
-                    <li><b>Bachelor of Civil Engineering:</b> University of Pune.</li>
-                   </ul>
-                   <h3>Certifications & Memberships</h3>
-                   <ul>
-                    <li>Member of Engineers Australia (MIEAust).</li>
-                    <li>Oracle Primavera P6 Professional Certification.</li>
-                    <li>Asbestos Safety (Removal and Disposal) & Working at Heights Licenses.</li>
+            title: "Education",
+            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p><p><b>Certifications:</b> MIEAust, P6 Professional, Asbestos Safety, Working at Heights.</p>`
+        },
+        achievements: {
+            title: "Milestones & Achievements",
+            body: `<ul>
+                    <li><b>Zero-Incident Explosive Event:</b> Successfully coordinated the Rio Tinto Gove precision explosive demolition with zero safety or environmental incidents.</li>
+                    <li><b>Schedule Optimization:</b> Accelerated critical path dismantling at ExxonMobil, facilitating early handover of key operational footprints.</li>
+                    <li><b>Commercial Success:</b> Effectively tracked, managed, and justified over $8M in project variations across complex Tier-1 portfolios.</li>
+                    <li><b>Professional Progression:</b> Rapidly advancing toward National Engineering Register (NER) and Registered Professional Engineer of Victoria (RPEV) accreditation.</li>
                    </ul>`
         }
     };
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+    }
 
     function initiateBlast(key) {
         const overlay = document.getElementById('demo-overlay');
