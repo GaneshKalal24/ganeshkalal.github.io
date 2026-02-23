@@ -37,13 +37,12 @@
         .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.5s; }
         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
 
-        /* LARGE DETAIL VIEW */
+        /* MODAL BOX */
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 85vh; overflow-y: auto; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 90vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 20px; right: 20px; background: #f1f5f9; border: none; font-size: 24px; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; }
         .modal-body h3 { color: var(--blue); border-left: 5px solid var(--blue); padding-left: 15px; margin-top: 30px; font-size: 22px; }
         .modal-body ul { line-height: 1.8; margin-bottom: 20px; }
-        .modal-body b { color: #1e293b; }
         
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
@@ -59,19 +58,19 @@
 
     <main class="grid">
         <button class="tile blue-tile" onclick="startDemolition('summary')">
-            <p>Tier-1 Project Engineer delivering large-scale industrial demolition and major infrastructure projects. Progressing toward NER/RPEV.</p>
+            <p>Tier-1 Project Engineer specializing in demolition sequencing, cost control, and high-risk mechanical/explosive works.</p>
         </button>
         <button class="tile yellow-tile" onclick="startDemolition('tech')">
-            <h3>💻 Technical Skills</h3>
+            <h3>💻 Technical Stack</h3>
             <p>P6, AutoCAD, Procore, SpaceGass</p>
         </button>
         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
             <h3>📄 Full Resume</h3>
-            <p>Download Original CV</p>
+            <p>Download PDF Portfolio</p>
         </button>
         <button class="tile green-tile wide" onclick="startDemolition('projects')">
             <h3>🚀 Tier-1 Project Highlights</h3>
-            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • West Gate Upgrade</p>
+            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • 5G Upgrade ($50M)</p>
         </button>
         <button class="tile purple-tile" onclick="startDemolition('career')">
             <h3>⏳ Career History</h3>
@@ -85,7 +84,7 @@
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">INITIATING CONTROLLED COLLAPSE...</h2>
+    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">INITIATING BLAST...</h2>
     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
@@ -101,55 +100,58 @@
         summary: {
             title: "Professional Summary",
             body: `<p>Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments. Experienced in demolition sequencing, subcontractor coordination, procurement, cost control, and QA compliance.</p>
-                   <h3>Core Competencies</h3>
+                   <h3>Expertise</h3>
                    <ul>
-                    <li><b>Demolition Planning:</b> Sequencing & Methodology Development, Mechanical & Induced Collapse.</li>
-                    <li><b>Structural Design:</b> Partial Structural Demolition Design (Wall & Slab Removal).</li>
-                    <li><b>Hazardous Waste:</b> Management of Asbestos, NORM, and Contaminated Waste (EPA/Local Authority Compliance).</li>
-                    <li><b>Project Controls:</b> Contract Administration, Procurement (NetSuite), and Scheduling (P6).</li>
+                    <li>Demolition Planning & Methodology Development (Mechanical & Induced Collapse).</li>
+                    <li>Partial Structural Demolition Design (Wall & Slab Removal).</li>
+                    <li>Hazardous Waste Management (Asbestos, NORM, Contaminated Waste) following EPA requirements.</li>
+                    <li>Project Controls: Contract Administration, Procurement (NetSuite), and Scheduling (P6).</li>
                    </ul>`
         },
         tech: {
-            title: "Technical Stack",
-            body: `<h3>Project Management & Reporting</h3>
-                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight, MS Office Suite.</p>
+            title: "Technical Skills",
+            body: `<h3>Project Management</h3>
+                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight.</p>
                    <h3>Design & Drafting</h3>
                    <p>AutoCAD 2D, Civil 3D/MAP 3D, 12d, Bluebeam, Sketch Up.</p>
                    <h3>Structural Analysis</h3>
                    <p>SpaceGass, Structural Toolkit, Microstran, MS Tower, RAPT, Inducta.</p>`
         },
         projects: {
-            title: "Key Tier-1 Projects",
+            title: "Major Tier-1 Projects",
             body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
-                   <p><b>2025 – Present:</b> Project Engineer on major refinery closure. Managing staged demolition of tanks, process units, and pipe racks while maintaining live fuel import operations supplying ~40% of Victoria's fuel demand.</p>
+                   <p>Managing staged demolition of tanks, process units, and pipe racks while maintaining live operations supplying 40% of Victoria's fuel demand. Coordinating mechanical demolition, induced collapse, and asbestos decontamination.</p>
                    <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
-                   <p><b>2024 – 2025:</b> Project Engineer on Australia’s largest industrial demolition project. Delivered heavy structural dismantling, precision explosive works, and stakeholder engagement including Traditional Owner consultation.</p>
+                   <p>Project Engineer for Australia’s largest industrial demolition. Delivering structural dismantling and precision explosive works while managing remote logistics and Traditional Owner consultation.</p>
                    <h3>West Gate Freeway Upgrade</h3>
-                   <p><b>2022 – 2023:</b> Supporting installation and QA verification of reinforced concrete crash barriers and precast noise walls in live traffic conditions.</p>`
+                   <p>Supported QA verification of reinforced concrete crash barriers and precast noise walls in live traffic conditions, ensuring VicRoads compliance.</p>
+                   <h3>National 5G Telecom Upgrade ($50M)</h3>
+                   <p>Structural Engineering support for telecom infrastructure upgrades across Victoria, reviewing steel towers and foundations to Australian Standards.</p>`
         },
         career: {
             title: "Professional Experience",
             body: `<h3>Liberty Industrial — Project Engineer</h3>
-                   <p><b>02/2024 – Present:</b> Developed demolition methodologies, SWMS, and risk assessments. Tracked costs and \$8M+ in variations. Managed subcontractor procurement and updated Primavera P6 schedules.</p>
+                   <p>02/2024 – Present: Managing end-to-end delivery of 100M+ industrial projects. Tracking 8M+ in variations and updating P6 schedules for complex demolition sequences.</p>
                    <h3>Indara Digital — Structural Engineer</h3>
-                   <p><b>04/2023 – 03/2024:</b> Structural design for telecom tower upgrades. Designed steel members and foundations to AS 3600 and AS/NZS 1170.</p>
+                   <p>04/2023 – 03/2024: Structural design for telecom tower upgrades. Designed steel members and foundations to AS 3600 and AS/NZS 1170 standards.</p>
                    <h3>Clive Steele Partners — Graduate Structural Engineer</h3>
-                   <p><b>11/2021 – 03/2023:</b> Civil and structural design for commercial builds. Designed steel framing and concrete elements to AS 4100 and AS 3600.</p>`
+                   <p>11/2021 – 03/2023: Civil and structural design for commercial builds. Coordinated fabrication and conducted site inspections for QA hold-point sign-offs.</p>
+                   <h3>Structcom Consulting Engineers — Graduate Civil Engineer</h3>
+                   <p>06/2020 – 10/2021: Designed stormwater drainage and OSD systems. Coordinated geotechnical investigations and council approvals for council assets.</p>`
         },
         edu: {
             title: "Education & Credentials",
-            body: `<h3>Education</h3>
+            body: `<h3>Academic Background</h3>
                    <ul>
-                    <li><b>Master of Engineering Science (Structural Engineering):</b> Swinburne University of Technology, VIC.</li>
-                    <li><b>Bachelor of Civil Engineering:</b> University of Pune, India.</li>
+                    <li>Master of Engineering Science (Structural Engineering): Swinburne University of Technology, VIC.</li>
+                    <li>Bachelor of Civil Engineering: University of Pune, India.</li>
                    </ul>
-                   <h3>Certifications & Licenses</h3>
+                   <h3>Certifications</h3>
                    <ul>
-                    <li>Member of Engineers Australia (MIEAust)</li>
-                    <li>Construction Induction Card (White Card)</li>
-                    <li>Oracle Primavera P6 Professional Certification</li>
-                    <li>Asbestos Safety Training (Removal and Disposal)</li>
-                    <li>Working at Heights Training & Chain of Responsibility</li>
+                    <li>Member of Engineers Australia (MIEAust).</li>
+                    <li>Oracle Primavera P6 Professional Certification.</li>
+                    <li>Asbestos Safety Training (Removal and Disposal).</li>
+                    <li>White Card, Working at Heights, and Chain of Responsibility Training.</li>
                    </ul>`
         }
     };
@@ -157,16 +159,8 @@
     function startDemolition(key) {
         const overlay = document.getElementById('demo-overlay');
         const bldg = document.getElementById('building');
-        const text = document.getElementById('blast-text');
-
         overlay.style.display = 'flex';
-        text.innerText = "INITIATING BLAST...";
-
-        setTimeout(() => {
-            text.innerText = "DETONATING...";
-            bldg.classList.add('implode');
-        }, 600);
-
+        setTimeout(() => bldg.classList.add('implode'), 500);
         setTimeout(() => {
             document.getElementById('modalTitle').innerText = cvData[key].title;
             document.getElementById('modalBody').innerHTML = cvData[key].body;
@@ -174,14 +168,12 @@
             bldg.classList.remove('implode');
             document.getElementById('modal').style.display = 'block';
             document.getElementById('backdrop').style.display = 'block';
-            document.body.style.overflow = 'hidden';
         }, 2200);
     }
 
     function closeModal() {
         document.getElementById('modal').style.display = 'none';
         document.getElementById('backdrop').style.display = 'none';
-        document.body.style.overflow = 'auto';
     }
 </script>
 </body>
