@@ -16,12 +16,13 @@
         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
         .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
 
-        /* GRID LAYOUT */
+        /* GRID */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; }
-        .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; position: relative; overflow: hidden; }
+        .tile:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
         .wide { grid-column: span 2; }
         
+        /* TILE COLORS */
         .blue-tile { background: var(--blue); color: white; }
         .yellow-tile { background: #fbbf24; }
         .dark-tile { background: #1e293b; color: white; }
@@ -29,25 +30,38 @@
         .purple-tile { background: #8b5cf6; color: white; }
         .red-tile { background: #f43f5e; color: white; }
 
-        /* PANCAKE COLLAPSE OVERLAY */
+        /* SCREEN SHAKE ANIMATION */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .shaking { animation: shake 0.5s; animation-iteration-count: infinite; }
+
+        /* PANCAKE COLLAPSE */
         .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
         .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
-        .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: transform 0.6s ease-in, opacity 0.4s; }
+        .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in, opacity 0.4s; }
         .implode .f3 { transform: translateY(130px); opacity: 0; transition-delay: 0.1s; }
-        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.5s; }
+        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.4s; }
         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
 
-        /* MODAL BOX */
+        /* MODAL */
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 90vh; overflow-y: auto; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
         .close-btn { position: absolute; top: 20px; right: 20px; background: #f1f5f9; border: none; font-size: 24px; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; }
-        .modal-body h3 { color: var(--blue); border-left: 5px solid var(--blue); padding-left: 15px; margin-top: 30px; font-size: 22px; }
-        .modal-body ul { line-height: 1.8; margin-bottom: 20px; }
         
+        /* SKILL BARS */
+        .skill-container { margin-bottom: 15px; }
+        .skill-bar { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+        .skill-fill { height: 100%; background: var(--blue); width: 0; transition: width 1.5s ease-out; }
+
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
 </head>
-<body>
+<body id="main-body">
 
 <div class="page">
     <header>
@@ -58,19 +72,19 @@
 
     <main class="grid">
         <button class="tile blue-tile" onclick="startDemolition('summary')">
-            <p>Tier-1 Project Engineer specializing in demolition sequencing, cost control, and high-risk mechanical/explosive works.</p>
+            <p>Project Engineer delivering large-scale industrial demolition projects within Tier-1 environments.</p>
         </button>
         <button class="tile yellow-tile" onclick="startDemolition('tech')">
             <h3>💻 Technical Stack</h3>
-            <p>P6, AutoCAD, Procore, SpaceGass</p>
+            <p>Mastery in P6, AutoCAD, & SpaceGass</p>
         </button>
         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
             <h3>📄 Full Resume</h3>
-            <p>Download PDF Portfolio</p>
+            <p>Download PDF</p>
         </button>
         <button class="tile green-tile wide" onclick="startDemolition('projects')">
             <h3>🚀 Tier-1 Project Highlights</h3>
-            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • 5G Upgrade ($50M)</p>
+            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • 5G Upgrade</p>
         </button>
         <button class="tile purple-tile" onclick="startDemolition('career')">
             <h3>⏳ Career History</h3>
@@ -78,20 +92,20 @@
         </button>
         <button class="tile red-tile" onclick="startDemolition('edu')">
             <h3>📜 Education & Licenses</h3>
-            <p>Master of Engineering Science (Structural)</p>
+            <p>Master of Engineering Science</p>
         </button>
     </main>
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">INITIATING BLAST...</h2>
+    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">CHARGES SET...</h2>
     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
 <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
 <div id="modal" class="modal">
     <button class="close-btn" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle" style="font-size: 36px; margin: 0; color: #0f172a;"></h2>
+    <h2 id="modalTitle" style="font-size: 36px; margin: 0;"></h2>
     <div id="modalBody" class="modal-body"></div>
 </div>
 
@@ -99,76 +113,66 @@
     const cvData = {
         summary: {
             title: "Professional Summary",
-            body: `<p>Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments. Experienced in demolition sequencing, subcontractor coordination, procurement, cost control, and QA compliance.</p>
-                   <h3>Expertise</h3>
+            body: `<p>Project Engineer specializing in large-scale industrial demolition. Member of Engineers Australia (MIEAust), progressing toward NER and RPEV registration.</p>
+                   <h3>Core Expertise</h3>
                    <ul>
-                    <li>Demolition Planning & Methodology Development (Mechanical & Induced Collapse).</li>
-                    <li>Partial Structural Demolition Design (Wall & Slab Removal).</li>
-                    <li>Hazardous Waste Management (Asbestos, NORM, Contaminated Waste) following EPA requirements.</li>
-                    <li>Project Controls: Contract Administration, Procurement (NetSuite), and Scheduling (P6).</li>
+                    <li>Mechanical & Induced Collapse Demolition.</li>
+                    <li>Hazardous Waste (Asbestos, NORM, Contaminated Waste) management to EPA standards.</li>
+                    <li>Subcontractor management & \$8M+ variation tracking.</li>
                    </ul>`
         },
         tech: {
-            title: "Technical Skills",
-            body: `<h3>Project Management</h3>
-                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight.</p>
-                   <h3>Design & Drafting</h3>
-                   <p>AutoCAD 2D, Civil 3D/MAP 3D, 12d, Bluebeam, Sketch Up.</p>
-                   <h3>Structural Analysis</h3>
-                   <p>SpaceGass, Structural Toolkit, Microstran, MS Tower, RAPT, Inducta.</p>`
+            title: "Technical Mastery",
+            body: `<div class="skill-container"><b>Primavera P6</b> <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div></div>
+                   <div class="skill-container"><b>AutoCAD / Civil 3D</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>
+                   <div class="skill-container"><b>SpaceGass / Microstran</b> <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div></div>
+                   <div class="skill-container"><b>Procore / NetSuite</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>`
         },
         projects: {
-            title: "Major Tier-1 Projects",
-            body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
-                   <p>Managing staged demolition of tanks, process units, and pipe racks while maintaining live operations supplying 40% of Victoria's fuel demand. Coordinating mechanical demolition, induced collapse, and asbestos decontamination.</p>
-                   <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
-                   <p>Project Engineer for Australia’s largest industrial demolition. Delivering structural dismantling and precision explosive works while managing remote logistics and Traditional Owner consultation.</p>
+            title: "Tier-1 Projects",
+            body: `<h3>ExxonMobil Altona Oil Refinery (\$65M+)</h3>
+                   <p>Managing staged demolition of tanks and process units while maintaining live fuel import operations supplying 40% of Victoria's fuel.</p>
+                   <h3>Rio Tinto Bauxite Refinery (\$250M+)</h3>
+                   <p>Australia’s largest industrial demolition. Managed precision explosive works and Traditional Owner consultation in Gove, NT.</p>
                    <h3>West Gate Freeway Upgrade</h3>
-                   <p>Supported QA verification of reinforced concrete crash barriers and precast noise walls in live traffic conditions, ensuring VicRoads compliance.</p>
-                   <h3>National 5G Telecom Upgrade ($50M)</h3>
-                   <p>Structural Engineering support for telecom infrastructure upgrades across Victoria, reviewing steel towers and foundations to Australian Standards.</p>`
+                   <p>QA verification of crash barriers and precast noise walls under VicRoads standards.</p>`
         },
         career: {
-            title: "Professional Experience",
-            body: `<h3>Liberty Industrial — Project Engineer</h3>
-                   <p>02/2024 – Present: Managing end-to-end delivery of 100M+ industrial projects. Tracking 8M+ in variations and updating P6 schedules for complex demolition sequences.</p>
-                   <h3>Indara Digital — Structural Engineer</h3>
-                   <p>04/2023 – 03/2024: Structural design for telecom tower upgrades. Designed steel members and foundations to AS 3600 and AS/NZS 1170 standards.</p>
-                   <h3>Clive Steele Partners — Graduate Structural Engineer</h3>
-                   <p>11/2021 – 03/2023: Civil and structural design for commercial builds. Coordinated fabrication and conducted site inspections for QA hold-point sign-offs.</p>
-                   <h3>Structcom Consulting Engineers — Graduate Civil Engineer</h3>
-                   <p>06/2020 – 10/2021: Designed stormwater drainage and OSD systems. Coordinated geotechnical investigations and council approvals for council assets.</p>`
+            title: "Experience",
+            body: `<h3>Liberty Industrial — Project Engineer</h3><p>02/2024 – Present. Delivering \$100M+ industrial projects and managing complex P6 schedules.</p>
+                   <h3>Indara Digital — Structural Engineer</h3><p>04/2023 – 03/2024. Steel and foundation design for telecom upgrades (AS 3600).</p>
+                   <h3>Clive Steele — Graduate Structural Engineer</h3><p>11/2021 – 03/2023. Structural design for commercial builds (AS 4100).</p>`
         },
         edu: {
-            title: "Education & Credentials",
-            body: `<h3>Academic Background</h3>
-                   <ul>
-                    <li>Master of Engineering Science (Structural Engineering): Swinburne University of Technology, VIC.</li>
-                    <li>Bachelor of Civil Engineering: University of Pune, India.</li>
-                   </ul>
-                   <h3>Certifications</h3>
-                   <ul>
-                    <li>Member of Engineers Australia (MIEAust).</li>
-                    <li>Oracle Primavera P6 Professional Certification.</li>
-                    <li>Asbestos Safety Training (Removal and Disposal).</li>
-                    <li>White Card, Working at Heights, and Chain of Responsibility Training.</li>
-                   </ul>`
+            title: "Education & Licenses",
+            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p>
+                   <p><b>Licenses:</b> White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility.</p>`
         }
     };
 
     function startDemolition(key) {
+        const body = document.getElementById('main-body');
         const overlay = document.getElementById('demo-overlay');
         const bldg = document.getElementById('building');
+        const text = document.getElementById('blast-text');
+
         overlay.style.display = 'flex';
-        setTimeout(() => bldg.classList.add('implode'), 500);
+        
         setTimeout(() => {
+            text.innerText = "DETONATING...";
+            body.classList.add('shaking');
+            bldg.classList.add('implode');
+        }, 800);
+
+        setTimeout(() => {
+            body.classList.remove('shaking');
             document.getElementById('modalTitle').innerText = cvData[key].title;
             document.getElementById('modalBody').innerHTML = cvData[key].body;
             overlay.style.display = 'none';
             bldg.classList.remove('implode');
             document.getElementById('modal').style.display = 'block';
             document.getElementById('backdrop').style.display = 'block';
-        }, 2200);
+        }, 2500);
     }
 
     function closeModal() {
