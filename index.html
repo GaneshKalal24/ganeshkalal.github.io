@@ -86,7 +86,7 @@
         
         <section class="welcome-banner">
             <h2>Welcome 👋</h2>
-            <p>I am a Tier-1 Project Engineer specialized in delivering Australia's most complex industrial decommissioning and infrastructure projects. Explore the bento-grid below to see my impact, technical skills, and professional journey.</p>
+            <p>I design complex structural projects, and then I figure out the safest, most efficient way to tear them down. (Yes, sometimes with explosives). Explore the grid below to see how I manage Australia's biggest industrial deconstruction projects without breaking a sweat.</p>
         </section>
         <hr class="divider">
     </header>
@@ -94,32 +94,32 @@
     <main class="grid">
         <button class="tile blue-tile" onclick="initiateBlast('summary')">
             <h3>Professional Profile</h3>
-            <p>Specializing in industrial demolition, hazardous waste, and HSEQ for Tier-1 assets.</p>
+            <p>Specializing in industrial demolition, hazardous waste, and making gravity work for us.</p>
         </button>
 
         <button class="tile yellow-tile" onclick="initiateBlast('tech')">
             <h3>Technical Arsenal</h3>
-            <p>Mastery in P6, Procore, AutoCAD, and SpaceGass analysis tools.</p>
+            <p>Mastery in P6, AutoCAD, SpaceGass, and keeping Gantt charts looking pretty.</p>
         </button>
 
         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
             <h3>Download CV</h3>
-            <p>Get the full chronology of my professional career in PDF.</p>
+            <p>The formal, HR-friendly PDF version of my career history.</p>
         </button>
 
         <button class="tile green-tile wide" onclick="initiateBlast('projects')">
             <h3>Major Project Delivery</h3>
-            <p>ExxonMobil ($65M+), Rio Tinto Gove ($250M+), and West Gate Tunnel Project.</p>
+            <p>ExxonMobil ($65M+), Rio Tinto Gove ($250M+), and the West Gate Tunnel.</p>
         </button>
 
         <button class="tile" style="border: 2px dashed var(--blue);" onclick="initiateBlast('stats')">
             <h3>Impact Stats</h3>
-            <p>1,200+ Tons of Steel | 0 LTIs | $350M+ Project Portfolio managed.</p>
+            <p>1,200+ Tons of Steel | 0 LTIs | Countless coffees consumed.</p>
         </button>
 
         <button class="tile" style="background: #fff7ed; border: 1px solid #ffedd5; color: #9a3412;" onclick="initiateBlast('safety')">
             <h3 style="color: #9a3412;">Safety Culture</h3>
-            <p>Committed to Zero-Harm in high-risk Tier-1 demolition environments.</p>
+            <p>Committed to Zero-Harm. Because unplanned explosions are frowned upon.</p>
         </button>
 
         <button class="tile purple-tile" onclick="initiateBlast('career')">
@@ -129,32 +129,32 @@
 
         <button class="tile red-tile" onclick="initiateBlast('edu')">
             <h3>Education</h3>
-            <p>Master of Engineering Science (Structural Engineering).</p>
+            <p>Master of Engineering Science. (I actually use the math).</p>
         </button>
 
         <button class="tile" style="background: #eef2ff; border: 1px solid #e0e7ff; color: #3730a3;" onclick="initiateBlast('standards')">
             <h3 style="color: #3730a3;">AU Standards</h3>
-            <p>Expertise in AS 1170, AS 3600, AS 4100, and AS 2601.</p>
+            <p>Memorizing AS 1170, AS 3600, AS 4100, and AS 2601 so you don't have to.</p>
         </button>
 
         <button class="tile wide" style="background: #fefce8; border: 1px solid #fef08a; color: #854d0e;" onclick="initiateBlast('achievements')">
             <h3 style="color: #a16207;">Milestones & Achievements</h3>
-            <p>Zero-incident explosive events, schedule optimization, and $8M+ variation management.</p>
+            <p>Zero-incident explosive events, $8M+ variation tracking, and beating the schedule.</p>
         </button>
     </main>
 
     <footer class="contact-footer">
-        <h3>Connect With Me</h3>
-        <p>I am always open to discussing new opportunities in project delivery or structural engineering.</p>
+        <h3>Let's Talk Projects</h3>
+        <p>Looking for someone to manage your next multi-million dollar asset retirement? I'm your engineer.</p>
         <a href="https://www.linkedin.com/in/ganesh-kalal/" target="_blank" class="linkedin-btn">
-            View LinkedIn Profile
+            Connect on LinkedIn
         </a>
     </footer>
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="blast-status" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">SETTING CHARGES...</h2>
-    <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
+    <h2 id="blast-status" style="font-weight: 900; color: #ef4444; letter-spacing: 2px; text-align: center;">DOUBLE-CHECKING THE MATH...</h2>
+    <div class="structure" id="building" style="margin-top: 20px;"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
 <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
@@ -168,27 +168,28 @@
     const cvData = {
         summary: {
             title: "Professional Profile",
-            body: `<h3>Core Competencies</h3><ul><li><b>Demolition Sequencing:</b> Induced collapse and mechanical dismantling plans.</li><li><b>Hazardous Materials:</b> NORM, Asbestos, and Contaminated Waste streams.</li><li><b>HSEQ Leadership:</b> Implementation of Tier-1 safety standards.</li></ul>`
+            body: `<p>Dedicated Project Engineer who enjoys the structural puzzle of putting things up, and the even harder puzzle of taking them down safely.</p>
+                   <h3>Core Competencies</h3><ul><li><b>Demolition Sequencing:</b> Induced collapse and mechanical dismantling plans.</li><li><b>Hazardous Materials:</b> NORM, Asbestos, and Contaminated Waste streams.</li><li><b>HSEQ Leadership:</b> Keeping the site so safe it’s almost boring.</li></ul>`
         },
         tech: {
             title: "Technical Arsenal",
-            body: `<h3>Software</h3><p><b>Management:</b> Primavera P6, Procore, InEight, Oracle NetSuite.</p><h3>Analysis</h3><p>SpaceGass, AutoCAD, Civil 3D, Microstran, RAPT, Structural Toolkit.</p>`
+            body: `<h3>Software</h3><p><b>Management:</b> Primavera P6 (My second home), Procore, InEight, Oracle NetSuite.</p><h3>Analysis</h3><p>SpaceGass, AutoCAD, Civil 3D, Microstran, RAPT, Structural Toolkit.</p>`
         },
         projects: {
             title: "Major Project Delivery",
-            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3><p>Managing staged demolition while maintaining live fuel import operations.</p><h3>Rio Tinto Gove Refinery ($250M+)</h3><p>Australia’s largest industrial demolition. Coordinated explosive events and remote logistics.</p><h3>West Gate Tunnel</h3><p>QA verification of crash barriers and precast noise walls in live traffic conditions.</p>`
+            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3><p>Managing staged demolition right next to live fuel import operations. No pressure.</p><h3>Rio Tinto Gove Refinery ($250M+)</h3><p>Australia’s largest industrial demolition. Essentially the ultimate sandbox for precision explosives and remote logistics.</p><h3>West Gate Tunnel</h3><p>QA verification of crash barriers and precast noise walls in live traffic conditions.</p>`
         },
         stats: {
             title: "Impact by the Numbers",
-            body: `<ul><li><b>$350M+:</b> Total aggregate value of projects delivered.</li><li><b>0 LTIs:</b> Maintained a perfect safety record on all high-risk sites.</li><li><b>1,200+ Tons:</b> Structural steel dismantling managed in the last year.</li></ul>`
+            body: `<ul><li><b>$350M+:</b> Total aggregate value of projects delivered.</li><li><b>0 LTIs:</b> Maintained a perfect safety record on all high-risk sites.</li><li><b>1,200+ Tons:</b> Structural steel dismantled and sorted in the last year alone.</li></ul>`
         },
         safety: {
             title: "Safety & HSEQ",
-            body: `<h3>Zero-Harm Philosophy</h3><p>Specialist in exclusion zone management and safe work methodologies (SWMS) for high-risk mechanical and explosive demolition.</p>`
+            body: `<h3>Zero-Harm Philosophy</h3><p>Specialist in exclusion zone management and safe work methodologies (SWMS). I take safety seriously so my teams go home exactly the way they arrived.</p>`
         },
         standards: {
             title: "Australian Standards",
-            body: `<p>Proficient in design and verification per:</p><ul><li><b>AS 1170:</b> Design Actions (Wind/Seismic).</li><li><b>AS 3600:</b> Concrete Structures.</li><li><b>AS 4100:</b> Steel Structures.</li><li><b>AS 2601:</b> Demolition of Structures.</li></ul>`
+            body: `<p>I read these so you don't have to:</p><ul><li><b>AS 1170:</b> Design Actions (Wind/Seismic).</li><li><b>AS 3600:</b> Concrete Structures.</li><li><b>AS 4100:</b> Steel Structures.</li><li><b>AS 2601:</b> Demolition of Structures.</li></ul>`
         },
         career: {
             title: "Career Journey",
@@ -196,15 +197,14 @@
         },
         edu: {
             title: "Education",
-            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p><p><b>Certifications:</b> MIEAust, P6 Professional, Asbestos Safety, Working at Heights.</p>`
+            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p><p><b>Licenses & Certs:</b> MIEAust, P6 Professional, Asbestos Safety, Working at Heights (because someone has to go up there).</p>`
         },
         achievements: {
             title: "Milestones & Achievements",
             body: `<ul>
                     <li><b>Zero-Incident Explosive Event:</b> Successfully coordinated the Rio Tinto Gove precision explosive demolition with zero safety or environmental incidents.</li>
-                    <li><b>Schedule Optimization:</b> Accelerated critical path dismantling at ExxonMobil, facilitating early handover of key operational footprints.</li>
-                    <li><b>Commercial Success:</b> Effectively tracked, managed, and justified over $8M in project variations across complex Tier-1 portfolios.</li>
-                    <li><b>Professional Progression:</b> Rapidly advancing toward National Engineering Register (NER) and Registered Professional Engineer of Victoria (RPEV) accreditation.</li>
+                    <li><b>Schedule Optimization:</b> Accelerated critical path dismantling at ExxonMobil.</li>
+                    <li><b>Commercial Success:</b> Tracked and successfully justified over $8M in project variations. I don't just break things; I protect the budget while doing it.</li>
                    </ul>`
         }
     };
@@ -216,8 +216,16 @@
     function initiateBlast(key) {
         const overlay = document.getElementById('demo-overlay');
         const bldg = document.getElementById('building');
+        const statusText = document.getElementById('blast-status');
+        
         overlay.style.display = 'flex';
-        setTimeout(() => { document.getElementById('blast-status').innerText = "DETONATING..."; bldg.classList.add('implode'); }, 700);
+        statusText.innerText = "DOUBLE-CHECKING THE MATH...";
+        
+        // Fun quirky text sequence
+        setTimeout(() => { statusText.innerText = "COVER YOUR EARS..."; }, 800);
+        setTimeout(() => { statusText.innerText = "DETONATING!"; bldg.classList.add('implode'); }, 1400);
+        
+        // Open Modal
         setTimeout(() => {
             document.getElementById('modalTitle').innerText = cvData[key].title;
             document.getElementById('modalBody').innerHTML = cvData[key].body;
@@ -225,7 +233,7 @@
             bldg.classList.remove('implode');
             document.getElementById('modal').style.display = 'block';
             document.getElementById('backdrop').style.display = 'block';
-        }, 2500);
+        }, 3200);
     }
 
     function closeModal() {
