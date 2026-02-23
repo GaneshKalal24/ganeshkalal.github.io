@@ -1,71 +1,658 @@
-<button
-  type="button"
-  class="bento-card md:col-span-2"
-  data-title="Key Projects"
-  data-body="
-    <div class='space-y-4 text-sm'>
-      <div>
-        <div class='flex items-center justify-between gap-3'>
-          <p class='font-extrabold'>ExxonMobil Altona Refinery</p>
-          <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>$65M+</span>
-        </div>
-        <p class='text-xs text-slate-500'>Project Engineer • 2025 – Present</p>
-        <ul class='list-disc ml-5 mt-2 space-y-1'>
-          <li>Staged demolition: tanks, process units, pipe racks</li>
-          <li>Induced collapse + high-risk works coordination</li>
-          <li>Asbestos interface, permits, isolations, QA</li>
-        </ul>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganesh Kalal | Project Engineer</title>
 
-      <div class='border-t border-slate-200 pt-4'>
-        <div class='flex items-center justify-between gap-3'>
-          <p class='font-extrabold'>Rio Tinto Gove (Bauxite)</p>
-          <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>$250M+</span>
-        </div>
-        <p class='text-xs text-slate-500'>Project Engineer • 2024 – 2025</p>
-        <ul class='list-disc ml-5 mt-2 space-y-1'>
-          <li>Industrial demolition + decontamination works</li>
-          <li>Remote logistics + stakeholder coordination</li>
-          <li>Heavy dismantling + explosive works support</li>
-        </ul>
-      </div>
+  <!-- SEO / Sharing -->
+  <meta name="description" content="Ganesh Kalal — Project Engineer (Demolition & Infrastructure). Digital CV, cover letter, key projects, skills and certifications." />
+  <meta name="theme-color" content="#0f172a" />
 
-      <div class='border-t border-slate-200 pt-4'>
-        <div class='flex items-center justify-between gap-3'>
-          <p class='font-extrabold'>West Gate Freeway Upgrade</p>
-          <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>Tier-1</span>
-        </div>
-        <p class='text-xs text-slate-500'>Graduate Civil Engineer</p>
-        <ul class='list-disc ml-5 mt-2 space-y-1'>
-          <li>QA checks for barriers + precast noise walls</li>
-          <li>Live traffic interfaces + compliance reporting</li>
-        </ul>
-      </div>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-      <div class='border-t border-slate-200 pt-4'>
-        <div class='flex items-center justify-between gap-3'>
-          <p class='font-extrabold'>5G Telecom Tower Programs</p>
-          <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>National</span>
-        </div>
-        <p class='text-xs text-slate-500'>Structural Engineer • Indara Digital</p>
-        <ul class='list-disc ml-5 mt-2 space-y-1'>
-          <li>Structural assessments + strengthening design</li>
-          <li>Documentation + coordination with contractors</li>
-        </ul>
-      </div>
-    </div>"
-  aria-label="Open Key Projects"
->
-  <div class="card-inner">
-    <div class="card-front bg-emerald-600 text-white">
-      <span class="text-4xl mb-3">🚀</span>
-      <h2 class="text-2xl font-black">Key Projects</h2>
-      <p class="text-xs mt-2 opacity-90">Tap to view (4 projects)</p>
-    </div>
+  <style>
+    /* ------------------------------
+       Bento flip cards (desktop hover)
+       ------------------------------ */
+    .bento-card { perspective: 1000px; min-height: 250px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+    @media (hover: hover) and (pointer: fine) {
+      .bento-card[data-flip="true"]:hover .card-inner { transform: rotateY(180deg); }
+    }
+    .card-front, .card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: 1.5rem;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10);
+    }
+    .card-back { transform: rotateY(180deg); overflow-y: auto; align-items: flex-start; text-align: left; }
 
-    <div class="card-back bg-emerald-700 text-white text-[10px] p-5">
-      <p class="font-bold mb-2">ExxonMobil • Rio Tinto • West Gate • 5G</p>
-      <p class="opacity-90">Hover/tap to view project details.</p>
+    /* Page animation */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-page { animation: fadeIn 0.6s ease-out; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .card-inner { transition: none; }
+      .animate-page { animation: none !important; }
+      .demo-scene { display: none !important; }
+    }
+
+    /* Focus */
+    .focus-ring:focus-visible { outline: 3px solid rgba(37, 99, 235, 0.45); outline-offset: 3px; }
+
+    /* ------------------------------
+       Modal
+       ------------------------------ */
+    .modal-open { overflow: hidden; }
+
+    /* ------------------------------
+       Controlled demolition footer (segmented floors)
+       ------------------------------ */
+    .page-pad-for-demo { padding-bottom: 120px; }
+
+    .demo-scene {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      height: 108px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .demo-ground {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 28px;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.22), rgba(15, 23, 42, 0.06));
+      border-top: 1px solid rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .demo-building-wrap {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 76px;
+    }
+
+    /* Whole building subtle lean as collapse begins */
+    .demo-building {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 170px;
+      height: 72px;
+      transform-origin: 22% 100%;
+      animation: buildingLean 8s ease-in-out infinite;
+    }
+
+    /* Segments (floors) */
+    .floor {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 16px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(15,23,42,0.88), rgba(15,23,42,0.56));
+      box-shadow: 0 10px 18px rgba(15,23,42,0.16);
+      overflow: hidden;
+    }
+
+    /* Window pattern */
+    .floor::before {
+      content: "";
+      position: absolute;
+      inset: 4px 10px;
+      border-radius: 6px;
+      background:
+        repeating-linear-gradient(to right, rgba(255,255,255,0.18) 0 10px, transparent 10px 18px),
+        repeating-linear-gradient(to bottom, rgba(255,255,255,0.12) 0 7px, transparent 7px 14px);
+      opacity: 0.85;
+    }
+
+    /* Place floors */
+    .f1 { bottom: 0px; }
+    .f2 { bottom: 18px; }
+    .f3 { bottom: 36px; }
+    .f4 { bottom: 54px; }
+
+    /* Dust puffs */
+    .dust {
+      position: absolute;
+      bottom: 0;
+      width: 46px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 40%, rgba(148,163,184,0.75), rgba(148,163,184,0.0) 70%);
+      opacity: 0;
+      filter: blur(0.4px);
+    }
+    .dust.d1 { left: 12px; animation: dustPuff 8s ease-in-out infinite; }
+    .dust.d2 { left: 56px; animation: dustPuff 8s ease-in-out infinite; animation-delay: 0.08s; }
+    .dust.d3 { left: 102px; animation: dustPuff 8s ease-in-out infinite; animation-delay: 0.16s; }
+    .dust.d4 { left: 140px; animation: dustPuff 8s ease-in-out infinite; animation-delay: 0.24s; }
+
+    /* Tiny “charge” blink (controlled) */
+    .demo-charge {
+      position: absolute;
+      left: 30%;
+      bottom: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0.0) 70%);
+      opacity: 0;
+      animation: chargeBlink 8s ease-in-out infinite;
+    }
+
+    /* Floor drop sequence (top to bottom) */
+    .f4 { animation: floorDrop4 8s ease-in-out infinite; }
+    .f3 { animation: floorDrop3 8s ease-in-out infinite; }
+    .f2 { animation: floorDrop2 8s ease-in-out infinite; }
+    .f1 { animation: floorDrop1 8s ease-in-out infinite; }
+
+    /* Keyframes */
+    @keyframes buildingLean {
+      0%, 34% { transform: translateX(-50%) rotate(0deg); }
+      44%     { transform: translateX(-50%) rotate(2deg); }
+      58%     { transform: translateX(-50%) rotate(6deg); }
+      70%     { transform: translateX(-50%) rotate(10deg); opacity: 0.35; filter: blur(0.3px); }
+      78%     { transform: translateX(-50%) rotate(12deg); opacity: 0.0; }
+      100%    { transform: translateX(-50%) rotate(0deg); opacity: 1.0; filter: blur(0); }
+    }
+
+    @keyframes chargeBlink {
+      0%, 36% { opacity: 0; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1.5); }
+      45% { opacity: 0; transform: scale(2.0); }
+      100% { opacity: 0; }
+    }
+
+    @keyframes dustPuff {
+      0%, 40% { opacity: 0; transform: translateY(0) scale(0.8); }
+      50% { opacity: 0.70; transform: translateY(-6px) scale(1.15); }
+      66% { opacity: 0.25; transform: translateY(-10px) scale(1.35); }
+      78% { opacity: 0; transform: translateY(-12px) scale(1.55); }
+      100% { opacity: 0; }
+    }
+
+    /* Floors: drop + fade + slight skew (controlled implosion) */
+    @keyframes floorDrop4 {
+      0%, 38% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      48% { transform: translateY(10px) rotate(1deg); opacity: 0.9; }
+      60% { transform: translateY(28px) rotate(2deg); opacity: 0.35; }
+      70% { transform: translateY(40px) rotate(3deg); opacity: 0.0; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+    @keyframes floorDrop3 {
+      0%, 42% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      52% { transform: translateY(10px) rotate(1deg); opacity: 0.9; }
+      62% { transform: translateY(28px) rotate(2deg); opacity: 0.35; }
+      72% { transform: translateY(40px) rotate(3deg); opacity: 0.0; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+    @keyframes floorDrop2 {
+      0%, 46% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      56% { transform: translateY(10px) rotate(1deg); opacity: 0.9; }
+      66% { transform: translateY(28px) rotate(2deg); opacity: 0.35; }
+      76% { transform: translateY(40px) rotate(3deg); opacity: 0.0; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+    @keyframes floorDrop1 {
+      0%, 50% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      60% { transform: translateY(10px) rotate(1deg); opacity: 0.9; }
+      70% { transform: translateY(28px) rotate(2deg); opacity: 0.35; }
+      80% { transform: translateY(40px) rotate(3deg); opacity: 0.0; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 p-4 md:p-8 font-sans animate-page page-pad-for-demo">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <header class="mb-10 text-center md:text-left border-b border-slate-200 pb-6">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <h1 class="text-5xl md:text-7xl font-black tracking-tight text-slate-800">
+            Ganesh <span class="text-blue-700">Kalal</span>
+          </h1>
+
+          <div class="flex flex-wrap gap-3 mt-4 justify-center md:justify-start items-center">
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold">MIEAust</span>
+            <span class="text-xl text-slate-500 font-medium italic">Project Engineer - Demolition & Infrastructure</span>
+          </div>
+
+          <p class="text-slate-500 mt-2 text-sm md:text-base">
+            Melbourne, VIC · 0424 121 941 ·
+            <a class="underline hover:text-slate-700" href="mailto:ganesh.r.kalal24@gmail.com">ganesh.r.kalal24@gmail.com</a>
+          </p>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="flex gap-2 justify-center md:justify-end">
+          <a class="focus-ring inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 shadow"
+             href="CV_Ganesh.pdf" download aria-label="Download CV PDF">
+            <span aria-hidden="true">📄</span>
+            <span class="text-sm font-bold">Download CV</span>
+          </a>
+
+          <a class="focus-ring inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-700 text-white hover:bg-blue-600 shadow"
+             href="Ganesh%20Kalal_Cover%20Letter.pdf" download aria-label="Download Cover Letter PDF">
+            <span aria-hidden="true">✉️</span>
+            <span class="text-sm font-bold">Cover Letter</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Grid -->
+    <main class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+      <!-- Professional Summary -->
+      <button type="button"
+        class="focus-ring bento-card md:col-span-2 text-left"
+        data-flip="true"
+        data-title="Professional Summary"
+        data-body="
+          <p class='text-sm leading-relaxed'>
+            Project Engineer delivering large-scale industrial demolition and major infrastructure works within Tier-1 environments.
+            Experienced in demolition sequencing, subcontractor coordination, procurement, cost control, and QA compliance.
+            Exposure to high-risk works including heavy mechanical demolition and controlled explosive demolition support within live operational facilities.
+            Member of Engineers Australia (MIEAust), progressing toward NER and RPEV registration.
+          </p>"
+        aria-label="Open Professional Summary">
+        <div class="card-inner">
+          <div class="card-front bg-white border-2 border-slate-100">
+            <span class="text-4xl mb-3" aria-hidden="true">🏗️</span>
+            <h2 class="text-2xl font-bold text-slate-800">Professional Summary</h2>
+            <p class="text-xs text-slate-400 mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-blue-700 text-white p-6">
+            <p class="text-xs leading-relaxed">
+              Project Engineer delivering large-scale industrial demolition and Tier-1 infrastructure...
+            </p>
+          </div>
+        </div>
+      </button>
+
+      <!-- Software Stack -->
+      <button type="button"
+        class="focus-ring bento-card"
+        data-title="Software Stack"
+        data-body="
+          <div class='text-sm space-y-2'>
+            <p><strong>PM:</strong> Primavera P6, MS Project, Procore, NetSuite, InEight</p>
+            <p><strong>Design:</strong> AutoCAD, Civil 3D, 12d, Bluebeam, SketchUp</p>
+            <p><strong>Analysis:</strong> SpaceGass, Microstran, RAPT, Inducta, MS Tower</p>
+          </div>"
+        aria-label="Open Software Stack">
+        <div class="card-inner">
+          <div class="card-front bg-amber-400 text-slate-900">
+            <span class="text-4xl mb-3" aria-hidden="true">🖥️</span>
+            <h2 class="text-xl font-bold">Software Stack</h2>
+            <p class="text-xs mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-amber-500 text-slate-900 text-[10px] p-4">
+            <p class="mb-1"><strong>PM:</strong> Primavera P6, MS Project, Procore, NetSuite, InEight</p>
+            <p class="mb-1"><strong>Design:</strong> AutoCAD, Civil 3D, 12d, Bluebeam, SketchUp</p>
+            <p><strong>Analysis:</strong> SpaceGass, Microstran, RAPT, Inducta, MS Tower</p>
+          </div>
+        </div>
+      </button>
+
+      <!-- Expertise -->
+      <button type="button"
+        class="focus-ring bento-card"
+        data-title="Expertise"
+        data-body="
+          <ul class='list-disc ml-5 text-sm space-y-1'>
+            <li>Demolition sequencing & methodology</li>
+            <li>Induced collapse (planning & controls)</li>
+            <li>Hazardous waste (NORM / asbestos interface)</li>
+            <li>Procurement & cost control (NetSuite)</li>
+            <li>HSEQ systems, QA records & hold points</li>
+          </ul>"
+        aria-label="Open Expertise">
+        <div class="card-inner">
+          <div class="card-front bg-indigo-500 text-white">
+            <span class="text-4xl mb-3" aria-hidden="true">🛠️</span>
+            <h2 class="text-xl font-bold">Expertise</h2>
+            <p class="text-xs mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-indigo-600 text-white text-[9px] p-4">
+            <ul class="list-disc ml-3 space-y-1">
+              <li>Demolition Sequencing</li>
+              <li>Induced Collapse Methods</li>
+              <li>Hazardous Waste (NORM/Asbestos)</li>
+              <li>Procurement (NetSuite)</li>
+              <li>HSEQ & QA Compliance</li>
+            </ul>
+          </div>
+        </div>
+      </button>
+
+      <!-- Key Projects (ONE box) -->
+      <button type="button"
+        class="focus-ring bento-card md:col-span-2"
+        data-flip="true"
+        data-title="Key Projects"
+        data-body="
+          <div class='space-y-4 text-sm leading-relaxed'>
+            <div>
+              <div class='flex items-center justify-between gap-3'>
+                <p class='font-extrabold'>ExxonMobil Altona Refinery</p>
+                <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>$65M+</span>
+              </div>
+              <p class='text-xs text-slate-500'>Project Engineer • 2025 – Present</p>
+              <ul class='list-disc ml-5 mt-2 space-y-1'>
+                <li>Staged demolition: tanks, process units, pipe racks</li>
+                <li>Induced collapse + high-risk works coordination</li>
+                <li>Asbestos interface, isolations, permits, QA records</li>
+              </ul>
+            </div>
+
+            <div class='border-t border-slate-200 pt-4'>
+              <div class='flex items-center justify-between gap-3'>
+                <p class='font-extrabold'>Rio Tinto Gove (Bauxite)</p>
+                <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>$250M+</span>
+              </div>
+              <p class='text-xs text-slate-500'>Project Engineer • 2024 – 2025</p>
+              <ul class='list-disc ml-5 mt-2 space-y-1'>
+                <li>Industrial demolition + decontamination works</li>
+                <li>Remote logistics + stakeholder coordination</li>
+                <li>Heavy dismantling + explosive works support</li>
+              </ul>
+            </div>
+
+            <div class='border-t border-slate-200 pt-4'>
+              <div class='flex items-center justify-between gap-3'>
+                <p class='font-extrabold'>West Gate Freeway Upgrade</p>
+                <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>Tier-1</span>
+              </div>
+              <p class='text-xs text-slate-500'>Graduate Civil Engineer</p>
+              <ul class='list-disc ml-5 mt-2 space-y-1'>
+                <li>QA checks: barriers + precast noise walls</li>
+                <li>Live traffic interfaces + compliance reporting</li>
+              </ul>
+            </div>
+
+            <div class='border-t border-slate-200 pt-4'>
+              <div class='flex items-center justify-between gap-3'>
+                <p class='font-extrabold'>5G Telecom Tower Programs</p>
+                <span class='text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold'>National</span>
+              </div>
+              <p class='text-xs text-slate-500'>Structural Engineer • Indara Digital</p>
+              <ul class='list-disc ml-5 mt-2 space-y-1'>
+                <li>Structural assessments + strengthening design</li>
+                <li>Coordination with contractors + documentation</li>
+              </ul>
+            </div>
+          </div>"
+        aria-label="Open Key Projects">
+        <div class="card-inner">
+          <div class="card-front bg-emerald-600 text-white">
+            <span class="text-4xl mb-3" aria-hidden="true">🚀</span>
+            <h2 class="text-2xl font-black">Key Projects</h2>
+            <p class="text-xs mt-2 opacity-90">ExxonMobil • Rio Tinto • West Gate • 5G</p>
+            <p class="text-xs mt-2 opacity-90 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-emerald-700 text-white text-[10px] p-5">
+            <p class="font-bold mb-2">4 major projects</p>
+            <ul class="list-disc ml-4 space-y-1 opacity-95">
+              <li>ExxonMobil Altona ($65M+)</li>
+              <li>Rio Tinto Gove ($250M+)</li>
+              <li>West Gate Freeway (Tier-1)</li>
+              <li>5G Telecom Towers (National)</li>
+            </ul>
+            <p class="mt-3 opacity-90">Hover (desktop) or tap to view details.</p>
+          </div>
+        </div>
+      </button>
+
+      <!-- Career History -->
+      <button type="button"
+        class="focus-ring bento-card md:col-span-2"
+        data-flip="true"
+        data-title="Career History"
+        data-body="
+          <div class='space-y-3 text-sm'>
+            <div><p class='font-extrabold'>Liberty Industrial</p><p class='text-slate-500 text-xs'>Project Engineer • 2024 – Present</p></div>
+            <div class='border-t border-slate-200 pt-3'><p class='font-extrabold'>Indara Digital</p><p class='text-slate-500 text-xs'>Structural Engineer • 2023 – 2024</p></div>
+            <div class='border-t border-slate-200 pt-3'><p class='font-extrabold'>Clive Steele Partners</p><p class='text-slate-500 text-xs'>Graduate Structural Engineer • 2021 – 2023</p></div>
+            <div class='border-t border-slate-200 pt-3'><p class='font-extrabold'>Structcom</p><p class='text-slate-500 text-xs'>Graduate Civil Engineer • 2020 – 2021</p></div>
+          </div>"
+        aria-label="Open Career History">
+        <div class="card-inner">
+          <div class="card-front bg-slate-100 border-2 border-slate-200">
+            <span class="text-4xl mb-3" aria-hidden="true">⏳</span>
+            <h2 class="text-2xl font-bold text-slate-800">Career History</h2>
+            <p class="text-xs text-slate-400 mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-slate-800 text-white text-[10px] p-6">
+            <div class="space-y-4 border-l-2 border-blue-500 pl-4">
+              <div>
+                <p class="font-bold text-blue-400">2024 - Present</p>
+                <p class="font-bold">Liberty Industrial | Project Engineer</p>
+              </div>
+              <div>
+                <p class="font-bold text-blue-400">2023 - 2024</p>
+                <p class="font-bold">Indara Digital | Structural Engineer</p>
+              </div>
+              <div>
+                <p class="font-bold text-blue-400">2021 - 2023</p>
+                <p class="font-bold">Clive Steele Partners | Graduate Structural Engineer</p>
+              </div>
+              <div>
+                <p class="font-bold text-blue-400">2020 - 2021</p>
+                <p class="font-bold">Structcom | Graduate Civil Engineer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </button>
+
+      <!-- Education -->
+      <button type="button"
+        class="focus-ring bento-card"
+        data-title="Education"
+        data-body="
+          <div class='text-sm space-y-3'>
+            <div>
+              <p class='font-extrabold'>Master of Engineering Science (Structural)</p>
+              <p class='text-slate-500 text-xs italic'>Swinburne University</p>
+            </div>
+            <div class='border-t border-slate-200 pt-3'>
+              <p class='font-extrabold'>Bachelor of Civil Engineering</p>
+              <p class='text-slate-500 text-xs italic'>University of Pune, India</p>
+            </div>
+          </div>"
+        aria-label="Open Education">
+        <div class="card-inner">
+          <div class="card-front bg-purple-600 text-white">
+            <span class="text-4xl mb-3" aria-hidden="true">🎓</span>
+            <h2 class="text-xl font-bold">Education</h2>
+            <p class="text-xs mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-purple-700 text-white text-[10px] p-5">
+            <p class="font-bold">Master of Engineering Science</p>
+            <p class="mb-3 italic">Swinburne University (Structural)</p>
+            <p class="font-bold">Bachelor of Civil Engineering</p>
+            <p class="italic">University of Pune, India</p>
+          </div>
+        </div>
+      </button>
+
+      <!-- Licenses -->
+      <button type="button"
+        class="focus-ring bento-card"
+        data-title="Licenses & Training"
+        data-body="
+          <ul class='list-disc ml-5 text-sm space-y-1'>
+            <li>White Card (Construction Induction)</li>
+            <li>Working at Heights</li>
+            <li>Asbestos safety (removal & disposal interface)</li>
+            <li>Chain of Responsibility (CoR)</li>
+            <li>Primavera P6 (Professional)</li>
+          </ul>"
+        aria-label="Open Licenses and Training">
+        <div class="card-inner">
+          <div class="card-front bg-rose-500 text-white">
+            <span class="text-4xl mb-3" aria-hidden="true">📜</span>
+            <h2 class="text-xl font-bold">Licenses</h2>
+            <p class="text-xs mt-2 md:hidden">Tap to open</p>
+          </div>
+          <div class="card-back bg-rose-600 text-white text-[9px] p-4">
+            <ul class="list-disc ml-3 space-y-1">
+              <li>White Card (Construction Induction)</li>
+              <li>P6 Professional Certification</li>
+              <li>Asbestos Safety (Removal & Disposal)</li>
+              <li>Working at Heights Training</li>
+              <li>Chain of Responsibility</li>
+            </ul>
+          </div>
+        </div>
+      </button>
+
+      <!-- CV Card -->
+      <a class="focus-ring bento-card block"
+         href="CV_Ganesh.pdf" download aria-label="Download CV PDF">
+        <div class="card-inner">
+          <div class="card-front bg-slate-800 text-white">
+            <span class="text-4xl mb-3" aria-hidden="true">📄</span>
+            <h2 class="text-xl font-bold">Full CV</h2>
+            <p class="text-[10px] mt-2 italic">Download PDF</p>
+          </div>
+          <div class="card-back bg-blue-600 text-white flex items-center justify-center">
+            <p class="font-bold uppercase tracking-widest">Download Now</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Cover Letter Card -->
+      <a class="focus-ring bento-card block"
+         href="Ganesh%20Kalal_Cover%20Letter.pdf" download aria-label="Download Cover Letter PDF">
+        <div class="card-inner">
+          <div class="card-front bg-slate-800 text-white">
+            <span class="text-4xl mb-3" aria-hidden="true">✉️</span>
+            <h2 class="text-xl font-bold">Cover Letter</h2>
+            <p class="text-[10px] mt-2 italic">Download PDF</p>
+          </div>
+          <div class="card-back bg-blue-600 text-white flex items-center justify-center">
+            <p class="font-bold uppercase tracking-widest">Download Now</p>
+          </div>
+        </div>
+      </a>
+
+    </main>
+
+    <footer class="mt-16 text-slate-400 text-center pb-10 text-xs uppercase tracking-widest">
+      © 2026 Ganesh Kalal • MIEAust • Project Engineer
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4 bg-black/40" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl border border-slate-200">
+      <div class="flex items-start justify-between p-5 border-b border-slate-100">
+        <h3 id="modalTitle" class="text-xl font-black text-slate-800"></h3>
+        <button id="closeModal" class="focus-ring px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200" aria-label="Close">✕</button>
+      </div>
+      <div id="modalBody" class="p-5 text-slate-700 leading-relaxed"></div>
+      <div class="p-5 pt-0 flex gap-2 justify-end">
+        <button id="copyBtn" class="focus-ring px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800">Copy</button>
+      </div>
     </div>
   </div>
-</button>
+
+  <!-- Controlled demolition animation footer -->
+  <div class="demo-scene" aria-hidden="true">
+    <div class="demo-building-wrap">
+      <div class="demo-building">
+        <div class="floor f4"></div>
+        <div class="floor f3"></div>
+        <div class="floor f2"></div>
+        <div class="floor f1"></div>
+      </div>
+      <div class="demo-charge"></div>
+      <div class="dust d1"></div>
+      <div class="dust d2"></div>
+      <div class="dust d3"></div>
+      <div class="dust d4"></div>
+    </div>
+    <div class="demo-ground"></div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const closeModal = document.getElementById('closeModal');
+    const copyBtn = document.getElementById('copyBtn');
+
+    let lastFocusEl = null;
+
+    function openModal(title, bodyHtml) {
+      lastFocusEl = document.activeElement;
+      modalTitle.textContent = title;
+      modalBody.innerHTML = bodyHtml;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('modal-open');
+      closeModal.focus();
+    }
+
+    function hideModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('modal-open');
+      if (lastFocusEl && typeof lastFocusEl.focus === 'function') lastFocusEl.focus();
+    }
+
+    // Open modal on click for any card with data-title
+    document.querySelectorAll('.bento-card[data-title]').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.title, card.dataset.body));
+
+      // Keyboard support (Space/Enter)
+      if (card.tagName.toLowerCase() === 'button') {
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(card.dataset.title, card.dataset.body);
+          }
+        });
+      }
+    });
+
+    closeModal.addEventListener('click', hideModal);
+
+    // Click backdrop closes
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) hideModal();
+    });
+
+    // ESC closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) hideModal();
+    });
+
+    // Copy
+    copyBtn.addEventListener('click', async () => {
+      const text = (modalTitle.textContent + "\n\n" + modalBody.textContent.trim()).trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = "Copied!";
+      } catch {
+        copyBtn.textContent = "Copy failed";
+      }
+      setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
+    });
+  </script>
+</body>
+</html>
