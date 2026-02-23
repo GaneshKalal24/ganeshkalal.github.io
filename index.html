@@ -1,133 +1,323 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ganesh Kalal | Project Engineer</title>
-    <style>
-        :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; }
-        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-        
-        /* NEW WELCOME SECTION */
-        .hero { padding: 60px 0; border-bottom: 1px solid #e2e8f0; margin-bottom: 40px; }
-        .welcome-badge { background: #dcfce7; color: #166534; padding: 6px 16px; border-radius: 50px; font-size: 14px; font-weight: 700; display: inline-block; margin-bottom: 20px; }
-        .hero h1 { font-size: 64px; margin: 0; line-height: 1.1; font-weight: 800; letter-spacing: -2px; }
-        .hero p { font-size: 20px; color: #64748b; max-width: 700px; line-height: 1.6; margin-top: 20px; }
-        
-        /* THE GRID */
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .tile { background: white; padding: 30px; border-radius: 28px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #f1f5f9; display: flex; flex-direction: column; text-align: left; position: relative; }
-        .tile:hover { transform: scale(1.02); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: var(--blue); }
-        .wide { grid-column: span 2; }
-        .tile h3 { margin: 0 0 10px; font-size: 20px; color: var(--text); }
-        
-        /* TILE THEMES */
-        .blue { background: var(--blue); color: white; }
-        .blue h3 { color: white; }
-        .green { background: #10b981; color: white; }
-        .green h3 { color: white; }
-        .dark { background: #1e293b; color: white; }
-        .dark h3 { color: white; }
-
-        /* BLAST OVERLAY */
-        .blast-overlay { position: fixed; inset: 0; background: white; z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
-        .building { width: 60px; height: 120px; display: flex; flex-direction: column; gap: 4px; }
-        .floor { background: #475569; flex: 1; transition: 0.5s ease-in; }
-        .collapse .f3 { transform: translateY(80px); opacity: 0; }
-        .collapse .f2 { transform: translateY(40px); opacity: 0; transition-delay: 0.2s; }
-        .collapse .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.4s; }
-
-        /* MODAL */
-        .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); z-index: 100; display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 32px; width: 90%; max-width: 800px; z-index: 101; display: none; max-height: 85vh; overflow-y: auto; }
-        .modal h2 { font-size: 32px; color: var(--blue); margin-top: 0; }
-        .modal h4 { margin-bottom: 5px; color: #64748b; }
-
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } .hero h1 { font-size: 40px; } }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <section class="hero">
-        <div class="welcome-badge">● CURRENTLY ON-SITE: EXXONMOBIL ALTONA</div>
-        <h1>Ganesh <span class="blue-text">Kalal</span></h1>
-        <p>Tier-1 Project Engineer specialized in industrial demolition, hazardous waste management, and structural engineering. Delivering Australia's most complex decommissioning projects[cite: 6, 8, 17].</p>
-        <div class="meta" style="margin-top:20px; font-weight:600; color:#64748b;">
-            Melbourne, VIC | MIEAust | NER Progressing [cite: 1, 2, 9]
-        </div>
-    </section>
-
-    <main class="grid">
-        <div class="tile blue" onclick="runBlast('summary')">
-            <h3>The Mission</h3>
-            <p>Managing high-risk mechanical and explosive demolition within live operational facilities[cite: 8].</p>
-        </div>
-        <div class="tile" onclick="runBlast('tech')">
-            <h3>Tech Stack</h3>
-            <p>Expertise in Primavera P6, AutoCAD, and Structural Analysis[cite: 61, 67, 68].</p>
-        </div>
-        <div class="tile dark" onclick="window.open('CV_Ganesh.pdf')">
-            <h3>Resume</h3>
-            <p>Download full PDF portfolio[cite: 4].</p>
-        </div>
-        <div class="tile green wide" onclick="runBlast('projects')">
-            <h3>Major Projects</h3>
-            <p>ExxonMobil ($65M+) & Rio Tinto ($250M+) Decommissioning[cite: 11, 16].</p>
-        </div>
-        <div class="tile" onclick="runBlast('history')">
-            <h3>Experience</h3>
-            <p>Liberty Industrial, Indara Digital, & Clive Steele[cite: 37, 48, 51].</p>
-        </div>
-        <div class="tile" style="background:#f43f5e; color:white;" onclick="runBlast('certs')">
-            <h3 style="color:white;">Licenses</h3>
-            <p>Asbestos, Working at Heights, & Chain of Responsibility[cite: 62, 63, 64].</p>
-        </div>
-    </main>
-</div>
-
-<div id="overlay" class="blast-overlay">
-    <h2 id="msg">PREPARING BLAST...</h2>
-    <div class="building" id="bldg">
-        <div class="floor f3"></div><div class="floor f2"></div><div class="floor f1"></div>
-    </div>
-</div>
-
-<div id="modal-bg" class="modal-bg" onclick="closeM()"></div>
-<div id="modal" class="modal">
-    <h2 id="m-title"></h2>
-    <div id="m-body"></div>
-</div>
-
-<script>
-const data = {
-    summary: { title: "Professional Mission", body: "<h4>Objective</h4><p>Delivering large-scale industrial demolition with a focus on safety and technical excellence [cite: 6].</p><h4>Key Competencies</h4><ul><li>Induced Collapse Methodologies [cite: 14, 26]</li><li>Hazardous Waste (NORM/Asbestos) [cite: 14, 47]</li><li>Cost Control & Variations [cite: 7, 43]</li></ul>" },
-    tech: { title: "Technical Software", body: "<h4>Project Controls</h4><p>Primavera P6, MS Project, Procore, InEight [cite: 61, 66].</p><h4>Engineering</h4><p>SpaceGass, AutoCAD, Civil 3D, Microstran, RAPT[cite: 67, 68].</p>" },
-    projects: { title: "Tier-1 Experience", body: "<h4>ExxonMobil Altona Refinery</h4><p>Managing staged demolition of tanks and process units while maintaining fuel terminal operations[cite: 12, 13].</p><h4>Rio Tinto Gove Refinery</h4><p>Australia's largest industrial demolition. Delivered precision explosive works and remediation[cite: 16, 17].</p>" },
-    history: { title: "Career Path", body: "<h4>Liberty Industrial</h4><p>Project Engineer managing end-to-end delivery of \$100M+ projects [cite: 37, 39].</p><h4>Indara Digital</h4><p>Structural Engineer for telecom tower upgrades [cite: 48, 49].</p><h4>Clive Steele Partners</h4><p>Graduate Structural Engineer for commercial builds[cite: 51, 52].</p>" },
-    certs: { title: "Credentials", body: "<h4>Academic</h4><p>Master of Engineering Science (Swinburne) [cite: 31].</p><h4>Regulatory</h4><p>White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility[cite: 60, 61, 62, 63, 64].</p>" }
-};
-
-function runBlast(key) {
-    const ov = document.getElementById('overlay');
-    const bl = document.getElementById('bldg');
-    ov.style.display = 'flex';
-    setTimeout(() => { document.getElementById('msg').innerText = "DETONATING..."; bl.classList.add('collapse'); }, 600);
-    setTimeout(() => {
-        document.getElementById('m-title').innerText = data[key].title;
-        document.getElementById('m-body').innerHTML = data[key].body;
-        ov.style.display = 'none';
-        bl.classList.remove('collapse');
-        document.getElementById('modal').style.display = 'block';
-        document.getElementById('modal-bg').style.display = 'block';
-    }, 2000);
-}
-
-function closeM() {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('modal-bg').style.display = 'none';
-}
-</script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/index.html b/index.html
+index a9655c1a215e42b62e95f802ab094a1a466737d9..07a3a99719047fd5bfe8d6488b429b536c350abb 100644
+--- a/index.html
++++ b/index.html
+@@ -1,184 +1,245 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <title>Ganesh Kalal | Project Engineer</title>
+     <style>
+         :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; }
+-        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
++        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: transform 0.1s; }
+         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
+         
+         /* HEADER */
+         .name { font-size: 48px; margin: 0; font-weight: 800; }
+         .blue-text { color: var(--blue); }
+         .pill { font-size: 14px; background: #e0e7ff; color: var(--blue); padding: 4px 12px; border-radius: 20px; font-weight: bold; }
+         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
+         .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
+ 
+-        /* GRID */
++        .welcome-banner { background: linear-gradient(135deg, #dbeafe, #eef2ff); border: 1px solid #bfdbfe; border-radius: 20px; padding: 20px; margin-top: 18px; }
++        .welcome-banner h2 { margin: 0 0 8px 0; font-size: 26px; color: #1e3a8a; }
++        .welcome-banner p { margin: 0; color: #334155; line-height: 1.6; }
++        .action-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
++        .action-btn { border: none; border-radius: 999px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
++        .action-primary { background: var(--blue); color: white; }
++        .action-secondary { background: white; color: #1e293b; border: 1px solid #cbd5e1; }
++
++        /* GRID - FIXED TITLES */
+         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+-        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; position: relative; overflow: hidden; }
+-        .tile:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
++        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; }
++        .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+         .wide { grid-column: span 2; }
++        .tile h3 { margin: 0 0 10px 0; font-size: 22px; }
+         
+-        /* TILE COLORS */
+         .blue-tile { background: var(--blue); color: white; }
+         .yellow-tile { background: #fbbf24; }
+         .dark-tile { background: #1e293b; color: white; }
+         .green-tile { background: #10b981; color: white; }
+         .purple-tile { background: #8b5cf6; color: white; }
+         .red-tile { background: #f43f5e; color: white; }
+ 
+-        /* SCREEN SHAKE ANIMATION */
++        /* BLAST SHAKE EFFECT */
+         @keyframes shake {
+             0% { transform: translate(1px, 1px) rotate(0deg); }
+-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+-            30% { transform: translate(3px, 2px) rotate(0deg); }
+-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+-            100% { transform: translate(1px, -2px) rotate(-1deg); }
++            20% { transform: translate(-3px, 0px) rotate(1deg); }
++            40% { transform: translate(3px, 2px) rotate(-1deg); }
++            60% { transform: translate(-3px, 1px) rotate(0deg); }
++            80% { transform: translate(3px, 1px) rotate(-1deg); }
++            100% { transform: translate(1px, -2px) rotate(0deg); }
+         }
+-        .shaking { animation: shake 0.5s; animation-iteration-count: infinite; }
++        .blast-impact { animation: shake 0.5s; }
+ 
+-        /* PANCAKE COLLAPSE */
++        /* PANCAKE COLLAPSE OVERLAY */
+         .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+         .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
+         .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in, opacity 0.4s; }
+         .implode .f3 { transform: translateY(130px); opacity: 0; transition-delay: 0.1s; }
+-        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.4s; }
++        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.5s; }
+         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
+ 
+-        /* MODAL */
++        /* MODAL BOX */
+         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
+-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
++        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 90vh; overflow-y: auto; }
+         .close-btn { position: absolute; top: 20px; right: 20px; background: #f1f5f9; border: none; font-size: 24px; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; }
++        .modal-body h3 { color: var(--blue); border-left: 5px solid var(--blue); padding-left: 15px; margin-top: 30px; font-size: 20px; }
++        .modal-body ul { line-height: 1.8; margin-bottom: 20px; }
+         
+-        /* SKILL BARS */
+-        .skill-container { margin-bottom: 15px; }
+-        .skill-bar { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+-        .skill-fill { height: 100%; background: var(--blue); width: 0; transition: width 1.5s ease-out; }
+-
+         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
+     </style>
+ </head>
+-<body id="main-body">
++<body id="site-body">
+ 
+ <div class="page">
+     <header>
+         <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
+         <p class="meta">Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com</p>
++        <section class="welcome-banner">
++            <h2>Welcome 👋</h2>
++            <p>This is not just a CV. It’s an interactive project snapshot showing how I plan, lead, and deliver complex Tier-1 engineering work.</p>
++            <div class="action-row">
++                <button class="action-btn action-primary" onclick="openWelcome()">Start Guided Welcome</button>
++                <button class="action-btn action-secondary" onclick="window.open('CV_Ganesh.pdf')">Download Full CV</button>
++            </div>
++        </section>
+         <hr class="divider">
+     </header>
+ 
+     <main class="grid">
+-        <button class="tile blue-tile" onclick="startDemolition('summary')">
+-            <p>Project Engineer delivering large-scale industrial demolition projects within Tier-1 environments.</p>
++        <button class="tile blue-tile" onclick="initiateBlast('summary')">
++            <h3>Professional Summary</h3>
++            <p>Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments.</p>
+         </button>
+-        <button class="tile yellow-tile" onclick="startDemolition('tech')">
+-            <h3>💻 Technical Stack</h3>
+-            <p>Mastery in P6, AutoCAD, & SpaceGass</p>
++        <button class="tile yellow-tile" onclick="initiateBlast('tech')">
++            <h3>Technical Stack</h3>
++            <p>Mastery in P6, AutoCAD, Procore, and Structural Analysis tools.</p>
+         </button>
+         <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
+-            <h3>📄 Full Resume</h3>
+-            <p>Download PDF</p>
++            <h3>Full Resume</h3>
++            <p>Download PDF Portfolio</p>
+         </button>
+-        <button class="tile green-tile wide" onclick="startDemolition('projects')">
+-            <h3>🚀 Tier-1 Project Highlights</h3>
+-            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • 5G Upgrade</p>
++        <button class="tile green-tile wide" onclick="initiateBlast('projects')">
++            <h3>Tier-1 Project Highlights</h3>
++            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • 5G Upgrade ($50M)</p>
+         </button>
+-        <button class="tile purple-tile" onclick="startDemolition('career')">
+-            <h3>⏳ Career History</h3>
+-            <p>Liberty Industrial • Indara • Clive Steele</p>
++        <button class="tile purple-tile" onclick="initiateBlast('career')">
++            <h3>Career History</h3>
++            <p>Liberty Industrial • Indara • Clive Steele • Structcom</p>
+         </button>
+-        <button class="tile red-tile" onclick="startDemolition('edu')">
+-            <h3>📜 Education & Licenses</h3>
+-            <p>Master of Engineering Science</p>
++        <button class="tile red-tile" onclick="initiateBlast('edu')">
++            <h3>Education & Licenses</h3>
++            <p>Master of Engineering Science (Structural)</p>
+         </button>
+     </main>
+ </div>
+ 
+ <div id="demo-overlay" class="demo-overlay">
+-    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">CHARGES SET...</h2>
++    <h2 id="blast-status" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">SETTING CHARGES...</h2>
+     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
+ </div>
+ 
+ <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
+ <div id="modal" class="modal">
+     <button class="close-btn" onclick="closeModal()">✕</button>
+-    <h2 id="modalTitle" style="font-size: 36px; margin: 0;"></h2>
++    <h2 id="modalTitle" style="font-size: 32px; margin: 0; color: #0f172a;"></h2>
+     <div id="modalBody" class="modal-body"></div>
+ </div>
+ 
+ <script>
+     const cvData = {
++        welcome: {
++            title: "Welcome to Ganesh Kalal's Site",
++            body: `<p>Thanks for visiting. This page is designed as a quick, interactive introduction to my work style and project impact.</p>
++                   <h3>How to Navigate</h3>
++                   <ul>
++                    <li>Click each tile to explore projects, skills, and career achievements.</li>
++                    <li>Use <b>Tier-1 Project Highlights</b> for major delivery outcomes.</li>
++                    <li>Download the full CV anytime for detailed chronology.</li>
++                   </ul>
++                   <h3>What You’ll Find Here</h3>
++                   <p>Real project delivery focus: planning, risk control, QA, demolition sequencing, and stakeholder coordination in live and high-risk environments.</p>`
++        },
+         summary: {
+             title: "Professional Summary",
+-            body: `<p>Project Engineer specializing in large-scale industrial demolition. Member of Engineers Australia (MIEAust), progressing toward NER and RPEV registration.</p>
+-                   <h3>Core Expertise</h3>
++            body: `<p>Project Engineer with extensive experience in demolition sequencing, subcontractor coordination, and QA compliance[cite: 6, 7]. Progressing toward NER and RPEV registration[cite: 9].</p>
++                   <h3>Core Competencies</h3>
+                    <ul>
+-                    <li>Mechanical & Induced Collapse Demolition.</li>
+-                    <li>Hazardous Waste (Asbestos, NORM, Contaminated Waste) management to EPA standards.</li>
+-                    <li>Subcontractor management & \$8M+ variation tracking.</li>
++                    <li>Demolition Planning & Methodology (Mechanical & Induced Collapse)[cite: 26].</li>
++                    <li>Hazardous Waste Management (Asbestos, NORM, Contaminated Waste)[cite: 27, 47].</li>
++                    <li>Subcontractor & Work Package Management[cite: 27, 42].</li>
++                    <li>Contract Administration & Cost Control ($8M+ Variations)[cite: 27, 43].</li>
+                    </ul>`
+         },
+         tech: {
+-            title: "Technical Mastery",
+-            body: `<div class="skill-container"><b>Primavera P6</b> <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div></div>
+-                   <div class="skill-container"><b>AutoCAD / Civil 3D</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>
+-                   <div class="skill-container"><b>SpaceGass / Microstran</b> <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div></div>
+-                   <div class="skill-container"><b>Procore / NetSuite</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>`
++            title: "Technical Stack",
++            body: `<h3>Project Management</h3>
++                   <p>MS Project, Primavera P6 Professional, Procore, Oracle NetSuite, InEight[cite: 61, 66].</p>
++                   <h3>Design & Drafting</h3>
++                   <p>AutoCAD 2D, Civil 3D/MAP 3D, 12d, Bluebeam, Sketch Up[cite: 67].</p>
++                   <h3>Structural Analysis</h3>
++                   <p>SpaceGass, Structural Toolkit, Microstran, MS Tower, RAPT, Inducta[cite: 68].</p>`
+         },
+         projects: {
+-            title: "Tier-1 Projects",
+-            body: `<h3>ExxonMobil Altona Oil Refinery (\$65M+)</h3>
+-                   <p>Managing staged demolition of tanks and process units while maintaining live fuel import operations supplying 40% of Victoria's fuel.</p>
+-                   <h3>Rio Tinto Bauxite Refinery (\$250M+)</h3>
+-                   <p>Australia’s largest industrial demolition. Managed precision explosive works and Traditional Owner consultation in Gove, NT.</p>
++            title: "Key Project Details",
++            body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
++                   <p>Managing staged demolition of tanks, process units, and pipe racks while maintaining live operations supplying 40% of Victoria's fuel[cite: 11, 12, 13]. Coordinating mechanical demolition and controlled explosive works[cite: 14].</p>
++                   <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
++                   <p>Delivered decontamination, heavy dismantling, and precision explosive works for Australia’s largest industrial demolition[cite: 16, 17]. Managed Traditional Owner consultation and remote logistics[cite: 18].</p>
+                    <h3>West Gate Freeway Upgrade</h3>
+-                   <p>QA verification of crash barriers and precast noise walls under VicRoads standards.</p>`
++                   <p>QA verification of crash barriers and precast noise walls in live traffic conditions[cite: 20, 21].</p>`
+         },
+         career: {
+-            title: "Experience",
+-            body: `<h3>Liberty Industrial — Project Engineer</h3><p>02/2024 – Present. Delivering \$100M+ industrial projects and managing complex P6 schedules.</p>
+-                   <h3>Indara Digital — Structural Engineer</h3><p>04/2023 – 03/2024. Steel and foundation design for telecom upgrades (AS 3600).</p>
+-                   <h3>Clive Steele — Graduate Structural Engineer</h3><p>11/2021 – 03/2023. Structural design for commercial builds (AS 4100).</p>`
++            title: "Professional Experience",
++            body: `<h3>Liberty Industrial — Project Engineer</h3>
++                   <p>Managing end-to-end delivery of 100M+ projects. Developing methodologies, SWMS, and risk assessments[cite: 37, 39, 40].</p>
++                   <h3>Indara Digital — Structural Engineer</h3>
++                   <p>Structural design for 5G telecom upgrades. Designing steel members and foundations to AS 3600.</p>
++                   <h3>Clive Steele Partners — Graduate Structural Engineer</h3>
++                   <p>Civil and structural design for commercial builds and fit-outs[cite: 51, 52].</p>
++                   <h3>Structcom Consulting Engineers — Graduate Civil Engineer</h3>
++                   <p>Designed stormwater drainage and OSD systems. Coordinated geotechnical investigations[cite: 56, 57, 58].</p>`
+         },
+         edu: {
+-            title: "Education & Licenses",
+-            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p>
+-                   <p><b>Licenses:</b> White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility.</p>`
++            title: "Education & Certifications",
++            body: `<h3>Academic Background</h3>
++                   <ul>
++                    <li>Master of Engineering Science (Structural Engineering): Swinburne University[cite: 31].</li>
++                    <li>Bachelor of Civil Engineering: University of Pune[cite: 32].</li>
++                   </ul>
++                   <h3>Licenses</h3>
++                   <p>White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility[cite: 60, 61, 62, 63, 64].</p>`
+         }
+     };
+ 
+-    function startDemolition(key) {
+-        const body = document.getElementById('main-body');
++    function openWelcome() {
++        document.getElementById('modalTitle').innerText = cvData.welcome.title;
++        document.getElementById('modalBody').innerHTML = cvData.welcome.body;
++        document.getElementById('modal').style.display = 'block';
++        document.getElementById('backdrop').style.display = 'block';
++    }
++
++    function initiateBlast(key) {
++        const body = document.getElementById('site-body');
+         const overlay = document.getElementById('demo-overlay');
+         const bldg = document.getElementById('building');
+-        const text = document.getElementById('blast-text');
++        const status = document.getElementById('blast-status');
+ 
+-        overlay.style.display = 'flex';
++        // Step 1: Physical Shake
++        body.classList.add('blast-impact');
+         
++        // Step 2: Overlay Animation
++        setTimeout(() => {
++            overlay.style.display = 'flex';
++            status.innerText = "INITIATING BLAST...";
++        }, 200);
++
+         setTimeout(() => {
+-            text.innerText = "DETONATING...";
+-            body.classList.add('shaking');
++            status.innerText = "DETONATING...";
+             bldg.classList.add('implode');
+         }, 800);
+ 
++        // Step 3: Show Modal
+         setTimeout(() => {
+-            body.classList.remove('shaking');
+             document.getElementById('modalTitle').innerText = cvData[key].title;
+             document.getElementById('modalBody').innerHTML = cvData[key].body;
+             overlay.style.display = 'none';
+             bldg.classList.remove('implode');
++            body.classList.remove('blast-impact');
+             document.getElementById('modal').style.display = 'block';
+             document.getElementById('backdrop').style.display = 'block';
+         }, 2500);
+     }
+ 
+     function closeModal() {
+         document.getElementById('modal').style.display = 'none';
+         document.getElementById('backdrop').style.display = 'none';
+     }
++
++    window.addEventListener('DOMContentLoaded', () => {
++        if (!localStorage.getItem('siteWelcomeSeen')) {
++            openWelcome();
++            localStorage.setItem('siteWelcomeSeen', 'true');
++        }
++    });
+ </script>
+ </body>
+ </html>
+ 
+EOF
+)
