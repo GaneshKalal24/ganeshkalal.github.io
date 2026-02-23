@@ -5,7 +5,313 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ganesh Kalal — Digital CV</title>
   <meta name="description" content="Ganesh Kalal — Project Engineer (Demolition & Infrastructure). Digital CV with interactive sections." />
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e6edf5;
+
+      --shadow: 0 10px 28px rgba(15,23,42,0.08);
+      --shadow2: 0 16px 40px rgba(15,23,42,0.14);
+
+      --blue:#1d4ed8;
+      --dark:#111827;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page{
+      width: min(1200px, calc(100% - 48px));
+      margin: 26px auto 34px;
+    }
+
+    /* HEADER */
+    .top{ padding-top: 4px; }
+    .name-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .name{
+      margin:0;
+      font-size: clamp(38px, 4.3vw, 62px);
+      line-height: 1.0;
+      letter-spacing: -0.8px;
+    }
+    .name .first{font-weight:900}
+    .name .last{font-weight:900; color: var(--blue);}
+
+    .top-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+    .btn{
+      border:1px solid transparent;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow: var(--shadow);
+      user-select:none;
+    }
+    .btn.primary{
+      background: var(--dark);
+      color: #fff;
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+
+    .sub-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top: 10px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      background: rgba(29,78,216,0.10);
+      color: var(--blue);
+      border:1px solid rgba(29,78,216,0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .title{
+      font-style: italic;
+      color: #334155;
+      font-weight: 650;
+    }
+
+    .meta{
+      margin-top: 10px;
+      color: var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .meta a{ color: var(--muted); text-decoration:none; font-weight: 700; }
+    .meta a:hover{ text-decoration:underline; }
+    .dot{opacity:0.7}
+
+    .divider{
+      border:none;
+      border-top: 1px solid var(--line);
+      margin: 18px 0 22px;
+    }
+
+    /* GRID */
+    .grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Tiles */
+    .tile{
+      border:none;
+      width:100%;
+      text-align:left;
+      cursor:pointer;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      min-height: 150px;
+    }
+    .tile:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow2);
+    }
+    .tile:active{ transform: translateY(0px); }
+
+    .tile .icon{ font-size: 22px; }
+    .tile-title{
+      font-weight: 900;
+      font-size: 18px;
+    }
+    .tile-sub{
+      color: rgba(15,23,42,0.55);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .tile-lg{ min-height: 180px; }
+    .tile-wide{ grid-column: span 2; }
+
+    .white{ background:#ffffff; }
+    .yellow{ background:#fbbf24; }
+    .purple{ background:#6366f1; color:#fff; }
+    .purple .tile-sub{ color: rgba(255,255,255,0.78); }
+    .green{ background:#059669; color:#fff; }
+    .green .tile-sub{ color: rgba(255,255,255,0.82); }
+    .purple2{ background:#7c3aed; color:#fff; }
+    .purple2 .tile-sub{ color: rgba(255,255,255,0.80); }
+    .red{ background:#f43f5e; color:#fff; }
+    .red .tile-sub{ color: rgba(255,255,255,0.80); }
+    .darktile{ background:#0f172a; color:#fff; text-decoration:none; }
+    .darktile .tile-sub{ color: rgba(255,255,255,0.76); }
+
+    .footer{
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .linkbtn{
+      border:none;
+      background: transparent;
+      color: var(--blue);
+      font-weight: 900;
+      cursor:pointer;
+      padding: 6px 8px;
+      border-radius: 10px;
+    }
+    .linkbtn:hover{ text-decoration: underline; }
+
+    /* MODAL */
+    .modal-backdrop{
+      position: fixed;
+      inset:0;
+      background: rgba(15,23,42,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 50;
+    }
+
+    .modal{
+      position: fixed;
+      z-index: 60;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: min(920px, calc(100% - 28px));
+      max-height: min(82vh, 760px);
+      overflow: hidden;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: var(--shadow2);
+      border: 1px solid rgba(15,23,42,0.10);
+    }
+
+    .modal-head{
+      padding: 16px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-title{
+      font-weight: 950;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
+    .x{
+      border: 1px solid rgba(15,23,42,0.10);
+      background:#fff;
+      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      cursor:pointer;
+      font-weight: 900;
+      user-select:none;
+    }
+
+    /* ✅ Bigger font (this fixes your “font not changed”) */
+    .modal-body{
+      padding: 18px 18px 22px;
+      overflow:auto;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #0f172a;
+    }
+    .modal-body h3{
+      margin: 12px 0 8px;
+      font-size: 18px;
+      letter-spacing:-0.1px;
+    }
+    .modal-body p{
+      margin: 8px 0 12px;
+      color: #334155;
+      font-weight: 600;
+    }
+    .modal-body ul{
+      margin: 8px 0 14px;
+      padding-left: 18px;
+    }
+    .modal-body li{ margin: 7px 0; }
+
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 10px 0 14px;
+    }
+    .kvc{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+    .kvc .k{ color:#475569; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+    .kvc .v{ font-weight: 900; margin-top: 4px; }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .tag{
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: #f8fafc;
+      font-weight: 850;
+      color: #334155;
+      font-size: 13px;
+    }
+
+    .note{
+      padding: 10px 12px;
+      border: 1px dashed rgba(15,23,42,0.20);
+      border-radius: 14px;
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 650;
+      margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .tile-wide{ grid-column: span 2; }
+    }
+    @media (max-width: 640px){
+      .page{ width: min(1200px, calc(100% - 28px)); }
+      .grid{ grid-template-columns: 1fr; }
+      .tile-wide{ grid-column: span 1; }
+      .kv{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
@@ -18,7 +324,7 @@
         </h1>
         <div class="top-actions">
           <a class="btn primary" href="assets/Ganesh_Kalal_CV.pdf" target="_blank" rel="noopener">Download CV</a>
-          <!-- ✅ Cover Letter button removed -->
+          <!-- ✅ Cover Letter removed -->
         </div>
       </div>
 
@@ -42,63 +348,53 @@
 
     <!-- DASHBOARD GRID -->
     <main class="grid">
-      <!-- Professional Summary -->
       <button class="tile tile-lg white" data-open="summary">
         <div class="icon">🏗️</div>
         <div class="tile-title">Professional Summary</div>
         <div class="tile-sub">Click to view</div>
       </button>
 
-      <!-- Software Stack -->
       <button class="tile yellow" data-open="software">
         <div class="icon">🖥️</div>
         <div class="tile-title">Software Stack</div>
         <div class="tile-sub">Click to view</div>
       </button>
 
-      <!-- Expertise -->
       <button class="tile purple" data-open="expertise">
         <div class="icon">🛠️</div>
         <div class="tile-title">Expertise</div>
         <div class="tile-sub">Click to view</div>
       </button>
 
-      <!-- Key Projects -->
       <button class="tile tile-wide green" data-open="projects">
         <div class="icon">🚀</div>
         <div class="tile-title">Key Projects</div>
         <div class="tile-sub">ExxonMobil • Rio Tinto • West Gate • 5G</div>
       </button>
 
-      <!-- Career History -->
       <button class="tile tile-wide white" data-open="career">
         <div class="icon">⏳</div>
         <div class="tile-title">Career History</div>
         <div class="tile-sub">Click to view</div>
       </button>
 
-      <!-- Education -->
       <button class="tile purple2" data-open="education">
         <div class="icon">🎓</div>
         <div class="tile-title">Education</div>
         <div class="tile-sub">Click to view</div>
       </button>
 
-      <!-- Licenses -->
       <button class="tile red" data-open="licenses">
         <div class="icon">📄</div>
         <div class="tile-title">Licenses</div>
         <div class="tile-sub">Click to view</div>
       </button>
 
-      <!-- Full CV -->
-      <a class="tile dark" href="assets/Ganesh_Kalal_CV.pdf" target="_blank" rel="noopener">
+      <a class="tile darktile" href="assets/Ganesh_Kalal_CV.pdf" target="_blank" rel="noopener">
         <div class="icon">📃</div>
         <div class="tile-title">Full CV</div>
         <div class="tile-sub">Download PDF</div>
       </a>
-
-      <!-- ✅ Cover Letter tile removed -->
     </main>
 
     <footer class="footer">
@@ -118,11 +414,266 @@
       <div class="modal-title" id="modalTitle">Title</div>
       <button class="x" id="closeBtn" aria-label="Close">✕</button>
     </div>
-    <div class="modal-body" id="modalBody">
-      <!-- content injected by JS -->
-    </div>
+    <div class="modal-body" id="modalBody"></div>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    // ✅ This is embedded so clicks ALWAYS work (no missing script.js issue)
+    const backdrop = document.getElementById("backdrop");
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const closeBtn = document.getElementById("closeBtn");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const content = {
+      summary: {
+        title: "Professional Summary",
+        html: `
+          <p>
+            Project Engineer delivering large-scale <strong>industrial demolition</strong> and <strong>major infrastructure</strong>
+            packages within Tier-1 environments. Experienced in <strong>demolition sequencing</strong>, subcontractor coordination,
+            procurement, cost control, and QA compliance, with exposure to high-risk works including heavy mechanical and
+            <strong>explosive demolition</strong> in live operational facilities.
+          </p>
+
+          <div class="kv">
+            <div class="kvc"><div class="k">Current Role</div><div class="v">Project Engineer — Liberty Industrial</div></div>
+            <div class="kvc"><div class="k">Professional</div><div class="v">MIEAust • Progressing to NER & RPEV</div></div>
+          </div>
+
+          <h3>What I deliver</h3>
+          <ul>
+            <li><strong>Planning & sequencing</strong> for staged demolition in constrained workfronts and live sites.</li>
+            <li><strong>Work package delivery</strong>: procurement/RFQs, subcontractor mobilisation, daily coordination.</li>
+            <li><strong>Controls & compliance</strong>: SWMS, risk assessments, ITPs, hold-point inspections, QA evidence.</li>
+            <li><strong>Cost & claims</strong>: tracking costs, variations (multi-million), progress claims and EOT support.</li>
+            <li><strong>Hazardous materials</strong>: asbestos/NORM/contaminated waste management aligned with EPA & authorities.</li>
+          </ul>
+
+          <div class="note">
+            Next improvement: we can add measurable KPIs per project (tonnage removed, area, packages, schedule wins).
+          </div>
+        `
+      },
+
+      software: {
+        title: "Software Stack",
+        html: `
+          <p>Tools used across project delivery, controls, and engineering coordination.</p>
+
+          <h3>Project Controls / Delivery</h3>
+          <div class="tags">
+            <span class="tag">Primavera P6</span>
+            <span class="tag">MS Project</span>
+            <span class="tag">Procore</span>
+            <span class="tag">InEight</span>
+            <span class="tag">Oracle NetSuite</span>
+            <span class="tag">MS Office Suite</span>
+          </div>
+
+          <h3>Design / Drafting / Review</h3>
+          <div class="tags">
+            <span class="tag">AutoCAD 2D</span>
+            <span class="tag">Civil 3D / MAP 3D</span>
+            <span class="tag">12d</span>
+            <span class="tag">Bluebeam</span>
+            <span class="tag">SketchUp</span>
+          </div>
+
+          <h3>Structural Analysis</h3>
+          <div class="tags">
+            <span class="tag">SpaceGass</span>
+            <span class="tag">Structural Toolkit</span>
+            <span class="tag">Microstran</span>
+            <span class="tag">MS Tower</span>
+            <span class="tag">RAPT</span>
+            <span class="tag">Inducta</span>
+          </div>
+        `
+      },
+
+      expertise: {
+        title: "Expertise",
+        html: `
+          <h3>Demolition & Remediation</h3>
+          <ul>
+            <li>Demolition planning, sequencing & methodology development.</li>
+            <li>Mechanical demolition, induced collapse techniques, and controlled explosive works exposure.</li>
+            <li>Partial structural demolition support (wall/slab removal) with drawing interpretation.</li>
+            <li>Hazardous waste management (asbestos, NORM, contaminated waste) with EPA / authority compliance.</li>
+            <li>Environmental controls: dust suppression, noise, runoff protection and monitoring coordination.</li>
+          </ul>
+
+          <h3>Project Delivery</h3>
+          <ul>
+            <li>Subcontractor & work package management: RFQs, tender evaluation, mobilisation and performance tracking.</li>
+            <li>Contract administration, procurement, scheduling (P6), cost control, variations, claims and EOT support.</li>
+            <li>Weekly reporting for progress, budget and risk; clear stakeholder communication.</li>
+          </ul>
+
+          <h3>QA / HSEQ</h3>
+          <ul>
+            <li>ITPs, inspections, hold-point verification, evidence capture and documentation close-out.</li>
+            <li>Risk assessments, SWMS and site controls aligned to statutory/client requirements.</li>
+          </ul>
+        `
+      },
+
+      projects: {
+        title: "Key Project Highlights",
+        html: `
+          <h3>ExxonMobil Altona Oil Refinery Demolition — Altona, VIC (2025–Present) — $65M+</h3>
+          <ul>
+            <li>Project Engineer on major refinery closure converting site to fuel import terminal while maintaining live operations supplying ~40% of Victoria’s fuel demand.</li>
+            <li>Managing staged demolition of tanks, process units, pipe racks and structural steel assets.</li>
+            <li>Coordinating mechanical demolition, induced collapse methodologies, NORM/asbestos decontamination and controlled explosive works with safety/environment/regulatory compliance.</li>
+            <li>Project completion target: Dec 2027.</li>
+          </ul>
+
+          <h3>Rio Tinto Bauxite Refinery Demolition & Land Remediation — Gove, NT (2024–2025) — $250M+</h3>
+          <ul>
+            <li>Project Engineer on Australia’s largest industrial demolition project: decontamination, heavy dismantling, precision explosive works, bulk concrete foundation removal and brownfield remediation.</li>
+            <li>Coordinated remote logistics, environmental controls and stakeholder engagement including Traditional Owner consultation.</li>
+            <li>Supervised heavy civil works and concrete foundation removal while managing subcontractor performance to Rio Tinto standards.</li>
+          </ul>
+
+          <h3>West Gate Freeway Upgrade — Melbourne (2022–2023)</h3>
+          <ul>
+            <li>Graduate Civil Engineer supporting installation and QA verification of reinforced concrete crash barriers and precast noise walls in live traffic.</li>
+            <li>Compliance exposure: VicRoads requirements and AS 5100.</li>
+          </ul>
+
+          <h3>National 5G Telecom Upgrade Program — Victoria (2023–2024) — $50M</h3>
+          <ul>
+            <li>Structural Engineer delivering design-assist and construction support for telecom infrastructure upgrades across metro and regional VIC.</li>
+            <li>Reviewed towers and foundations to Australian Standards; coordinated site inspections and supported programme delivery.</li>
+          </ul>
+        `
+      },
+
+      career: {
+        title: "Professional Experience",
+        html: `
+          <h3>Liberty Industrial — Project Engineer (Feb 2024–Present) — Altona, VIC</h3>
+          <ul>
+            <li>Supported end-to-end delivery of $100M+ industrial and commercial demolition projects.</li>
+            <li>Developed demolition methodologies, management plans, SWMS, risk assessments and ITPs aligned with statutory/client requirements.</li>
+            <li>Interpreted structural/demolition drawings to coordinate sequencing and temporary works interface.</li>
+            <li>Managed subcontractor procurement including RFQs, tender evaluations and mobilisation.</li>
+            <li>Tracked programme performance and costs; managed variations ($8M+), progress claims and EOT submissions.</li>
+            <li>Prepared weekly reports covering progress, budget and risk; conducted inspections and verified hold points.</li>
+            <li>Hazardous materials management (asbestos, NORM, contaminated waste) to EPA / authority requirements.</li>
+            <li>Updated Primavera P6 schedules to reflect sequencing, progress and delay impacts.</li>
+          </ul>
+
+          <h3>Indara Digital Infrastructures — Structural Engineer (Apr 2023–Mar 2024) — Melbourne, VIC</h3>
+          <ul>
+            <li>Structural design and construction support for telecom tower upgrades.</li>
+            <li>Designed steel members and foundations to AS 3600 and AS/NZS 1170.</li>
+            <li>Reviewed shop drawings; liaised with fabricators and installation contractors; supported site inspections.</li>
+          </ul>
+
+          <h3>Clive Steele Partners — Graduate Structural Engineer (Nov 2021–Mar 2023) — Clayton, VIC</h3>
+          <ul>
+            <li>Civil and structural design for commercial builds/fit-outs.</li>
+            <li>Designed steel framing and RC elements to AS 4100, AS 3600 and AS/NZS 1170.</li>
+            <li>Coordinated fabrication/shop drawings and builder interfaces; site inspections and QA hold-point sign-offs.</li>
+          </ul>
+
+          <h3>Structcom Consulting Engineers — Graduate Civil Engineer (Jun 2020–Oct 2021) — Caulfield, VIC</h3>
+          <ul>
+            <li>Designed stormwater drainage, OSD systems and site grading layouts.</li>
+            <li>Coordinated geotech, surveys, LPOD and council approvals.</li>
+            <li>Site inspections and rectification recommendations for council assets.</li>
+          </ul>
+        `
+      },
+
+      education: {
+        title: "Education",
+        html: `
+          <h3>Master of Engineering Science (Structural Engineering) — 2019–2021</h3>
+          <ul>
+            <li>Swinburne University of Technology, VIC</li>
+          </ul>
+
+          <h3>Bachelor of Civil Engineering — 2014–2018</h3>
+          <ul>
+            <li>University of Pune, India</li>
+          </ul>
+
+          <h3>Professional Registration Pathway</h3>
+          <ul>
+            <li>Member of Engineers Australia (MIEAust).</li>
+            <li>Progressing toward NER and RPEV registration.</li>
+          </ul>
+        `
+      },
+
+      licenses: {
+        title: "Certifications & Licenses",
+        html: `
+          <div class="tags">
+            <span class="tag">White Card</span>
+            <span class="tag">Primavera P6 Professional</span>
+            <span class="tag">Victorian Driver's License (Class C)</span>
+            <span class="tag">Working at Heights</span>
+            <span class="tag">Asbestos Safety (Removal & Disposal)</span>
+            <span class="tag">Chain of Responsibility (TLIF0080)</span>
+          </div>
+
+          <h3>Next enhancement</h3>
+          <ul>
+            <li>If you tell me your expiry dates (optional), I can format them neatly.</li>
+          </ul>
+        `
+      },
+
+      contact: {
+        title: "Contact",
+        html: `
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:ganesh.r.kalal24@gmail.com">ganesh.r.kalal24@gmail.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+61424121941">0424 121 941</a></li>
+            <li><strong>Location:</strong> Melbourne, VIC</li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com" target="_blank" rel="noopener">Update your LinkedIn URL here</a></li>
+          </ul>
+          <p class="note">Tip: Add this site link to your PDF CV header and LinkedIn “Featured”.</p>
+        `
+      }
+    };
+
+    function openModal(key){
+      const c = content[key];
+      if(!c) return;
+      modalTitle.textContent = c.title;
+      modalBody.innerHTML = c.html;
+      backdrop.hidden = false;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
+
+    function closeModal(){
+      modal.hidden = true;
+      backdrop.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    // Attach click handlers AFTER DOM loads
+    document.querySelectorAll("[data-open]").forEach(el=>{
+      el.addEventListener("click", ()=>{
+        const key = el.getAttribute("data-open");
+        openModal(key);
+      });
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape" && !modal.hidden) closeModal();
+    });
+  </script>
 </body>
 </html>
