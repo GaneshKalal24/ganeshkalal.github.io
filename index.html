@@ -4,59 +4,156 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ganesh Kalal | Project Engineer</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; }
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+        .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
+        
+        /* HEADER */
+        .name { font-size: 48px; margin: 0; font-weight: 800; }
+        .blue-text { color: var(--blue); }
+        .pill { font-size: 14px; background: #e0e7ff; color: var(--blue); padding: 4px 12px; border-radius: 20px; vertical-align: middle; font-weight: bold; }
+        .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
+        .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
+
+        /* GRID LAYOUT - Preserving your requested box style */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; }
+        .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .wide { grid-column: span 2; }
+        .tile h3 { margin: 10px 0 0; font-size: 22px; }
+        
+        /* TILE COLORS FROM YOUR SCREENSHOTS */
+        .blue-tile { background: var(--blue); color: white; }
+        .yellow-tile { background: #fbbf24; }
+        .dark-tile { background: #1e293b; color: white; }
+        .green-tile { background: #10b981; color: white; }
+        .purple-tile { background: #8b5cf6; color: white; }
+        .red-tile { background: #f43f5e; color: white; }
+
+        /* FLOOR-BY-FLOOR COLLAPSE ANIMATION (The Gif Style) */
+        .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+        .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
+        .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: transform 0.6s cubic-bezier(0.4, 0, 1, 1), opacity 0.4s; }
+        
+        .implode .f3 { transform: translateY(130px); opacity: 0; transition-delay: 0.1s; }
+        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.5s; }
+        .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
+
+        /* LARGE DETAIL VIEW (MODAL) */
+        .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 850px; background: white; border-radius: 28px; padding: 45px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); display: none; max-height: 85vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 25px; right: 25px; background: #f1f5f9; border: none; font-size: 20px; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; }
+        .modal-body h3 { color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-top: 25px; }
+        .modal-body ul { padding-left: 20px; }
+        
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
+    </style>
 </head>
 <body>
-    <div class="page">
-        <header class="top">
-            <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
-            <p class="subtitle">Project Engineer - Demolition & Infrastructure</p>
-            <div class="meta">
-                <span>Melbourne, VIC</span> • <span>0424 121 941</span> • <span>ganesh.r.kalal24@gmail.com</span>
-            </div>
-            <hr class="divider">
-        </header>
 
-        <main class="grid">
-            <div class="tile blue-tile" onclick="openSection('summary')">
-                <p>Tier-1 Project Engineer with expertise in demolition sequencing, cost control, and QA.</p>
-            </div>
-            <div class="tile yellow-tile" onclick="openSection('tech')">
-                <div class="icon">💻</div>
-                <h3>Tech Stack</h3>
-            </div>
-            <div class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
-                <div class="icon">📄</div>
-                <h3>Full Resume</h3>
-            </div>
-            <div class="tile green-tile wide" onclick="openSection('projects')">
-                <div class="icon">🚀</div>
-                <h3>Key Projects</h3>
-                <p>ExxonMobil • Rio Tinto • West Gate</p>
-            </div>
-        </main>
+<div class="page">
+    <header class="top">
+        <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
+        <p class="meta">Melbourne, VIC • 0424 121 941 • ganesh.r.kalal24@gmail.com</p>
+        <hr class="divider">
+    </header>
+
+    <main class="grid">
+        <button class="tile blue-tile" onclick="openSection('summary')">
+            <p>Tier-1 Project Engineer with expertise in demolition sequencing, cost control, and QA.</p>
+        </button>
+        <button class="tile yellow-tile" onclick="openSection('tech')">
+            <h3>💻 Tech Stack</h3>
+            <p>P6, AutoCAD, Procore</p>
+        </button>
+        <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
+            <h3>📄 Full Resume</h3>
+            <p>Download PDF</p>
+        </button>
+        <button class="tile green-tile wide" onclick="openSection('projects')">
+            <h3>🚀 Key Projects</h3>
+            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+)</p>
+        </button>
+        <button class="tile purple-tile" onclick="openSection('education')">
+            <h3>🎓 Education</h3>
+            <p>Master of Engineering Science</p>
+        </button>
+        <button class="tile red-tile" onclick="openSection('licenses')">
+            <h3>📜 Licenses</h3>
+            <p>Asbestos, P6, White Card</p>
+        </button>
+    </main>
+</div>
+
+<div id="demo-overlay" class="demo-overlay">
+    <h2 id="blast-status" style="margin-bottom: 20px; font-weight: 800;">INITIATING BLAST...</h2>
+    <div class="structure" id="building">
+        <div class="f f3"></div>
+        <div class="f f2"></div>
+        <div class="f f1"></div>
     </div>
+</div>
 
-    <div id="demo-overlay" class="demo-overlay" hidden>
-        <div class="building-site">
-            <div class="structure">
-                <div class="f floor-3"></div>
-                <div class="f floor-2"></div>
-                <div class="f floor-1"></div>
-            </div>
-            <div class="dust-cloud"></div>
-        </div>
-    </div>
+<div id="backdrop" class="backdrop" onclick="closeModal()"></div>
+<div id="modal" class="modal">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle" style="font-size: 32px; margin-bottom: 10px;"></h2>
+    <div id="modalBody" class="modal-body"></div>
+</div>
 
-    <div id="backdrop" class="backdrop" hidden onclick="closeModal()"></div>
-    <div id="modal" class="modal" hidden>
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">✕</button>
-            <h2 id="modalTitle"></h2>
-            <div id="modalBody" class="modal-body"></div>
-        </div>
-    </div>
+<script>
+    const data = {
+        summary: {
+            title: "Professional Summary",
+            body: `<p>Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments.</p>
+                   <ul>
+                     <li>Experienced in demolition sequencing, procurement, and QA compliance.</li>
+                     <li>Exposure to high-risk works including heavy mechanical and explosive demolition.</li>
+                     <li>Member of Engineers Australia (MIEAust), progressing toward NER registration.</li>
+                   </ul>`
+        },
+        tech: {
+            title: "Technical Skills",
+            body: `<h3>Management & Reporting</h3>
+                   <p>Primavera P6, MS Project, Procore, InEight, Oracle NetSuite.</p>
+                   <h3>Design & Drafting</h3>
+                   <p>AutoCAD 2D, Civil 3D, 12d, Bluebeam, Sketch Up.</p>
+                   <h3>Structural Analysis</h3>
+                   <p>SpaceGass, Structural Toolkit, Microstran, RAPT, Inducta.</p>`
+        },
+        projects: {
+            title: "Key Project Highlights",
+            body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
+                   <p>Managing staged demolition of tanks, process units, and pipe racks while maintaining live operations. Coordinating induced collapse and controlled explosive works.</p>
+                   <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
+                   <p>Project Engineer on Australia's largest industrial demolition project. Supervised heavy structural dismantling and precision explosive works.</p>
+                   <h3>West Gate Freeway Upgrade</h3>
+                   <p>QA verification of crash barriers and precast noise walls in live traffic conditions.</p>`
+        },
+        education: {
+            title: "Education",
+            body: `<p><b>Master of Engineering Science (Structural Engineering)</b><br>Swinburne University of Technology, VIC</p>
+                   <p><b>Bachelor of Civil Engineering</b><br>University of Pune, India</p>`
+        },
+        licenses: {
+            title: "Certifications & Licenses",
+            body: `<ul>
+                     <li>Construction Induction Card (White Card)</li>
+                     <li>Oracle Primavera P6 Professional</li>
+                     <li>Asbestos Safety Training (Removal & Disposal)</li>
+                     <li>Working at Heights & Chain of Responsibility</li>
+                   </ul>`
+        }
+    };
 
-    <script src="script.js"></script>
-</body>
-</html>
+    function openSection(key) {
+        const overlay = document.getElementById('demo-overlay');
+        const bldg = document.getElementById('building');
+        const status = document.getElementById('blast-status');
+        
+        overlay.style.display = 'flex';
+        status.innerText = "CHARGES SET...";
+
+        setTimeout(() => {
+            status.innerText
