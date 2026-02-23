@@ -6,17 +6,17 @@
     <title>Ganesh Kalal | Project Engineer</title>
     <style>
         :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
         
-        /* HEADER - Matching your clean design */
+        /* HEADER */
         .name { font-size: 48px; margin: 0; font-weight: 800; }
         .blue-text { color: var(--blue); }
         .pill { font-size: 14px; background: #e0e7ff; color: var(--blue); padding: 4px 12px; border-radius: 20px; font-weight: bold; }
         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
         .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
 
-        /* GRID - The boxes you requested */
+        /* GRID - Exactly like your screenshots */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; }
         .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
@@ -29,21 +29,23 @@
         .purple-tile { background: #8b5cf6; color: white; }
         .red-tile { background: #f43f5e; color: white; }
 
-        /* THE ANIMATION OVERLAY */
-        .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.96); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
-        .structure { width: 80px; height: 160px; display: flex; flex-direction: column; gap: 5px; }
-        .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in, opacity 0.4s; }
+        /* PANCAKE COLLAPSE OVERLAY */
+        .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+        .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
+        .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: transform 0.6s ease-in, opacity 0.4s; }
         
-        /* Pancake Collapse Effect */
-        .implode .f3 { transform: translateY(110px); opacity: 0; transition-delay: 0.1s; }
-        .implode .f2 { transform: translateY(55px); opacity: 0; transition-delay: 0.4s; }
-        .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.7s; }
+        /* The Collapse Animation Logic */
+        .implode .f3 { transform: translateY(130px); opacity: 0; transition-delay: 0.1s; }
+        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.5s; }
+        .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
 
         /* LARGE DETAIL VIEW (MODAL) */
         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 800px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 80vh; overflow-y: auto; }
-        .close-btn { position: absolute; top: 20px; right: 20px; border: none; font-size: 24px; cursor: pointer; background: none; }
-        .modal-body h3 { color: var(--blue); margin-top: 20px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 850px; background: white; border-radius: 28px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); display: none; max-height: 85vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; }
+        .modal-body h3 { color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-top: 20px; }
+        
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
 </head>
 <body>
@@ -56,10 +58,10 @@
     </header>
 
     <main class="grid">
-        <button class="tile blue-tile" onclick="runDemo('summary')">
-            <p>Tier-1 Project Engineer with expertise in demolition sequencing, cost control, and QA.</p>
+        <button class="tile blue-tile" onclick="startDemolition('summary')">
+            <p>Tier-1 Project Engineer delivering large-scale industrial demolition and major infrastructure projects.</p>
         </button>
-        <button class="tile yellow-tile" onclick="runDemo('tech')">
+        <button class="tile yellow-tile" onclick="startDemolition('tech')">
             <h3>💻 Tech Stack</h3>
             <p>P6, AutoCAD, SpaceGass</p>
         </button>
@@ -67,77 +69,87 @@
             <h3>📄 Full Resume</h3>
             <p>Download PDF</p>
         </button>
-        <button class="tile green-tile wide" onclick="runDemo('projects')">
+        <button class="tile green-tile wide" onclick="startDemolition('projects')">
             <h3>🚀 Key Projects</h3>
             <p>ExxonMobil ($65M+) • Rio Tinto ($250M+)</p>
         </button>
-        <button class="tile purple-tile" onclick="runDemo('career')">
+        <button class="tile purple-tile" onclick="startDemolition('career')">
             <h3>⏳ Career History</h3>
-            <p>Liberty Industrial • Indara</p>
+            <p>Liberty Industrial • Indara • Clive Steele</p>
         </button>
-        <button class="tile red-tile" onclick="runDemo('edu')">
-            <h3>🎓 Education</h3>
+        <button class="tile red-tile" onclick="startDemolition('edu')">
+            <h3>📜 Education & Licenses</h3>
             <p>Master of Engineering Science</p>
         </button>
     </main>
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="status">INITIATING CONTROLLED COLLAPSE...</h2>
+    <h2 id="blast-text" style="font-weight: 900; color: #ef4444;">INITIATING BLAST...</h2>
     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
 <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
 <div id="modal" class="modal">
     <button class="close-btn" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle"></h2>
+    <h2 id="modalTitle" style="font-size: 32px; margin: 0;"></h2>
+    <hr class="divider">
     <div id="modalBody" class="modal-body"></div>
 </div>
 
 <script>
-    const content = {
+    const cvData = {
         summary: {
             title: "Professional Summary",
-            body: `<p>Project Engineer delivering large-scale industrial demolition and major infrastructure projects within Tier-1 environments[cite: 6]. Experienced in demolition sequencing, procurement, and QA compliance[cite: 7]. Member of Engineers Australia (MIEAust)[cite: 9].</p>`
+            body: `<p>Project Engineer with expertise in demolition sequencing, cost control, and QA compliance[cite: 7]. Experienced in high-risk mechanical and explosive demolition within live operational facilities[cite: 8]. Progressing toward NER and RPEV registration[cite: 9].</p>`
         },
         tech: {
             title: "Technical Skills",
-            body: `<h3>Project Controls</h3><p>MS Project, Primavera P6, Procore, InEight[cite: 66].</p>
-                   <h3>Engineering & Design</h3><p>AutoCAD, Civil 3D, SpaceGass, RAPT, Bluebeam[cite: 67, 68].</p>`
+            body: `<h3>Project Management</h3><p>MS Project, Primavera P6, Procore, InEight, Oracle NetSuite[cite: 66].</p>
+                   <h3>Design & Analysis</h3><p>AutoCAD, Civil 3D, SpaceGass, Microstran, RAPT[cite: 67, 68].</p>`
         },
         projects: {
             title: "Key Project Highlights",
-            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3><p>Managing staged demolition of tanks and process units while maintaining live fuel import operations[cite: 11, 12, 13].</p>
-                   <h3>Rio Tinto Bauxite Refinery ($250M+)</h3><p>Australia's largest industrial demolition. Delivering precision explosive works and heavy structural dismantling[cite: 16, 17].</p>
-                   <h3>West Gate Freeway Upgrade</h3><p>QA verification of crash barriers and precast noise walls[cite: 20, 21].</p>`
+            body: `<h3>ExxonMobil Altona Oil Refinery ($65M+)</h3>
+                   <p>Managing staged demolition of tanks, process units, and structural steel while maintaining live fuel import operations[cite: 11, 12, 13].</p>
+                   <h3>Rio Tinto Bauxite Refinery ($250M+)</h3>
+                   <p>Delivered decontamination, heavy structural dismantling, and precision explosive works for Australia's largest industrial demolition[cite: 16, 17].</p>
+                   <h3>West Gate Freeway Upgrade</h3>
+                   <p>QA verification of reinforced concrete crash barriers and precast noise walls[cite: 20, 21].</p>`
         },
         career: {
             title: "Professional Experience",
-            body: `<h3>Liberty Industrial — Project Engineer</h3><p>Supported \$100M+ industrial projects. Developed methodologies, SWMS, and risk assessments[cite: 37, 39, 40].</p>
-                   <h3>Indara Digital — Structural Engineer</h3><p>Structural design for telecom tower upgrades to AS 3600[cite: 48, 49].</p>`
+            body: `<h3>Liberty Industrial — Project Engineer</h3><p>2024 - Present. Developed demolition methodologies, SWMS, and risk assessments[cite: 37, 40]. Managed subcontractor procurement and tracked \$8M+ in variations[cite: 42, 43].</p>
+                   <h3>Indara Digital — Structural Engineer</h3><p>2023 - 2024. Delivered structural design for telecom tower upgrades to AS 3600[cite: 48, 49].</p>`
         },
         edu: {
-            title: "Education & Licenses",
+            title: "Education & Certifications",
             body: `<h3>Education</h3><p>Master of Engineering Science (Structural), Swinburne University [cite: 31].<br>Bachelor of Civil Engineering, University of Pune[cite: 32].</p>
-                   <h3>Licenses</h3><p>White Card, P6 Professional, Asbestos Safety, Working at Heights[cite: 60, 61, 62, 63].</p>`
+                   <h3>Licenses</h3><p>White Card, P6 Professional, Asbestos Safety Training, Working at Heights[cite: 60, 61, 62, 63].</p>`
         }
     };
 
-    function runDemo(key) {
+    function startDemolition(key) {
         const overlay = document.getElementById('demo-overlay');
         const bldg = document.getElementById('building');
+        const text = document.getElementById('blast-text');
+
         overlay.style.display = 'flex';
-        
-        setTimeout(() => bldg.classList.add('implode'), 300);
+        text.innerText = "CHARGES SET...";
 
         setTimeout(() => {
-            document.getElementById('modalTitle').innerText = content[key].title;
-            document.getElementById('modalBody').innerHTML = content[key].body;
+            text.innerText = "DETONATING...";
+            bldg.classList.add('implode');
+        }, 600);
+
+        setTimeout(() => {
+            document.getElementById('modalTitle').innerText = cvData[key].title;
+            document.getElementById('modalBody').innerHTML = cvData[key].body;
             overlay.style.display = 'none';
             bldg.classList.remove('implode');
             document.getElementById('modal').style.display = 'block';
             document.getElementById('backdrop').style.display = 'block';
-        }, 2000);
+        }, 2200);
     }
 
     function closeModal() {
