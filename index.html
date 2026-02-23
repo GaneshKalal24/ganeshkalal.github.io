@@ -3,107 +3,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ganesh Kalal — Digital CV</title>
-  <meta name="description" content="Ganesh Kalal — Project Engineer (Demolition & Infrastructure). Digital CV with interactive sections." />
+  <title>Ganesh Kalal | Project Engineer</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <div class="page">
     <header class="top">
-      <div class="name-row">
-        <h1 class="name">
-          <span class="first">Ganesh</span> <span class="last">Kalal</span>
-        </h1>
-        <div class="top-actions">
-          <a class="btn primary" href="CV_Ganesh Kalal.pdf" target="_blank" rel="noopener">Download CV</a>
-        </div>
-      </div>
-
-      <div class="sub-row">
-        <div class="pill">MIEAust</div>
-        <div class="title">Project Engineer - Demolition & Infrastructure</div>
-      </div>
-
+      <h1 class="name">Ganesh <span class="blue-text">Kalal</span> (MIEAust)</h1>
+      <p class="subtitle">Project Engineer - Demolition & Infrastructure</p>
       <div class="meta">
-        <span>Melbourne, VIC</span>
-        <span class="dot">•</span>
-        <a href="tel:+61424121941">0424 121 941</a>
-        <span class="dot">•</span>
-        <a href="mailto:ganesh.r.kalal24@gmail.com">ganesh.r.kalal24@gmail.com</a>
-        <span class="dot">•</span>
-        <a href="https://www.linkedin.com/in/ganeshkalal" target="_blank" rel="noopener">LinkedIn</a>
+        <span>Melbourne, VIC</span> • <span>0424 121 941</span> • <span>ganesh.r.kalal24@gmail.com</span>
       </div>
-      <hr class="divider" />
     </header>
 
     <main class="grid">
-      <button class="tile tile-lg white" data-open="summary">
-        <div class="icon">🏗️</div>
-        <div class="tile-title">Professional Summary</div>
-        <div class="tile-sub">Click for Blast</div>
-      </button>
-
-      <button class="tile yellow" data-open="software">
-        <div class="icon">🖥️</div>
-        <div class="tile-title">Software Stack</div>
-        <div class="tile-sub">Click to view</div>
-      </button>
-
-      <button class="tile purple" data-open="expertise">
-        <div class="icon">🛠️</div>
-        <div class="tile-title">Expertise</div>
-        <div class="tile-sub">Click to view</div>
-      </button>
-
-      <button class="tile tile-wide green" data-open="projects">
-        <div class="icon">🚀</div>
-        <div class="tile-title">Key Projects</div>
-        <div class="tile-sub">ExxonMobil • Rio Tinto • West Gate • 5G</div>
-      </button>
-
-      <button class="tile tile-wide white" data-open="career">
-        <div class="icon">⏳</div>
-        <div class="tile-title">Career History</div>
-        <div class="tile-sub">Click to view</div>
-      </button>
-
-      <button class="tile purple2" data-open="education">
-        <div class="icon">🎓</div>
-        <div class="tile-title">Education</div>
-        <div class="tile-sub">Click to view</div>
-      </button>
-
-      <button class="tile red" data-open="licenses">
-        <div class="icon">📄</div>
-        <div class="tile-title">Licenses</div>
-        <div class="tile-sub">Click to view</div>
-      </button>
-
-      <a class="tile darktile" href="CV_Ganesh Kalal.pdf" target="_blank" rel="noopener">
-        <div class="icon">📃</div>
-        <div class="tile-title">Full CV</div>
-        <div class="tile-sub">Download PDF</div>
-      </a>
+      <div class="tile" onclick="openModal('summary')">
+        <h3>Professional Summary</h3>
+        <p>Tier-1 Project Engineer specialized in industrial demolition[cite: 5, 6].</p>
+      </div>
+      <div class="tile yellow" onclick="openModal('projects')">
+        <h3>Key Projects</h3>
+        <p>ExxonMobil, Rio Tinto, West Gate[cite: 10].</p>
+      </div>
+      <div class="tile purple" onclick="openModal('expertise')">
+        <h3>Core Competencies</h3>
+        <p>Demolition Planning & Sequencing[cite: 25].</p>
+      </div>
     </main>
 
-    <footer class="footer">
-      <div>© <span id="year"></span> Ganesh Kalal</div>
-      <div class="footer-right">
-        <button class="linkbtn" data-open="contact">Contact</button>
+    <div id="demo-widget" class="demo-box">
+      <div id="building" class="building">
+        <div class="floor"></div><div class="floor"></div><div class="floor"></div>
       </div>
-    </footer>
+      <button class="demo-btn" onclick="triggerDemolition()">Trigger Explosive Demo</button>
+    </div>
   </div>
 
-  <div class="modal-backdrop" id="backdrop" hidden></div>
-
-  <section class="modal" id="modal" hidden aria-modal="true" role="dialog">
-    <div class="modal-head">
-      <div class="modal-title" id="modalTitle">Title</div>
-      <button class="x" id="closeBtn" aria-label="Close">✕</button>
+  <div id="backdrop" class="backdrop" hidden onclick="closeModal()"></div>
+  <div id="modal" class="modal" hidden>
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <button onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="modalBody"></div>
-  </section>
+    <div id="modalBody" class="modal-body"></div>
+  </div>
 
   <script src="script.js"></script>
 </body>
