@@ -1,53 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ganesh Kalal | Project Engineer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ganesh Kalal | Project Engineer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page">
-    <header class="top">
-      <h1 class="name">Ganesh <span class="blue-text">Kalal</span> (MIEAust)</h1>
-      <p class="subtitle">Project Engineer - Demolition & Infrastructure</p>
-      <div class="meta">
-        <span>Melbourne, VIC</span> • <span>0424 121 941</span> • <span>ganesh.r.kalal24@gmail.com</span>
-      </div>
-    </header>
+    <div class="page">
+        <header class="top">
+            <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
+            <p class="subtitle">Project Engineer - Demolition & Infrastructure</p>
+            <div class="meta">
+                <span>Melbourne, VIC</span> • <span>0424 121 941</span> • <span>ganesh.r.kalal24@gmail.com</span>
+            </div>
+            <hr class="divider">
+        </header>
 
-    <main class="grid">
-      <div class="tile" onclick="openModal('summary')">
-        <h3>Professional Summary</h3>
-        <p>Tier-1 Project Engineer specialized in industrial demolition[cite: 5, 6].</p>
-      </div>
-      <div class="tile yellow" onclick="openModal('projects')">
-        <h3>Key Projects</h3>
-        <p>ExxonMobil, Rio Tinto, West Gate[cite: 10].</p>
-      </div>
-      <div class="tile purple" onclick="openModal('expertise')">
-        <h3>Core Competencies</h3>
-        <p>Demolition Planning & Sequencing[cite: 25].</p>
-      </div>
-    </main>
-
-    <div id="demo-widget" class="demo-box">
-      <div id="building" class="building">
-        <div class="floor"></div><div class="floor"></div><div class="floor"></div>
-      </div>
-      <button class="demo-btn" onclick="triggerDemolition()">Trigger Explosive Demo</button>
+        <main class="grid">
+            <div class="tile blue-tile" onclick="openSection('summary')">
+                <p>Tier-1 Project Engineer with expertise in demolition sequencing, cost control, and QA.</p>
+            </div>
+            <div class="tile yellow-tile" onclick="openSection('tech')">
+                <div class="icon">💻</div>
+                <h3>Tech Stack</h3>
+            </div>
+            <div class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
+                <div class="icon">📄</div>
+                <h3>Full Resume</h3>
+            </div>
+            <div class="tile green-tile wide" onclick="openSection('projects')">
+                <div class="icon">🚀</div>
+                <h3>Key Projects</h3>
+                <p>ExxonMobil • Rio Tinto • West Gate</p>
+            </div>
+        </main>
     </div>
-  </div>
 
-  <div id="backdrop" class="backdrop" hidden onclick="closeModal()"></div>
-  <div id="modal" class="modal" hidden>
-    <div class="modal-header">
-      <h2 id="modalTitle"></h2>
-      <button onclick="closeModal()">✕</button>
+    <div id="demo-overlay" class="demo-overlay" hidden>
+        <div class="building-site">
+            <div class="structure">
+                <div class="f floor-3"></div>
+                <div class="f floor-2"></div>
+                <div class="f floor-1"></div>
+            </div>
+            <div class="dust-cloud"></div>
+        </div>
     </div>
-    <div id="modalBody" class="modal-body"></div>
-  </div>
 
-  <script src="script.js"></script>
+    <div id="backdrop" class="backdrop" hidden onclick="closeModal()"></div>
+    <div id="modal" class="modal" hidden>
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">✕</button>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
