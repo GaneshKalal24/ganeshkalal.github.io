@@ -1,167 +1,352 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ganesh Kalal | Project Engineer Portfolio</title>
-    <style>
-        :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; --card: white; --border: #e2e8f0; --gold: #fbbf24; }
-        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 100px; }
-        .page { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        
-        header { margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px; }
-        .name { font-size: 48px; margin: 0; font-weight: 800; }
-        .blue-text { color: var(--blue); }
-        .meta { color: #64748b; font-size: 1.2rem; margin-top: 5px; font-weight: 500; }
-
-        /* DETAILED 3-COLUMN GRID */
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .tile { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s ease; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-        .tile:hover { transform: translateY(-8px); border-color: var(--blue); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
-        /* BOX STYLES */
-        .wide { grid-column: span 2; }
-        .blue-tile { background: var(--blue); color: white; }
-        .gold-tile { background: var(--gold); color: #1e293b; }
-        .dashed { border: 2px dashed var(--blue); }
-
-        .tile h3 { margin: 0 0 10px 0; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .tile p { margin: 0; font-size: 0.95rem; line-height: 1.5; opacity: 0.9; }
-        .tile ul { padding-left: 18px; margin-top: 10px; font-size: 0.85rem; }
-        .tile ul li { margin-bottom: 5px; }
-
-        /* BLAST OVERLAY */
-        .overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); z-index: 2000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; text-align: center; }
-        .building { width: 60px; height: 120px; display: flex; flex-direction: column; gap: 6px; margin-top: 20px; }
-        .floor { background: #94a3b8; flex: 1; transition: 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045); }
-        .implode .floor { transform: scale(0); opacity: 0; }
-
-        /* CHATBOT */
-        .chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
-        .chat-btn { width: 65px; height: 65px; background: var(--blue); border-radius: 50%; color: white; font-size: 28px; border: none; cursor: pointer; box-shadow: 0 10px 25px rgba(29, 78, 216, 0.4); }
-        .chat-win { position: absolute; bottom: 85px; right: 0; width: 360px; background: white; border-radius: 20px; display: none; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid var(--border); }
-        .chat-head { background: var(--blue); color: white; padding: 15px 20px; font-weight: bold; border-radius: 20px 20px 0 0; }
-        .chat-msgs { height: 400px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: #f1f5f9; }
-        .m { padding: 12px 16px; border-radius: 15px; font-size: 14px; max-width: 85%; line-height: 1.4; }
-        .bot { background: white; align-self: flex-start; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .user { background: var(--blue); color: white; align-self: flex-end; }
-
-        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
-    </style>
-</head>
-<body>
-
-<div class="page">
-    <header>
-        <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span style="font-size: 18px; font-weight: 400;">(MIEAust)</span></h1>
-        <p class="meta">Project Engineer | Heavy Industrial & Infrastructure Specialist</p>
-    </header>
-
-    <div class="grid">
-        <div class="tile blue-tile wide" onclick="trigger('Industrial Demolition & Remediation')">
-            <h3>Tier-1 Industrial Closures</h3>
-            <p>Managing the Southern Hemisphere's largest industrial demolition projects.</p>
-            <ul>
-                <li><b>Rio Tinto Gove ($350M):</b> Oversaw decontamination and precision explosive events[cite: 818, 848].</li>
-                <li><b>ExxonMobil Altona ($70M):</b> Managing stacks, LPG tanks, and pipe rack decommissioning[cite: 814, 844].</li>
-                <li><b>Outcome:</b> Administered $8M+ in variations with zero non-conformances[cite: 730, 743].</li>
-            </ul>
-        </div>
-
-        <div class="tile gold-tile" onclick="trigger('Technical Arsenal')">
-            <h3>Technical Toolkit</h3>
-            <p>Advanced structural analysis and project programming.</p>
-            <ul>
-                <li><b>Analysis:</b> SpaceGass, Microstran, RAPT, Structural Toolkit[cite: 516, 786].</li>
-                <li><b>Project Management:</b> Primavera P6, MS Project, Procore, InEight[cite: 785, 798].</li>
-                <li><b>Innovation:</b> GPS & Drone topographic surveys for remediation[cite: 874, 959].</li>
-            </ul>
-        </div>
-
-        <div class="tile dashed" onclick="trigger('Telecom Infrastructure')">
-            <h3>National 5G Upgrade</h3>
-            <p>Led structural coordination for 150+ telecom sites[cite: 530, 582].</p>
-            <ul>
-                <li>Designed steel headframes and foundations per <b>AS1170.2</b> and <b>AS4100</b>[cite: 886, 965].</li>
-                <li>Conducted 100+ site audits ensuring safety and compliance[cite: 681, 824].</li>
-            </ul>
-        </div>
-
-        <div class="tile wide" onclick="trigger('Transport & Civil')">
-            <h3>Transport Infrastructure</h3>
-            <p>Bridge, Freeway, and Metro experience across Australia and India.</p>
-            <ul>
-                <li><b>West Gate Freeway:</b> Designed RCC crash barriers and precast noise walls to VicRoads standards[cite: 507, 574].</li>
-                <li><b>Mumbai Metro Line 4 & 5:</b> Supervised viaduct construction, piling, and TBM interfaces[cite: 577, 780].</li>
-            </ul>
-        </div>
-
-        <div class="tile gold-tile" onclick="trigger('Project Management')">
-            <h3>Commercial Acumen</h3>
-            <p>End-to-end contract and procurement management[cite: 493].</p>
-            <ul>
-                <li>Technical/Commercial evaluation of 15+ tender submissions[cite: 497, 742].</li>
-                <li>Coordinated statutory approvals with 20+ councils[cite: 505, 533].</li>
-                <li>Managed scrap steel load-outs exceeding 135,000 tonnes ($65M+ value)[cite: 674].</li>
-            </ul>
-        </div>
-
-        <div class="tile blue-tile" onclick="trigger('Credentials')">
-            <h3>Credentials</h3>
-            <p>Chartered pathway and advanced academics.</p>
-            <ul>
-                <li><b>Master of Engineering:</b> Structural (Swinburne University)[cite: 542, 708].</li>
-                <li><b>Memberships:</b> MIEAust (NER in progress), PMI[cite: 551, 835].</li>
-                <li><b>Certifications:</b> Asbestos Safety, Working at Heights, White Card[cite: 795, 834].</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="chat-widget">
-    <button class="chat-btn" onclick="toggleChat()">💬</button>
-    <div class="chat-win" id="chatWin">
-        <div class="chat-head">Ganesh Digital Twin <span>✕</span></div>
-        <div class="chat-msgs" id="chatMsgs">
-            <div class="m bot">Hi! I'm Ganesh's Digital Twin. Ask me about his work at <b>ExxonMobil</b>, <b>Rio Tinto</b>, or his <b>Structural Software</b> skills.</div>
-        </div>
-    </div>
-</div>
-
-<div id="overlay" class="overlay">
-    <h2 id="blastText">INITIATING DEMOLITION...</h2>
-    <div class="building" id="building"><div class="floor"></div><div class="floor"></div><div class="floor"></div></div>
-</div>
-
-<script>
-    function toggleChat() {
-        const win = document.getElementById('chatWin');
-        win.style.display = (win.style.display === 'flex' ? 'none' : 'flex');
-    }
-
-    function addMsg(text, type) {
-        const box = document.getElementById('chatMsgs');
-        const div = document.createElement('div');
-        div.className = `m ${type}`;
-        div.innerHTML = text;
-        box.appendChild(div);
-        box.scrollTop = box.scrollHeight;
-    }
-
-    function trigger(title) {
-        const over = document.getElementById('overlay');
-        const bldg = document.getElementById('building');
-        over.style.display = 'flex';
-        setTimeout(() => { bldg.classList.add('implode'); }, 500);
-        setTimeout(() => {
-            over.style.display = 'none';
-            bldg.classList.remove('implode');
-            if(document.getElementById('chatWin').style.display === 'none') toggleChat();
-            addMsg("Analyzing technical data for: <b>" + title + "</b>...", 'bot');
-            addMsg("In this area, Ganesh has delivered high-value results following Australian Standards like AS3600 and AS1170. What specific technical detail do you need?", 'bot');
-        }, 2200);
-    }
-</script>
-
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/index.html b/index.html
+index a9655c1a215e42b62e95f802ab094a1a466737d9..839474dddc55335e77928f85f41b0ed9a220ea5d 100644
+--- a/index.html
++++ b/index.html
+@@ -1,184 +1,280 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <title>Ganesh Kalal | Project Engineer</title>
+     <style>
+         :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; }
+         body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
+-        
+-        /* HEADER */
++
+         .name { font-size: 48px; margin: 0; font-weight: 800; }
+         .blue-text { color: var(--blue); }
+         .pill { font-size: 14px; background: #e0e7ff; color: var(--blue); padding: 4px 12px; border-radius: 20px; font-weight: bold; }
+         .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
+         .divider { border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0; }
+ 
+-        /* GRID */
+         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+-        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: none; text-align: left; position: relative; overflow: hidden; }
++        .tile { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 190px; border: none; text-align: left; position: relative; overflow: hidden; }
+         .tile:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+         .wide { grid-column: span 2; }
+-        
+-        /* TILE COLORS */
++
+         .blue-tile { background: var(--blue); color: white; }
+         .yellow-tile { background: #fbbf24; }
+         .dark-tile { background: #1e293b; color: white; }
+         .green-tile { background: #10b981; color: white; }
+         .purple-tile { background: #8b5cf6; color: white; }
+         .red-tile { background: #f43f5e; color: white; }
+ 
+-        /* SCREEN SHAKE ANIMATION */
+         @keyframes shake {
+             0% { transform: translate(1px, 1px) rotate(0deg); }
+             10% { transform: translate(-1px, -2px) rotate(-1deg); }
+             30% { transform: translate(3px, 2px) rotate(0deg); }
+             50% { transform: translate(-1px, 2px) rotate(-1deg); }
+             100% { transform: translate(1px, -2px) rotate(-1deg); }
+         }
+         .shaking { animation: shake 0.5s; animation-iteration-count: infinite; }
+ 
+-        /* PANCAKE COLLAPSE */
+         .demo-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+         .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
+         .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in, opacity 0.4s; }
+         .implode .f3 { transform: translateY(130px); opacity: 0; transition-delay: 0.1s; }
+         .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.4s; }
+         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.9s; }
+ 
+-        /* MODAL */
+         .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
+-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: white; border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
++        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 920px; background: white; border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
+         .close-btn { position: absolute; top: 20px; right: 20px; background: #f1f5f9; border: none; font-size: 24px; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; }
+-        
+-        /* SKILL BARS */
++        .modal-body h3 { margin-top: 20px; color: #1e3a8a; }
++
+         .skill-container { margin-bottom: 15px; }
+         .skill-bar { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+         .skill-fill { height: 100%; background: var(--blue); width: 0; transition: width 1.5s ease-out; }
+ 
+         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
+     </style>
+ </head>
+ <body id="main-body">
+ 
+ <div class="page">
+     <header>
+         <h1 class="name">Ganesh <span class="blue-text">Kalal</span> <span class="pill">MIEAust</span></h1>
+-        <p class="meta">Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com</p>
++        <p class="meta">Project Engineer – Civil & Infrastructure | Melbourne, VIC | 0424 121 941 | ganesh.r.kalal24@gmail.com</p>
+         <hr class="divider">
+     </header>
+ 
+     <main class="grid">
+-        <button class="tile blue-tile" onclick="startDemolition('summary')">
+-            <p>Project Engineer delivering large-scale industrial demolition projects within Tier-1 environments.</p>
++        <button class="tile blue-tile wide" onclick="startDemolition('summary')">
++            <h3>Professional Summary</h3>
++            <p>5+ years across Tier-1/Tier-2 infrastructure, telecom and industrial closures.</p>
++        </button>
++        <button class="tile yellow-tile" onclick="startDemolition('core')">
++            <h3>Core Competencies</h3>
++            <p>Project delivery, QA compliance, procurement, contracts and stakeholder management.</p>
+         </button>
+-        <button class="tile yellow-tile" onclick="startDemolition('tech')">
+-            <h3>💻 Technical Stack</h3>
+-            <p>Mastery in P6, AutoCAD, & SpaceGass</p>
++
++        <button class="tile green-tile" onclick="startDemolition('exxon')">
++            <h3>ExxonMobil Altona</h3>
++            <p>$65M closure project, SOW/RFQ, tender evaluation, demolition coordination.</p>
++        </button>
++        <button class="tile purple-tile wide" onclick="startDemolition('riotinto')">
++            <h3>Rio Tinto Gove</h3>
++            <p>$300M+ demolition and remediation program in remote NT.</p>
+         </button>
+-        <button class="tile dark-tile" onclick="window.open('CV_Ganesh.pdf')">
+-            <h3>📄 Full Resume</h3>
+-            <p>Download PDF</p>
++
++        <button class="tile red-tile" onclick="startDemolition('telecom')">
++            <h3>5G Telecom Program</h3>
++            <p>150+ tower upgrades, 100+ inspections, council approvals across Victoria.</p>
+         </button>
+-        <button class="tile green-tile wide" onclick="startDemolition('projects')">
+-            <h3>🚀 Tier-1 Project Highlights</h3>
+-            <p>ExxonMobil ($65M+) • Rio Tinto ($250M+) • 5G Upgrade</p>
++        <button class="tile dark-tile" onclick="startDemolition('westgate')">
++            <h3>West Gate Upgrade</h3>
++            <p>Crash barriers and noise walls with zero non-conformances.</p>
+         </button>
+-        <button class="tile purple-tile" onclick="startDemolition('career')">
+-            <h3>⏳ Career History</h3>
+-            <p>Liberty Industrial • Indara • Clive Steele</p>
++
++        <button class="tile" style="background:#eef2ff;border:1px solid #c7d2fe" onclick="startDemolition('experience')">
++            <h3>Professional Experience</h3>
++            <p>Liberty Industrial, Indara Digital, Clive Steele, Structcom.</p>
+         </button>
+-        <button class="tile red-tile" onclick="startDemolition('edu')">
+-            <h3>📜 Education & Licenses</h3>
+-            <p>Master of Engineering Science</p>
++        <button class="tile" style="background:#f0fdf4;border:1px solid #bbf7d0" onclick="startDemolition('technical')">
++            <h3>Technical Skills</h3>
++            <p>P6, Procore, AutoCAD, Civil3D, SpaceGass, Microstran, RAPT.</p>
+         </button>
++        <button class="tile" style="background:#fff7ed;border:1px solid #fed7aa" onclick="startDemolition('standards')">
++            <h3>Standards & Compliance</h3>
++            <p>NCC, AS1170, AS3600, AS4100, AS5100, VicRoads and safety audits.</p>
++        </button>
++
++        <button class="tile wide" style="background:#ecfeff;border:1px solid #a5f3fc" onclick="startDemolition('education')">
++            <h3>Education, Licenses & Memberships</h3>
++            <p>Master (Structural), MIEAust, White Card, Working at Heights, AI for PM.</p>
++        </button>
++        <button class="tile" style="background:#f5f3ff;border:1px solid #ddd6fe" onclick="startDemolition('achievements')">
++            <h3>Key Achievements</h3>
++            <p>0 LTIs, $8M+ variations, large-scale demolition delivery outcomes.</p>
++        </button>
++        <button class="tile" style="background:#f8fafc;border:1px solid #e2e8f0" onclick="startDemolition('contact')">
++            <h3>Contact & Availability</h3>
++            <p>Permanent Resident | References on request | Connect on LinkedIn.</p>
++        </button>
++
+     </main>
+ </div>
+ 
+ <div id="demo-overlay" class="demo-overlay">
+-    <h2 id="blast-text" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">CHARGES SET...</h2>
++    <h2 id="blast-text" style="font-weight:900;color:#ef4444;letter-spacing:2px;">CHARGES SET...</h2>
+     <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
+ </div>
+ 
+ <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
+ <div id="modal" class="modal">
+     <button class="close-btn" onclick="closeModal()">✕</button>
+-    <h2 id="modalTitle" style="font-size: 36px; margin: 0;"></h2>
++    <h2 id="modalTitle" style="font-size:36px;margin:0;"></h2>
+     <div id="modalBody" class="modal-body"></div>
+ </div>
+ 
+ <script>
+     const cvData = {
+         summary: {
+             title: "Professional Summary",
+-            body: `<p>Project Engineer specializing in large-scale industrial demolition. Member of Engineers Australia (MIEAust), progressing toward NER and RPEV registration.</p>
+-                   <h3>Core Expertise</h3>
++            body: `<p>Civil/Structural Project Engineer with 5+ years delivering transport infrastructure, telecom upgrades, and refinery closure projects across Tier-1 and Tier-2 contractors.</p>
++                   <p>Strong in planning, procurement, technical review, QA compliance, and stakeholder coordination. Currently progressing toward NER and PMP pathways.</p>`
++        },
++        core: {
++            title: "Core Competencies",
++            body: `<ul>
++                    <li>Project & Site Management: planning, sequencing, procurement, mobilisation, reporting.</li>
++                    <li>Contract Administration: SOW/RFQ, tender evaluation, variations, EOTs, progress claims.</li>
++                    <li>Surveillance & QA: hold points, ITPs, compliance checks, audits, risk controls.</li>
++                    <li>Stakeholder Management: councils, consultants, utility interfaces and statutory approvals.</li>
++                   </ul>`
++        },
++        exxon: {
++            title: "ExxonMobil Oil Refinery Closure – Altona, VIC",
++            body: `<p><b>Value:</b> ~\$65M | <b>Role:</b> Project Engineer</p>
++                   <ul>
++                    <li>Managed subcontractor work packages for demolition and remediation scopes.</li>
++                    <li>Prepared RFQs/SOWs and completed technical-commercial evaluation of 15+ tenders.</li>
++                    <li>Supported contract administration and managed variations around \$8M+.</li>
++                    <li>Coordinated statutory approvals and on-site safety/quality controls.</li>
++                   </ul>`
++        },
++        riotinto: {
++            title: "Rio Tinto Gove – Refinery Closure & Remediation, NT",
++            body: `<p><b>Value:</b> ~\$300M+ | <b>Role:</b> Project Engineer (FIFO)</p>
+                    <ul>
+-                    <li>Mechanical & Induced Collapse Demolition.</li>
+-                    <li>Hazardous Waste (Asbestos, NORM, Contaminated Waste) management to EPA standards.</li>
+-                    <li>Subcontractor management & \$8M+ variation tracking.</li>
++                    <li>Supported heavy dismantling, demolition interfaces, and remediation delivery.</li>
++                    <li>Managed contractor coordination, quality verification, and progress tracking.</li>
++                    <li>Contributed to risk controls, environmental and compliance outcomes in remote conditions.</li>
++                    <li>Supported project documentation including SWMS, ITPs, and management plans.</li>
+                    </ul>`
+         },
+-        tech: {
+-            title: "Technical Mastery",
+-            body: `<div class="skill-container"><b>Primavera P6</b> <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div></div>
+-                   <div class="skill-container"><b>AutoCAD / Civil 3D</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>
+-                   <div class="skill-container"><b>SpaceGass / Microstran</b> <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div></div>
+-                   <div class="skill-container"><b>Procore / NetSuite</b> <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div></div>`
++        telecom: {
++            title: "National 5G Telecom Upgrade Program, VIC",
++            body: `<p><b>Value:</b> ~\$50M | <b>Role:</b> Structural Engineer</p>
++                   <ul>
++                    <li>Delivered coordination/design support for 150+ telecom upgrades.</li>
++                    <li>Completed 100+ site inspections for conformance and safety.</li>
++                    <li>Supported approvals with 20+ councils and field delivery teams.</li>
++                    <li>Designed and reviewed works to AS/NZS 1170 and AS4100 standards.</li>
++                   </ul>`
+         },
+-        projects: {
+-            title: "Tier-1 Projects",
+-            body: `<h3>ExxonMobil Altona Oil Refinery (\$65M+)</h3>
+-                   <p>Managing staged demolition of tanks and process units while maintaining live fuel import operations supplying 40% of Victoria's fuel.</p>
+-                   <h3>Rio Tinto Bauxite Refinery (\$250M+)</h3>
+-                   <p>Australia’s largest industrial demolition. Managed precision explosive works and Traditional Owner consultation in Gove, NT.</p>
+-                   <h3>West Gate Freeway Upgrade</h3>
+-                   <p>QA verification of crash barriers and precast noise walls under VicRoads standards.</p>`
++        westgate: {
++            title: "West Gate Freeway Upgrade, Melbourne",
++            body: `<ul>
++                    <li>Delivered reinforced concrete crash barriers and precast noise walls.</li>
++                    <li>Performed QA inspections, concrete verification, and drawing compliance checks.</li>
++                    <li>Worked in live-traffic conditions to VicRoads and AS5100 requirements.</li>
++                    <li>Achieved zero non-conformances across 100+ installations.</li>
++                   </ul>`
+         },
+-        career: {
+-            title: "Experience",
+-            body: `<h3>Liberty Industrial — Project Engineer</h3><p>02/2024 – Present. Delivering \$100M+ industrial projects and managing complex P6 schedules.</p>
+-                   <h3>Indara Digital — Structural Engineer</h3><p>04/2023 – 03/2024. Steel and foundation design for telecom upgrades (AS 3600).</p>
+-                   <h3>Clive Steele — Graduate Structural Engineer</h3><p>11/2021 – 03/2023. Structural design for commercial builds (AS 4100).</p>`
++        experience: {
++            title: "Professional Experience",
++            body: `<h3>Liberty Industrial — Project Engineer (2024–Present)</h3>
++                   <p>Industrial closure delivery, procurement, contractor coordination, safety and QA reporting.</p>
++                   <h3>Indara Digital Infrastructures — Structural Engineer (2023–2024)</h3>
++                   <p>Telecom structural design/inspection and statutory coordination.</p>
++                   <h3>Clive Steele Partners — Graduate Structural Engineer (2021–2023)</h3>
++                   <p>Structural and civil design for transport/commercial/residential works.</p>
++                   <h3>Structcom — Graduate Civil Engineer (2020–2021)</h3>
++                   <p>Drainage/OSD, council submissions, site inspections and technical documentation.</p>`
+         },
+-        edu: {
+-            title: "Education & Licenses",
+-            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p>
+-                   <p><b>Licenses:</b> White Card, P6 Professional, Asbestos Safety, Working at Heights, Chain of Responsibility.</p>`
++        technical: {
++            title: "Technical Skills",
++            body: `<div class="skill-container"><b>Project & Reporting (P6/MS Project/Procore)</b><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
++                   <div class="skill-container"><b>Design & Drafting (AutoCAD/Civil3D/12d/Bluebeam)</b><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
++                   <div class="skill-container"><b>Structural Analysis (SpaceGass/Microstran/RAPT)</b><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
++                   <div class="skill-container"><b>Commercial & Contract Controls</b><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>`
++        },
++        standards: {
++            title: "Standards & Compliance",
++            body: `<ul>
++                    <li>NCC and Australian Standards (AS1170, AS3600, AS4100, AS5100).</li>
++                    <li>VicRoads specifications and transport delivery compliance.</li>
++                    <li>QA/QC controls, hold points, audits, safety and statutory documentation.</li>
++                    <li>Risk management for demolition, remediation, and live-traffic work fronts.</li>
++                   </ul>`
++        },
++        education: {
++            title: "Education, Certifications & Memberships",
++            body: `<p><b>Master of Engineering Science (Structural)</b> — Swinburne University (2019–2021)</p>
++                   <p><b>Bachelor of Civil Engineering</b> — University of Pune (2014–2018)</p>
++                   <h3>Certifications & Licenses</h3>
++                   <ul><li>White Card</li><li>Working at Heights</li><li>Asbestos Safety</li><li>Mental Health First Aider</li><li>Victorian Driver's License</li></ul>
++                   <h3>Memberships</h3>
++                   <ul><li>Engineers Australia (MIEAust) — NER in progress</li><li>PMI — PMP in progress</li></ul>`
++        },
++        achievements: {
++            title: "Key Achievements",
++            body: `<ul>
++                    <li>Delivered high-risk projects with <b>0 LTIs</b> and strong QA outcomes.</li>
++                    <li>Managed and justified <b>\$8M+</b> in contract variations.</li>
++                    <li>Contributed to major industrial closure projects in Victoria and NT.</li>
++                    <li>Completed 100+ inspections across transport and telecom programs.</li>
++                   </ul>`
++        },
++        contact: {
++            title: "Contact & Availability",
++            body: `<p><b>Ganesh Kalal (MIEAust)</b><br/>Project Engineer – Civil & Infrastructure</p>
++                   <p>Melbourne, VIC<br/>+61 424 121 941<br/>ganesh.r.kalal24@gmail.com</p>
++                   <p>LinkedIn: linkedin.com/in/ganesh-kalal/</p>
++                   <p>Visa: Australian Permanent Resident<br/>References: Available on request</p>`
+         }
+     };
+ 
+     function startDemolition(key) {
+         const body = document.getElementById('main-body');
+         const overlay = document.getElementById('demo-overlay');
+         const bldg = document.getElementById('building');
+         const text = document.getElementById('blast-text');
++        const entry = cvData[key] || {
++            title: "Section loading issue",
++            body: "<p>Sorry, this section is not available right now. Please select another tile.</p>"
++        };
+ 
+         overlay.style.display = 'flex';
+-        
++
+         setTimeout(() => {
+             text.innerText = "DETONATING...";
+             body.classList.add('shaking');
+             bldg.classList.add('implode');
+         }, 800);
+ 
+         setTimeout(() => {
+             body.classList.remove('shaking');
+-            document.getElementById('modalTitle').innerText = cvData[key].title;
+-            document.getElementById('modalBody').innerHTML = cvData[key].body;
++            document.getElementById('modalTitle').innerText = entry.title;
++            document.getElementById('modalBody').innerHTML = entry.body;
+             overlay.style.display = 'none';
+             bldg.classList.remove('implode');
+             document.getElementById('modal').style.display = 'block';
+             document.getElementById('backdrop').style.display = 'block';
+         }, 2500);
+     }
+ 
+     function closeModal() {
+         document.getElementById('modal').style.display = 'none';
+         document.getElementById('backdrop').style.display = 'none';
+     }
+ </script>
+ </body>
+ </html>
+ 
+EOF
+)
