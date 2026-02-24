@@ -6,44 +6,45 @@
     <title>Ganesh Kalal | Project Engineer</title>
     <style>
         :root { --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; --card: white; --border: #e2e8f0; }
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 80px; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 100px; }
         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
         
         .name { font-size: 48px; margin: 0; font-weight: 800; letter-spacing: -1px; }
         .blue-text { color: var(--blue); }
         .meta { color: #64748b; font-weight: 600; margin-top: 5px; }
 
-        /* THE ORIGINAL 3-COLUMN GRID - RESTORED */
+        /* THE ORIGINAL 3-COLUMN GRID */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
         .tile { background: var(--card); padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; border: 1px solid var(--border); text-align: left; color: var(--text); min-height: 220px; display: flex; flex-direction: column; justify-content: center; }
-        .tile:hover { transform: translateY(-8px); border-color: var(--blue); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+        .tile:hover { transform: translateY(-8px); border-color: var(--blue); }
         .wide { grid-column: span 2; }
         .blue-tile { background: var(--blue); color: white; border: none; }
         .yellow-tile { background: #fbbf24; color: #1e293b; border: none; }
-        .tile h3 { margin: 0 0 10px 0; font-size: 1.5rem; }
-        .tile p { margin: 0; font-size: 1rem; opacity: 0.9; line-height: 1.5; }
+        
+        .tile h3 { margin: 0 0 10px 0; font-size: 1.4rem; }
+        .tile p { margin: 0; font-size: 0.95rem; line-height: 1.5; }
 
-        /* CHATBOT WIDGET */
+        /* BASIC CHATBOT WIDGET */
         .chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
         .chat-btn { width: 65px; height: 65px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; cursor: pointer; border: none; box-shadow: 0 10px 25px rgba(29, 78, 216, 0.4); }
-        .chat-win { position: absolute; bottom: 80px; right: 0; width: 380px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .chat-head { background: var(--blue); color: white; padding: 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .chat-msgs { height: 420px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: #f1f5f9; }
-        .chat-input-box { padding: 15px; background: var(--card); border-top: 1px solid var(--border); display: flex; gap: 8px; }
-        .chat-in { flex: 1; border: 1px solid var(--border); border-radius: 12px; padding: 12px; font-size: 14px; outline: none; background: var(--bg); }
-        .chat-send { background: var(--blue); color: white; border: none; border-radius: 12px; padding: 0 18px; cursor: pointer; font-weight: bold; }
+        .chat-win { position: absolute; bottom: 80px; right: 0; width: 340px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .chat-head { background: var(--blue); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
+        .chat-msgs { height: 350px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; font-size: 14px; }
+        .chat-input-box { padding: 12px; background: var(--card); border-top: 1px solid var(--border); display: flex; gap: 5px; }
+        .chat-in { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 8px; outline: none; }
+        .chat-send { background: var(--blue); color: white; border: none; border-radius: 8px; padding: 0 12px; cursor: pointer; }
         
-        .m { padding: 12px 16px; border-radius: 18px; font-size: 14px; max-width: 85%; line-height: 1.4; }
-        .bot { background: white; color: #0f172a; align-self: flex-start; border-bottom-left-radius: 4px; }
-        .user { background: var(--blue); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .m { padding: 10px 14px; border-radius: 15px; max-width: 85%; }
+        .bot { background: white; border: 1px solid var(--border); align-self: flex-start; }
+        .user { background: var(--blue); color: white; align-self: flex-end; }
 
         /* BLAST OVERLAY */
-        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; }
-        .struct { width: 50px; height: 100px; display: flex; flex-direction: column; gap: 5px; margin-top: 20px; }
-        .floor { background: #64748b; flex: 1; transition: 0.6s ease-in; border: 1px solid #1e293b; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; }
+        .struct { width: 40px; height: 100px; display: flex; flex-direction: column; gap: 4px; margin-top: 20px; }
+        .floor { background: #64748b; flex: 1; transition: 0.6s; }
         .implode .floor { transform: scale(0); opacity: 0; }
 
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } .chat-win { width: 90vw; right: -10px; } }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
     </style>
 </head>
 <body>
@@ -51,60 +52,49 @@
 <div class="page">
     <header>
         <h1 class="name">Ganesh <span class="blue-text">Kalal</span></h1>
-        <p class="meta">Senior Project Engineer | Infrastructure & Decommissioning</p>
+        <p class="meta">Project Engineer | Civil & Structural Specialist</p>
     </header>
 
     <div class="grid">
-        <div class="tile blue-tile wide" onclick="triggerBlast('Career Summary')">
+        <div class="tile blue-tile wide" onclick="triggerBlast('Structural Intelligence')">
             <h3>Structural Intelligence</h3>
-            <p>Managing $300M+ in assets. Lead Engineer for complex demolition at ExxonMobil and Rio Tinto Gove.</p>
+            <p>Expert in $300M+ industrial closures and heavy demolition. Mastery of Tier-1 project delivery.</p>
         </div>
-        <div class="tile yellow-tile" onclick="triggerBlast('Software Stack')">
+        <div class="tile yellow-tile" onclick="triggerBlast('Technical Arsenal')">
             <h3>Technical Toolkit</h3>
-            <p>P6, SpaceGass, Microstran, RAPT, and Structural Toolkit. Expert in Australian Standards.</p>
+            <p>P6, SpaceGass, Microstran, RAPT, and Structural Toolkit specialist.</p>
         </div>
-        <div class="tile" style="border: 2px dashed var(--blue)" onclick="triggerBlast('Compliance')">
-            <h3>Standards & Safety</h3>
-            <p>0 LTIs | AS4100, AS3600 & VicRoads specialist. Delivering zero non-conformance sites.</p>
+        <div class="tile" style="border: 2px dashed var(--blue)" onclick="triggerBlast('Safety & Success')">
+            <h3>Impact & Success</h3>
+            <p>$8M+ Variation Success | 1,200T Steel | Zero LTIs & Zero Non-Conformances.</p>
         </div>
-        <div class="tile wide" onclick="triggerBlast('Project Highlights')">
+        <div class="tile wide" onclick="triggerBlast('Major Projects')">
             <h3>Major Project Delivery</h3>
-            <p>From Mumbai Metro tunnels to Indara 5G towers and West Gate Freeway infrastructure.</p>
+            <p>ExxonMobil ($65M), Rio Tinto ($300M), Indara 5G, and West Gate Freeway.</p>
         </div>
     </div>
 </div>
 
 <div class="chat-widget">
-    <button class="chat-btn" onclick="toggleChat()">🤖</button>
+    <button class="chat-btn" onclick="toggleChat()">💬</button>
     <div class="chat-win" id="chatWin">
-        <div class="chat-head">Ganesh Digital Twin <span style="cursor:pointer" onclick="toggleChat()">✕</span></div>
+        <div class="chat-head">Ganesh AI <span>✕</span></div>
         <div class="chat-msgs" id="chatMsgs">
-            <div class="m bot">Hi! I'm Ganesh's Digital Twin. I have deep knowledge of his projects, from <b>Area 45 Alky</b> to <b>Indara 5G</b> designs. How are you today?</div>
+            <div class="m bot">Hi! I'm Ganesh's basic assistant. How can I help you today?</div>
         </div>
         <div class="chat-input-box">
-            <input type="text" id="chatInput" class="chat-in" placeholder="Say hello or ask about my work..." onkeypress="if(event.key==='Enter') sendChat()">
+            <input type="text" id="chatInput" class="chat-in" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendChat()">
             <button class="chat-send" onclick="sendChat()">Send</button>
         </div>
     </div>
 </div>
 
 <div id="overlay" class="overlay">
-    <h2 id="blastMsg">DECRYPTING SITE DATA...</h2>
+    <h2>INITIATING DEMOLITION...</h2>
     <div class="struct" id="bldg"><div class="floor"></div><div class="floor"></div><div class="floor"></div></div>
 </div>
 
 <script>
-    // DEEP PROJECT DATA
-    let DB = [
-        { keys: ["hi", "hello", "hey", "how are you"], ans: "I'm doing well! I'm currently monitoring Ganesh's project records. How can I assist you with technical or career details today?" },
-        { keys: ["exxon", "altona", "45 alky", "wp-0014"], ans: "At the $65M ExxonMobil Altona project, I authored Work Plan 269-ARD-WP-PLN-0014 for Area 45 Alky, managing mechanical demolition of steel structures." },
-        { keys: ["volvo", "excavator", "380", "250"], ans: "I specify Volvo EC380DL (38t) and EC250DL (25t) excavators for heavy structural demolition, ensuring safety and precision." },
-        { keys: ["indara", "5g", "wind", "as1170.2"], ans: "At Indara, I designed 150+ telecom headframes and foundations using AS1170.2 for wind loading and AS4100 for steel design." },
-        { keys: ["clive steele", "microstran", "residential"], ans: "At Clive Steele Partners, I designed framing systems using Microstran, SpaceGass, and Structural Toolkit for commercial sites." },
-        { keys: ["safety", "lti", "hold point", "itp-0014"], ans: "Safety is paramount. I maintain a 0 LTI record and utilize strict Supervisor Hold Points in ITP-0014 for all demolition activities." },
-        { keys: ["variation", "commercial", "8m"], ans: "I have a strong commercial focus, successfully negotiating over $8M in contract variations on Tier-1 industrial projects." }
-    ];
-
     function toggleChat() { 
         const win = document.getElementById('chatWin'); 
         win.style.display = (win.style.display === 'flex' ? 'none' : 'flex'); 
@@ -112,56 +102,38 @@
 
     function sendChat() {
         const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if(!text) return;
+        if(!input.value.trim()) return;
         
-        addMsg(text, 'user');
+        addMsg(input.value, 'user');
+        
+        // Simple response logic
+        setTimeout(() => {
+            addMsg("That's interesting! I'm Ganesh's basic bot—I can show you his projects if you click the boxes above.", 'bot');
+        }, 600);
+        
         input.value = "";
-
-        // LIVE TRAINING
-        if(text.toUpperCase().startsWith("ADD:")) {
-            const parts = text.substring(4).split("|");
-            if(parts.length === 2) {
-                DB.push({ keys: [parts[0].trim().toLowerCase()], ans: parts[1].trim() });
-                addMsg("Data indexed! I've learned that new detail.", 'bot');
-            } else { addMsg("Format: ADD: key | answer", 'bot'); }
-            return;
-        }
-
-        // FUZZY SEARCH
-        let reply = "That's a specific technical detail. I can tell you about my work at Exxon, my 5G tower designs, or my safety protocols. Which would you like to know more about?";
-        let topScore = 0;
-        const low = text.toLowerCase();
-
-        DB.forEach(entry => {
-            let score = 0;
-            entry.keys.forEach(k => { if(low.includes(k)) score++; });
-            if(score > topScore) { topScore = score; reply = entry.ans; }
-        });
-
-        setTimeout(() => { addMsg(reply, 'bot'); }, 500);
     }
 
-    function addMsg(t, type) {
+    function addMsg(text, type) {
         const box = document.getElementById('chatMsgs');
         const div = document.createElement('div');
         div.className = `m ${type}`;
-        div.innerHTML = t;
+        div.innerText = text;
         box.appendChild(div);
         box.scrollTop = box.scrollHeight;
     }
 
-    function triggerBlast(topic) {
+    function triggerBlast(title) {
         const overlay = document.getElementById('overlay');
         const bldg = document.getElementById('bldg');
         overlay.style.display = 'flex';
-        setTimeout(() => { bldg.classList.add('implode'); }, 800);
+        setTimeout(() => { bldg.classList.add('implode'); }, 500);
         setTimeout(() => {
             overlay.style.display = 'none';
             bldg.classList.remove('implode');
             if(document.getElementById('chatWin').style.display === 'none') toggleChat();
-            addMsg("Analyzing <b>" + topic + "</b> records... ask me anything technical!", 'bot');
-        }, 2200);
+            addMsg("You selected: " + title + ". This project involved complex structural engineering and Tier-1 safety standards.", 'bot');
+        }, 2000);
     }
 </script>
 </body>
