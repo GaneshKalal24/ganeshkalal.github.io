@@ -6,197 +6,179 @@
     <title>Ganesh Kalal | Project Engineer</title>
     <style>
         :root { 
-            --blue: #1d4ed8; 
-            --bg: #f8fafc; 
-            --text: #0f172a; 
-            --card: white;
-            --border: #e2e8f0;
+            --blue: #1d4ed8; --bg: #f8fafc; --text: #0f172a; --card: white; --border: #e2e8f0;
         }
-
         body.dark {
-            --bg: #0f172a;
-            --text: #f1f5f9;
-            --card: #1e293b;
-            --border: #334155;
+            --bg: #0f172a; --text: #f1f5f9; --card: #1e293b; --border: #334155;
         }
-
-        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s; padding-bottom: 100px; }
         .page { max-width: 1100px; margin: 40px auto; padding: 20px; }
         
-        .theme-toggle { position: absolute; top: 20px; right: 20px; background: var(--card); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; cursor: pointer; color: var(--text); font-weight: bold; }
+        .theme-toggle { position: absolute; top: 20px; right: 20px; background: var(--card); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; cursor: pointer; color: var(--text); z-index: 10; font-weight: bold; }
 
         .name { font-size: 48px; margin: 0; font-weight: 800; }
         .blue-text { color: var(--blue); }
-        .meta { color: #64748b; font-weight: 600; margin-top: 10px; }
-        .divider { border: 0; border-top: 1px solid var(--border); margin: 25px 0; }
+        .meta { color: #64748b; font-weight: 600; margin-top: 10px; font-size: 1.1rem; }
 
-        .welcome-banner { background: linear-gradient(135deg, #dbeafe, #eef2ff); border: 1px solid #bfdbfe; border-radius: 20px; padding: 25px; margin: 20px 0; color: #1e3a8a; }
-        body.dark .welcome-banner { background: linear-gradient(135deg, #1e293b, #1e1b4b); border-color: #312e81; color: #e0e7ff; }
-        .welcome-banner h2 { margin: 0 0 8px 0; font-size: 24px; }
+        /* TIMELINE */
+        .timeline { display: flex; justify-content: space-between; margin: 40px 0; padding: 25px; background: var(--card); border-radius: 20px; border: 1px solid var(--border); overflow-x: auto; gap: 20px; }
+        .step { text-align: center; min-width: 180px; position: relative; }
+        .step::after { content: '→'; position: absolute; right: -15px; top: 30%; color: var(--border); font-weight: bold; }
+        .step:last-child::after { content: ''; }
+        .step-date { font-size: 13px; font-weight: 800; color: var(--blue); text-transform: uppercase; }
+        .step-title { font-size: 15px; display: block; margin-top: 5px; font-weight: 600; }
 
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .tile { background: var(--card); padding: 30px; border-radius: 24px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; justify-content: center; min-height: 200px; border: 1px solid var(--border); text-align: left; color: var(--text); }
-        .tile:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); border-color: var(--blue); }
+        /* GRID SYSTEM */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .tile { background: var(--card); padding: 35px; border-radius: 28px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid var(--border); text-align: left; color: var(--text); }
+        .tile:hover { transform: translateY(-10px); border-color: var(--blue); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
         .wide { grid-column: span 2; }
-        
         .blue-tile { background: var(--blue); color: white; border: none; }
-        .blue-tile h3 { color: white; }
-        .yellow-tile { background: #fbbf24; color: #1e293b; border: none; }
-        .green-tile { background: #10b981; color: white; border: none; }
-        .purple-tile { background: #8b5cf6; color: white; border: none; }
-        .red-tile { background: #f43f5e; color: white; border: none; }
+        .yellow-tile { background: #fefce8; color: #854d0e; border: 1px solid #fef08a; }
+        .tile h3 { margin-top: 0; font-size: 1.4rem; margin-bottom: 12px; }
+        .tile p { margin: 0; font-size: 0.95rem; line-height: 1.5; opacity: 0.9; }
 
-        .contact-footer { text-align: center; margin-top: 60px; padding: 40px; background: var(--card); border-radius: 24px; border: 1px solid var(--border); }
-        .linkedin-btn { display: inline-flex; align-items: center; background: #0077b5; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; transition: 0.3s; margin-top: 15px; }
-        .linkedin-btn:hover { background: #005a87; transform: scale(1.05); }
+        /* CHATBOT */
+        .chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
+        .chat-button { width: 65px; height: 65px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; cursor: pointer; border: none; box-shadow: 0 10px 25px rgba(29, 78, 216, 0.5); transition: 0.3s; }
+        .chat-button:hover { transform: scale(1.1); }
+        .chat-window { position: absolute; bottom: 85px; right: 0; width: 340px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .chat-header { background: var(--blue); color: white; padding: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .chat-body { height: 350px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: var(--bg); }
+        .msg { padding: 12px 16px; border-radius: 18px; font-size: 14px; max-width: 85%; line-height: 1.4; }
+        .bot-msg { background: white; color: #0f172a; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .user-option { background: var(--blue); color: white; align-self: flex-end; cursor: pointer; border: none; text-align: left; transition: 0.2s; font-weight: 500; border-bottom-right-radius: 4px; }
+        .user-option:hover { background: #1e40af; }
 
-        .demo-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; }
-        .structure { width: 100px; height: 200px; display: flex; flex-direction: column; gap: 5px; }
+        /* BLAST OVERLAY & MODAL */
+        .demo-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; }
+        .structure { width: 60px; height: 120px; display: flex; flex-direction: column; gap: 5px; margin-top: 20px; }
         .f { background: #475569; border: 2px solid #1e293b; flex: 1; transition: 0.6s ease-in; }
-        .implode .f3 { transform: translateY(130px); opacity: 0; }
-        .implode .f2 { transform: translateY(65px); opacity: 0; transition-delay: 0.2s; }
+        .implode .f3 { transform: translateY(80px); opacity: 0; }
+        .implode .f2 { transform: translateY(40px); opacity: 0; transition-delay: 0.2s; }
         .implode .f1 { transform: scaleY(0); opacity: 0; transition-delay: 0.4s; }
 
-        .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); display: none; }
-        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 95%; max-width: 900px; background: var(--card); border-radius: 28px; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; color: var(--text); border: 1px solid var(--border); }
-        .close-btn { position: absolute; top: 20px; right: 20px; border: none; font-size: 24px; cursor: pointer; background: var(--bg); color: var(--text); width: 40px; height: 40px; border-radius: 50%; }
-        .modal h3 { color: var(--blue); margin-top: 20px; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2001; width: 90%; max-width: 750px; background: var(--card); border-radius: 32px; padding: 45px; display: none; border: 1px solid var(--border); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); color: var(--text); }
+        .backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); z-index: 1500; display: none; backdrop-filter: blur(8px); }
+        .close-modal { position: absolute; top: 25px; right: 25px; cursor: pointer; font-size: 24px; opacity: 0.5; }
 
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } .timeline { padding: 15px; } }
     </style>
 </head>
-<body id="site-body">
+<body>
 
-<button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Mode</button>
+<button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
 
 <div class="page">
     <header>
         <h1 class="name">Ganesh <span class="blue-text">Kalal</span></h1>
-        <p class="meta">Tier-1 Project Engineer | Melbourne, VIC | MIEAust</p>
+        <p class="meta">Project Engineer | Civil, Infrastructure & Industrial Specialist | MIEAust</p>
         
-        <section class="welcome-banner">
-            <h2>Welcome 👋</h2>
-            <p>I design complex structural projects, and then I figure out the safest, most efficient way to tear them down. Explore the grid below to see how I manage Australia's biggest industrial deconstruction projects.</p>
-        </section>
-        <hr class="divider">
+        <div class="timeline">
+            <div class="step">
+                <span class="step-date">2018 - 2019</span>
+                <span class="step-title">Mumbai Metro Line 4 & 5</span>
+            </div>
+            <div class="step">
+                <span class="step-date">2021 - 2023</span>
+                <span class="step-title">West Gate Freeway Upgrade</span>
+            </div>
+            <div class="step">
+                <span class="step-date">2023 - 2024</span>
+                <span class="step-title">Structural Design (5G & Comm.)</span>
+            </div>
+            <div class="step">
+                <span class="step-date">Present</span>
+                <span class="step-title">Tier-1 Industrial Demolition</span>
+            </div>
+        </div>
     </header>
 
     <main class="grid">
-        <button class="tile blue-tile wide" onclick="initiateBlast('summary')">
-            <h3>Professional Profile</h3>
-            <p>Specializing in industrial demolition, hazardous waste management, and making gravity work for us on Tier-1 assets.</p>
+        <button class="tile blue-tile wide" onclick="initiateBlast('metro')">
+            <h3>Metro & Tunnelling Infrastructure</h3>
+            <p>Managed site supervision for government-funded metro rail construction, focusing on viaducts, stations, and TBM tunnel interfaces.</p>
+        </button>
+        <button class="tile yellow-tile" onclick="initiateBlast('stats')">
+            <h3>Engineering Impact</h3>
+            <p>1,200+ tons of steel dismantled safely, $8M+ in variation management, and 0 LTIs.</p>
         </button>
 
-        <button class="tile yellow-tile" onclick="initiateBlast('tech')">
-            <h3>Technical Arsenal</h3>
-            <p>Mastery in P6, AutoCAD, SpaceGass, and keeping Gantt charts looking sharp.</p>
+        <button class="tile" onclick="initiateBlast('civil')">
+            <h3>Major Transport Works</h3>
+            <p>Delivered crash barriers and noise walls for the West Gate Freeway Upgrade under live traffic conditions with zero non-conformances.</p>
+        </button>
+        <button class="tile wide" onclick="initiateBlast('demo')">
+            <h3>Industrial Decommissioning</h3>
+            <p>Engineering lead for $300M+ refinery closures at ExxonMobil and Rio Tinto Gove, managing high-risk demolition packages.</p>
         </button>
 
-        <button class="tile green-tile wide" onclick="initiateBlast('projects')">
-            <h3>Major Project Delivery</h3>
-            <p>ExxonMobil ($65M+), Rio Tinto Gove ($250M+), and the West Gate Tunnel infrastructure upgrades.</p>
+        <button class="tile wide" onclick="initiateBlast('structural')">
+            <h3>Structural Design & Coordination</h3>
+            <p>Lead designer for 150+ telecom tower upgrades for the national 5G program using SpaceGass & AS4100.</p>
         </button>
-
-        <button class="tile" style="border: 2px dashed var(--blue);" onclick="initiateBlast('stats')">
-            <h3>Impact Stats</h3>
-            <p>1,200+ Tons of Steel | 0 LTIs | Countless coffees consumed.</p>
-        </button>
-
-        <button class="tile" style="background: #fff7ed; border: 1px solid #ffedd5; color: #9a3412;" onclick="initiateBlast('safety')">
-            <h3 style="color: #9a3412;">Safety Culture</h3>
-            <p>Committed to Zero-Harm. Because unplanned explosions are generally frowned upon.</p>
-        </button>
-
-        <button class="tile purple-tile" onclick="initiateBlast('career')">
-            <h3>Career Journey</h3>
-            <p>Liberty Industrial • Indara Digital • Clive Steele Partners.</p>
-        </button>
-
-        <button class="tile red-tile" onclick="initiateBlast('edu')">
-            <h3>Education</h3>
-            <p>Master of Engineering Science. (Yes, I actually use the math).</p>
-        </button>
-
-        <button class="tile" style="background: #eef2ff; border: 1px solid #e0e7ff; color: #3730a3;" onclick="initiateBlast('standards')">
-            <h3 style="color: #3730a3;">AU Standards</h3>
-            <p>Memorizing AS 1170, AS 3600, AS 4100, and AS 2601 so you don't have to.</p>
-        </button>
-
-        <button class="tile wide" style="background: #fefce8; border: 1px solid #fef08a; color: #854d0e;" onclick="initiateBlast('achievements')">
-            <h3 style="color: #a16207;">Milestones & Achievements</h3>
-            <p>Zero-incident explosive events, $8M+ variation tracking, and beating project deadlines.</p>
+        <button class="tile" style="border: 2px dashed var(--blue); background: transparent;" onclick="window.open('https://www.linkedin.com/in/ganesh-kalal/', '_blank')">
+            <h3 style="color: var(--blue);">Connect on LinkedIn</h3>
+            <p>Let's discuss infrastructure, civil engineering, or high-risk demolition opportunities.</p>
         </button>
     </main>
+</div>
 
-    <footer class="contact-footer">
-        <h3>Let's Talk Projects</h3>
-        <p>Looking for a lead engineer to manage your next multi-million dollar asset retirement? I'm your person.</p>
-        <a href="https://www.linkedin.com/in/ganesh-kalal/" target="_blank" class="linkedin-btn">
-            Connect on LinkedIn
-        </a>
-    </footer>
+<div class="chat-widget">
+    <button class="chat-button" onclick="toggleChat()">🤖</button>
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <span>Ganesh-Bot (AI v2.0)</span>
+            <span style="cursor:pointer" onclick="toggleChat()">✕</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="bot-msg msg">Hi! I'm Ganesh's digital twin. I've worked on Metro tunnels, Freeway upgrades, and Refinery demolitions. What part of my journey interests you?</div>
+            <button class="user-option msg" onclick="botReply('metro')">Tell me about the Metro project</button>
+            <button class="user-option msg" onclick="botReply('westgate')">What did you do on West Gate?</button>
+            <button class="user-option msg" onclick="botReply('demolition')">How is Demolition different from Civil?</button>
+        </div>
+    </div>
 </div>
 
 <div id="demo-overlay" class="demo-overlay">
-    <h2 id="blast-status" style="font-weight: 900; color: #ef4444; letter-spacing: 2px; text-align: center;">DOUBLE-CHECKING THE MATH...</h2>
-    <div class="structure" id="building" style="margin-top: 20px;"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
+    <h2 id="blast-status" style="font-weight: 900; color: #ef4444; letter-spacing: 2px;">FETCHING PROJECT DATA...</h2>
+    <div class="structure" id="building"><div class="f f3"></div><div class="f f2"></div><div class="f f1"></div></div>
 </div>
 
 <div id="backdrop" class="backdrop" onclick="closeModal()"></div>
 <div id="modal" class="modal">
-    <button class="close-btn" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle" style="font-size: 32px; margin: 0;"></h2>
-    <div id="modalBody"></div>
+    <span class="close-modal" onclick="closeModal()">✕</span>
+    <h2 id="modalTitle" style="color: var(--blue); margin-top: 0; font-size: 28px;"></h2>
+    <div id="modalBody" style="line-height: 1.7; font-size: 1.1rem;"></div>
 </div>
 
 <script>
-    const cvData = {
-        summary: {
-            title: "Professional Profile",
-            body: `<p>Dedicated Project Engineer who enjoys the structural puzzle of putting things up, and the even harder puzzle of taking them down safely.</p>
-                   <h3>Core Competencies</h3><ul><li><b>Demolition Sequencing:</b> Induced collapse and mechanical dismantling plans.</li><li><b>Hazardous Materials:</b> NORM, Asbestos, and Contaminated Waste streams.</li><li><b>HSEQ Leadership:</b> Keeping the site so safe it’s almost boring.</li></ul>`
+    const data = {
+        metro: { 
+            title: "Mumbai Metro Line 4 & 5", 
+            body: "<p><b>Role:</b> Civil Engineer - Site Supervision</p><p>Supervised site works for government-funded metro rail construction, including elevated viaducts and underground tunnel interfaces. Managed QA inspections for reinforced concrete foundations, piers, and superstructure works in dense urban environments.</p>" 
         },
-        tech: {
-            title: "Technical Arsenal",
-            body: `<h3>Software</h3><p><b>Management:</b> Primavera P6 (My second home), Procore, InEight, Oracle NetSuite.</p><h3>Analysis</h3><p>SpaceGass, AutoCAD, Civil 3D, Microstran, RAPT, Structural Toolkit.</p>`
+        civil: { 
+            title: "West Gate Freeway Upgrade", 
+            body: "<p><b>Role:</b> Graduate Civil Engineer</p><p>Supported live-traffic freeway upgrades by delivering reinforced concrete crash barriers and precast noise walls. Achieved zero non-conformances across 100+ installations while ensuring strict VicRoads and AS 5100 compliance.</p>" 
         },
-        projects: {
-            title: "Major Project Delivery",
-            body: `<h3>ExxonMobil Altona Refinery ($65M+)</h3><p>Managing staged demolition right next to live fuel import operations. No pressure.</p><h3>Rio Tinto Gove Refinery ($250M+)</h3><p>Australia’s largest industrial demolition. Essentially the ultimate sandbox for precision explosives and remote logistics.</p><h3>West Gate Tunnel</h3><p>QA verification of crash barriers and precast noise walls in live traffic conditions.</p>`
+        demo: { 
+            title: "Tier-1 Industrial Demolition", 
+            body: "<p><b>Projects:</b> Rio Tinto Gove ($300M) & ExxonMobil Altona ($65M)</p><p>Leading Project Engineer managing high-risk packages including hazardous waste (NORM/Asbestos) and precision structural dismantling. Currently coordinating mechanical and explosive demolition activities.</p>" 
         },
-        stats: {
-            title: "Impact by the Numbers",
-            body: `<ul><li><b>$350M+:</b> Total aggregate value of projects delivered.</li><li><b>0 LTIs:</b> Maintained a perfect safety record on all high-risk sites.</li><li><b>1,200+ Tons:</b> Structural steel dismantled and sorted in the last year alone.</li></ul>`
+        structural: { 
+            title: "Structural Design & Telecom", 
+            body: "<p><b>Role:</b> Structural Engineer</p><p>Performed structural design for 150+ telecom tower upgrades for the national 5G program. Proficient in structural analysis using SpaceGass, Microstran, and RAPT for commercial and residential assets complying with AS4100 and AS1170.2.</p>" 
         },
-        safety: {
-            title: "Safety & HSEQ",
-            body: `<h3>Zero-Harm Philosophy</h3><p>Specialist in exclusion zone management and safe work methodologies (SWMS). I take safety seriously so my teams go home exactly the way they arrived.</p>`
-        },
-        standards: {
-            title: "Australian Standards",
-            body: `<p>I read these so you don't have to:</p><ul><li><b>AS 1170:</b> Design Actions (Wind/Seismic).</li><li><b>AS 3600:</b> Concrete Structures.</li><li><b>AS 4100:</b> Steel Structures.</li><li><b>AS 2601:</b> Demolition of Structures.</li></ul>`
-        },
-        career: {
-            title: "Career Journey",
-            body: `<h3>Liberty Industrial</h3><p>Project Engineer - Leading Tier-1 decommissioning delivery.</p><h3>Indara Digital</h3><p>Structural Engineer - 5G Infrastructure design.</p><h3>Clive Steele Partners</h3><p>Graduate Structural Engineer - Commercial design.</p>`
-        },
-        edu: {
-            title: "Education",
-            body: `<p><b>Master of Engineering Science (Structural):</b> Swinburne University.</p><p><b>Licenses & Certs:</b> MIEAust, P6 Professional, Asbestos Safety, Working at Heights (because someone has to go up there).</p>`
-        },
-        achievements: {
-            title: "Milestones & Achievements",
-            body: `<ul>
-                    <li><b>Zero-Incident Explosive Event:</b> Successfully coordinated the Rio Tinto Gove precision explosive demolition with zero safety or environmental incidents.</li>
-                    <li><b>Schedule Optimization:</b> Accelerated critical path dismantling at ExxonMobil.</li>
-                    <li><b>Commercial Success:</b> Tracked and successfully justified over $8M in project variations.</li>
-                   </ul>`
+        stats: { 
+            title: "Engineering Impact", 
+            body: "<ul><li><b>Materials:</b> 1,200+ tons of steel dismantled safely.</li><li><b>Commercial:</b> Negotiated and managed $8M+ in contract variations.</li><li><b>Credentials:</b> Member of Engineers Australia (MIEAust) and progressing toward NER registration.</li></ul>" 
         }
     };
 
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
-    }
+    function toggleTheme() { document.body.classList.toggle('dark'); }
+    function toggleChat() { const win = document.getElementById('chatWindow'); win.style.display = (win.style.display === 'flex' ? 'none' : 'flex'); }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; document.getElementById('backdrop').style.display = 'none'; }
 
     function initiateBlast(key) {
         const overlay = document.getElementById('demo-overlay');
@@ -204,24 +186,29 @@
         const statusText = document.getElementById('blast-status');
         
         overlay.style.display = 'flex';
-        statusText.innerText = "DOUBLE-CHECKING THE MATH...";
+        statusText.innerText = "LOADING PROJECT SPECS...";
         
-        setTimeout(() => { statusText.innerText = "COVER YOUR EARS..."; }, 800);
-        setTimeout(() => { statusText.innerText = "DETONATING!"; bldg.classList.add('implode'); }, 1400);
+        setTimeout(() => { statusText.innerText = "CLEARING THE SITE..."; bldg.classList.add('implode'); }, 800);
         
         setTimeout(() => {
-            document.getElementById('modalTitle').innerText = cvData[key].title;
-            document.getElementById('modalBody').innerHTML = cvData[key].body;
+            document.getElementById('modalTitle').innerText = data[key].title;
+            document.getElementById('modalBody').innerHTML = data[key].body;
             overlay.style.display = 'none';
             bldg.classList.remove('implode');
             document.getElementById('modal').style.display = 'block';
             document.getElementById('backdrop').style.display = 'block';
-        }, 3200);
+        }, 2200);
     }
 
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-        document.getElementById('backdrop').style.display = 'none';
+    function botReply(type) {
+        const body = document.getElementById('chatBody');
+        let res = "";
+        if(type==='metro') res = "On the Mumbai Metro project, I was deep in site supervision for elevated stations and TBM tunnel interfaces. It was a massive civil engineering challenge involving strict QA for viaducts and piers.";
+        if(type==='westgate') res = "For the West Gate Freeway, I delivered over 100 precast noise wall and crash barrier installations with zero non-conformances—all while managing the extreme risks of live highway traffic.";
+        if(type==='demolition') res = "Civil engineering is about building up; demolition is about engineering 'reverse construction.' I now manage Australia's largest industrial closures, calculating how to safely dismantle $300M+ refineries.";
+        
+        const div = document.createElement('div'); div.className = "bot-msg msg"; div.innerText = res;
+        body.appendChild(div); body.scrollTop = body.scrollHeight;
     }
 </script>
 </body>
